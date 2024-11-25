@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+}
+
+/* Noise texture and animation for the background */
+@keyframes noise-animation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+.noise-background {
+  position: absolute;
+  inset: 0;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8W0y9AAAAmklEQVRIDbXBAQEAAAABIP6PzgpV5Tn/8Yk3XY3YgB8oHEhs8bqM+NEIqZgdBy0YnFz0sS3XJ8gAAwEYAAAAAElFTkSuQmCC'); /* Placeholder for a noise texture */
+  animation: noise-animation 0.1s linear infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Path animation (drawing effect) */
+.animated-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 15s ease-in-out infinite;
+}
+
+@keyframes draw {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 1000;
+  }
+}
