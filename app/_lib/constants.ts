@@ -112,7 +112,7 @@ export const portfolioProjects = [
     heading: "Super JAM Bros",
     subheading: "",
     description:
-      "A modern website with all ecommerce functionalities. It includes features like product browsing, shopping cart, user authentication, ordering a product... The application is developed with react + typescript for frontend part, and Supabase as backend.",
+      "A local multiplayer fighting game inspired by Super Smash Bros, developed as an assignment for an Unreal Engine C++ class, showcasing a character state machine and robust local multiplayer input handling.",
     imageUrl: "/imgs/projects/Jamo.png",
     techStack: [
       "Unreal Engine",
