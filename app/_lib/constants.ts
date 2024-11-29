@@ -153,20 +153,20 @@ export const portfolioProjects = [
     ],
     features: [
       {
-        imageUrl: "/imgs/projects/LocalCoop.png",
+        imageUrl: "/imgs/projects/LocalMulti.gif",
         text: "Local Multiplayer",
       },
       {
-        imageUrl: "/imgs/projects/Interaction.gif",
+        imageUrl: "/imgs/projects/StateMachine.PNG",
         text: "Movement StateMachine",
       },
       {
-        imageUrl: "/imgs/projects/Move.gif",
+        imageUrl: "/imgs/projects/CPP.PNG",
         text: "UE5 C++",
       },],
     liveDemoUrl: "",
-    videoUrl: "",
-    videoGameplayUrl: "",
+    videoUrl: "/video/Jamo.mp4",
+    videoGameplayUrl: "/video/Jamo.mp4",
   },
   {
     id: "camera",
