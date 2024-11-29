@@ -169,6 +169,36 @@ export const portfolioProjects = [
     videoGameplayUrl: "/video/MothershipGamePlay.mp4",
   },
   {
+    id: "camera",
+    heading: "Dynamic Camera System",
+    subheading: "",
+    description:
+      "Stuck as the sole healer of the worst adventuring party in the realm it’s your job to do whatever it takes to keep your teammates alive. Support your group through dungeons as they fight through waves of enemies inevitably fail, and die, and blame YOU for their own mistakes!",
+    imageUrl: "/imgs/projects/Heal.jpg",
+    techStack: [
+      "Unity",
+      "C#",
+      "Camera",
+      "TPS",
+    ],
+    features: [
+      {
+        imageUrl: "/imgs/projects/Mana.jpg",
+        text: "Card and Mana System",
+      },
+      {
+        imageUrl: "/imgs/projects/Levels.jpg",
+        text: "Mobile Developement and UI",
+      },
+      {
+        imageUrl: "/imgs/projects/Google.png",
+        text: "Google PLay Services",
+      },],
+    liveDemoUrl: "https://play.google.com/store/apps/details?id=com.Team8.HealEMUp&hl=fr",
+    videoUrl: "/video/Heal.mp4",
+    videoGameplayUrl: "/video/HealGameplay.mp4",
+  },
+  {
     id: "rast",
     heading: "C++ Rasterizer",
     subheading: "",
