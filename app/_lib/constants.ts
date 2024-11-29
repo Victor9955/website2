@@ -284,7 +284,7 @@ export const portfolioProjects = [
     liveDemoUrl: "",
     videoUrl: "",
     videoGameplayUrl: "",
-  },
+  }
 ];
 
 export const testimonialItems = [
