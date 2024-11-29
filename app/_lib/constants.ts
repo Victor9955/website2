@@ -108,6 +108,36 @@ export const portfolioProjects = [
     videoGameplayUrl: "/video/HealGameplay.mp4",
   },
   {
+    id: "sfml",
+    heading: "The Mothership Calls",
+    subheading: "",
+    description:
+      "A multiplayer game with the SFML library, coded as a second year game programming group project.",
+    imageUrl: "/imgs/projects/Mothership.png",
+    techStack: [
+      "SFML",
+      "C++",
+      "Local Multiplayer",
+      "Shoot 'Em Up",
+    ],
+    features: [
+      {
+        imageUrl: "/imgs/projects/LineCol.png",
+        text: "Line to Cirle Collision",
+      },
+      {
+        imageUrl: "/imgs/projects/Game.png",
+        text: "Local Multiplayer",
+      },
+      {
+        imageUrl: "/imgs/projects/Renderer.png",
+        text: "SFML Rendering",
+      },],
+    liveDemoUrl: "https://usofeurasia.itch.io/the-mothership-calls",
+    videoUrl: "/video/Mothership.mp4",
+    videoGameplayUrl: "/video/MothershipGamePlay.mp4",
+  },
+  {
     id: "jamo",
     heading: "Super JAM Bros",
     subheading: "",
@@ -137,36 +167,6 @@ export const portfolioProjects = [
     liveDemoUrl: "",
     videoUrl: "",
     videoGameplayUrl: "",
-  },
-  {
-    id: "sfml",
-    heading: "The Mothership Calls",
-    subheading: "",
-    description:
-      "A multiplayer game with the SFML library, coded as a second year game programming group project.",
-    imageUrl: "/imgs/projects/Mothership.png",
-    techStack: [
-      "SFML",
-      "C++",
-      "Local Multiplayer",
-      "Shoot 'Em Up",
-    ],
-    features: [
-      {
-        imageUrl: "/imgs/projects/LineCol.png",
-        text: "Line to Cirle Collision",
-      },
-      {
-        imageUrl: "/imgs/projects/Game.png",
-        text: "Local Multiplayer",
-      },
-      {
-        imageUrl: "/imgs/projects/Renderer.png",
-        text: "SFML Rendering",
-      },],
-    liveDemoUrl: "https://usofeurasia.itch.io/the-mothership-calls",
-    videoUrl: "/video/Mothership.mp4",
-    videoGameplayUrl: "/video/MothershipGamePlay.mp4",
   },
   {
     id: "camera",
