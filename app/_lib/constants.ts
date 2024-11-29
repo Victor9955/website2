@@ -174,7 +174,7 @@ export const portfolioProjects = [
     subheading: "",
     description:
       "Stuck as the sole healer of the worst adventuring party in the realm it’s your job to do whatever it takes to keep your teammates alive. Support your group through dungeons as they fight through waves of enemies inevitably fail, and die, and blame YOU for their own mistakes!",
-    imageUrl: "/imgs/projects/Bezier.png",
+    imageUrl: "/imgs/projects/Bezier.PNG",
     techStack: [
       "Unity",
       "C#",
@@ -187,11 +187,11 @@ export const portfolioProjects = [
         text: "Dynamic Camera System",
       },
       {
-        imageUrl: "/imgs/projects/Bezier.png",
+        imageUrl: "/imgs/projects/Bezier.PNG",
         text: "Bezier Curve",
       },
       {
-        imageUrl: "/imgs/projects/Trolly.png",
+        imageUrl: "/imgs/projects/Trolly.PNG",
         text: "Trolly Camera",
       },],
     liveDemoUrl: "",
