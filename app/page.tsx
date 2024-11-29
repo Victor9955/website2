@@ -24,6 +24,7 @@ const Homepage = () => {
         <HeroSection />
         <Skills />
         <ProjectsSection />
+
         {/* Game Jam Section */}
         <div className="py-20 bg-white dark:bg-dark-100 text-center flex flex-col items-center">
           <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold max-w-3xl leading-snug tracking-wide text-dark-200 dark:text-stone-200/70 mb-8">
@@ -35,6 +36,7 @@ const Homepage = () => {
             </a>
           </ShinyButton>
         </div>
+        
         <Footer />
       </div>
     </main>
