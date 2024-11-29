@@ -7,7 +7,7 @@ import {
 import { Navbar } from "@/app/_components/ui/Navbar";
 import HeroSection from "@/app/_components/HeroSection";
 import Skills from "@/app/_components/Skills";
-import { ChevronRight, Download } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import ShinyButton from "@/app/_components/ui/ShinyButton";
 import ProjectsSection from "@/app/_components/ProjectsSection";
 import Footer from "@/app/_components/Footer";
