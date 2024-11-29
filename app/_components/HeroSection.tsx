@@ -22,17 +22,16 @@ const HeroSection = () => {
         {/* Centered content */}
         <div className="flex flex-col justify-center items-center relative text-center px-6 sm:px-0">
           {/* Profile Picture */}
-        <div
-          className="max-w-[20vw] max-h-[20vw] sm:max-w-[15vw] sm:max-h-[15vw] w-full h-full rounded-full overflow-hidden mb-10 sm:mb-16"
-          style={{ aspectRatio: "1 / 1" }}
-        >
-          <img
-            src="imgs/avatars/ProfilePicture.jpg"
-            alt="Profile"
-            className="w-full h-full object-cover"
-          />
-        </div>
-
+          <div
+            className="max-w-[20vw] max-h-[20vw] sm:max-w-[15vw] sm:max-h-[15vw] w-full h-full rounded-full overflow-hidden mb-10 sm:mb-16"
+            style={{ aspectRatio: "1 / 1" }}
+          >
+            <img
+              src="imgs/avatars/ProfilePicture.jpg"
+              alt="Profile"
+              className="w-full h-full object-cover"
+            />
+          </div>
 
           {/* Title */}
           <TextGenerateEffect
@@ -62,6 +61,18 @@ const HeroSection = () => {
             </a>
           </div>
         </div>
+      </div>
+
+      {/* Game Jam Section */}
+      <div className="py-20 bg-white dark:bg-dark-100 text-center flex flex-col items-center">
+        <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold max-w-3xl leading-snug tracking-wide text-dark-200 dark:text-stone-200/70 mb-8">
+          You can look at my Game Jams projects on my itch.io page!
+        </p>
+        <ShinyButton icon={<ChevronRight />}>
+          <a href="https://your-itch-io-link.itch.io" target="_blank" rel="noopener noreferrer">
+            Visit My Itch.io
+          </a>
+        </ShinyButton>
       </div>
     </>
   );

@@ -173,7 +173,7 @@ export const portfolioProjects = [
     heading: "Dynamic Camera System",
     subheading: "",
     description:
-      "Stuck as the sole healer of the worst adventuring party in the realm it’s your job to do whatever it takes to keep your teammates alive. Support your group through dungeons as they fight through waves of enemies inevitably fail, and die, and blame YOU for their own mistakes!",
+      "During a C# class, I developed a dynamic camera system in Unity, featuring versatile modes such as trolley cameras, third-person shooter (TPS) cameras, surveillance setups, and zone-specific transitions. The system seamlessly blends camera behaviors to enhance gameplay immersion. Its modular design allows for easy customization and integration into various game types.",
     imageUrl: "/imgs/projects/Bezier.PNG",
     techStack: [
       "Unity",
