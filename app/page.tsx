@@ -34,7 +34,7 @@ const Homepage = () => {
         </p>
         <div className="flex justify-center">
           <ShinyButton icon={<ChevronRight />}>
-            <a href="https://your-itch-io-link.itch.io" target="_blank" rel="noopener noreferrer">
+            <a href="https://victor9955.itch.io/" target="_blank" rel="noopener noreferrer">
               Visit My Itch.io
             </a>
           </ShinyButton>
