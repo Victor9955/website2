@@ -174,7 +174,7 @@ export const portfolioProjects = [
     subheading: "",
     description:
       "Stuck as the sole healer of the worst adventuring party in the realm it’s your job to do whatever it takes to keep your teammates alive. Support your group through dungeons as they fight through waves of enemies inevitably fail, and die, and blame YOU for their own mistakes!",
-    imageUrl: "/imgs/projects/Heal.jpg",
+    imageUrl: "/imgs/projects/Bezier.png",
     techStack: [
       "Unity",
       "C#",
@@ -183,20 +183,20 @@ export const portfolioProjects = [
     ],
     features: [
       {
-        imageUrl: "/imgs/projects/Mana.jpg",
-        text: "Card and Mana System",
+        imageUrl: "/imgs/projects/Dynamic.gif",
+        text: "Dynamic Camera System",
       },
       {
-        imageUrl: "/imgs/projects/Levels.jpg",
-        text: "Mobile Developement and UI",
+        imageUrl: "/imgs/projects/Bezier.png",
+        text: "Bezier Curve",
       },
       {
-        imageUrl: "/imgs/projects/Google.png",
-        text: "Google PLay Services",
+        imageUrl: "/imgs/projects/Trolly.png",
+        text: "Trolly Camera",
       },],
-    liveDemoUrl: "https://play.google.com/store/apps/details?id=com.Team8.HealEMUp&hl=fr",
-    videoUrl: "/video/Heal.mp4",
-    videoGameplayUrl: "/video/HealGameplay.mp4",
+    liveDemoUrl: "",
+    videoUrl: "/video/Camera.mp4",
+    videoGameplayUrl: "/video/Camera.mp4",
   },
   {
     id: "rast",
