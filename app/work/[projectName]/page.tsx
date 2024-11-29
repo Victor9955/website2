@@ -1,6 +1,4 @@
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
-import Footer from "@/app/_components/Footer";
+import Footer from "@/app/_components/Footer"; 
 import ProjectTechnologiesMini from "@/app/_components/ProjectTechnologiesMini";
 import { Navbar } from "@/app/_components/ui/Navbar";
 import ShinyButton from "@/app/_components/ui/ShinyButton";
@@ -17,13 +15,13 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
-
-export async function generateMetadata({
+export function generateMetadata({
   params,
 }: {
   params: { projectName: string };
-}): Promise<Metadata> {
+}) {
   const projectId = params.projectName;
   const project = portfolioProjects.find((project) => project.id === projectId);
 
@@ -39,10 +37,6 @@ const navItems = [
   { name: "Work", link: "/#work", icon: <BriefcaseBusiness /> },
   { name: "Contact", link: "/#contact", icon: <ContactIcon /> },
 ];
-
-interface ProjectOverviewProps {
-  params: { projectName: string };
-}
 
 const ProjectOverview = ({ params }: { params: { projectName: string } }) => {
   const projectId = params.projectName;
