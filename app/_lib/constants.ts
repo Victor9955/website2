@@ -108,6 +108,37 @@ export const portfolioProjects = [
     videoGameplayUrl: "/video/HealGameplay.mp4",
   },
   {
+    id: "jamo",
+    heading: "Super JAM Bros",
+    subheading: "",
+    description:
+      "A local multiplayer fighting game inspired by Super Smash Bros, developed as an assignment for an Unreal Engine C++ class, showcasing a character state machine and robust local multiplayer input handling.",
+    imageUrl: "/imgs/projects/Jamo.png",
+    techStack: [
+      "Unreal Engine",
+      "C++",
+      "Local Multiplayer",
+      "Fighting Game",
+      "Super Smash Bros Like",
+    ],
+    features: [
+      {
+        imageUrl: "/imgs/projects/LocalCoop.png",
+        text: "Local Multiplayer",
+      },
+      {
+        imageUrl: "/imgs/projects/Interaction.gif",
+        text: "Movement StateMachine",
+      },
+      {
+        imageUrl: "/imgs/projects/Move.gif",
+        text: "UE5 C++",
+      },],
+    liveDemoUrl: "",
+    videoUrl: "",
+    videoGameplayUrl: "",
+  },
+  {
     id: "sfml",
     heading: "The Mothership Calls",
     subheading: "",
@@ -138,43 +169,12 @@ export const portfolioProjects = [
     videoGameplayUrl: "/video/MothershipGamePlay.mp4",
   },
   {
-    id: "jamo",
-    heading: "Super JAM Bros",
-    subheading: "",
-    description:
-      "A local multiplayer fighting game inspired by Super Smash Bros, developed as an assignment for an Unreal Engine C++ class, showcasing a character state machine and robust local multiplayer input handling.",
-    imageUrl: "/imgs/projects/Jamo.png",
-    techStack: [
-      "Unreal Engine",
-      "C++",
-      "Local Multiplayer",
-      "Fighting Game",
-      "Super Smash Bros Like",
-    ],
-    features: [
-      {
-        imageUrl: "/imgs/projects/LocalMulti.gif",
-        text: "Local Multiplayer",
-      },
-      {
-        imageUrl: "/imgs/projects/StateMachine.PNG",
-        text: "Movement StateMachine",
-      },
-      {
-        imageUrl: "/imgs/projects/CPP.PNG",
-        text: "UE5 C++",
-      },],
-    liveDemoUrl: "",
-    videoUrl: "/video/Jamo.mp4",
-    videoGameplayUrl: "/video/Jamo.mp4",
-  },
-  {
     id: "camera",
     heading: "Dynamic Camera System",
     subheading: "",
     description:
-      "During a C# class, I developed a dynamic camera system in Unity, featuring versatile modes such as trolley cameras, third-person shooter (TPS) cameras, surveillance setups, and zone-specific transitions. The system seamlessly blends camera behaviors to enhance gameplay immersion. Its modular design allows for easy customization and integration into various game types.",
-    imageUrl: "/imgs/projects/Bezier.PNG",
+      "Stuck as the sole healer of the worst adventuring party in the realm it’s your job to do whatever it takes to keep your teammates alive. Support your group through dungeons as they fight through waves of enemies inevitably fail, and die, and blame YOU for their own mistakes!",
+    imageUrl: "/imgs/projects/Heal.jpg",
     techStack: [
       "Unity",
       "C#",
@@ -183,20 +183,20 @@ export const portfolioProjects = [
     ],
     features: [
       {
-        imageUrl: "/imgs/projects/Dynamic.gif",
-        text: "Dynamic Camera System",
+        imageUrl: "/imgs/projects/Mana.jpg",
+        text: "Card and Mana System",
       },
       {
-        imageUrl: "/imgs/projects/Bezier.PNG",
-        text: "Bezier Curve",
+        imageUrl: "/imgs/projects/Levels.jpg",
+        text: "Mobile Developement and UI",
       },
       {
-        imageUrl: "/imgs/projects/Trolly.PNG",
-        text: "Trolly Camera",
+        imageUrl: "/imgs/projects/Google.png",
+        text: "Google PLay Services",
       },],
-    liveDemoUrl: "",
-    videoUrl: "/video/Camera.mp4",
-    videoGameplayUrl: "/video/Camera.mp4",
+    liveDemoUrl: "https://play.google.com/store/apps/details?id=com.Team8.HealEMUp&hl=fr",
+    videoUrl: "/video/Heal.mp4",
+    videoGameplayUrl: "/video/HealGameplay.mp4",
   },
   {
     id: "rast",
@@ -284,7 +284,7 @@ export const portfolioProjects = [
     liveDemoUrl: "",
     videoUrl: "",
     videoGameplayUrl: "",
-  }
+  },
 ];
 
 export const testimonialItems = [
