@@ -72,8 +72,8 @@ export const portfolioProjects = [
         text: "Platformer Movement State Machine",
       },],
     liveDemoUrl: "https://thomasboeglin.itch.io/twice-upon-a-time",
-    videoUrl: "/video/Twice.mp4",
-    videoGameplayUrl: "/video/TwiceGameplay.mp4",
+    videoUrl: "https://www.youtube.com/embed/lkO8rYcXZXY?autoplay=1&volume=20&vq=hd1080",
+    videoGameplayUrl: "https://www.youtube.com/embed/lkO8rYcXZXY?autoplay=1&volume=20&vq=hd1080",
     contentPath: "/content/project1.md",
   },
   {
@@ -105,8 +105,8 @@ export const portfolioProjects = [
         text: "Google PLay Services",
       },],
     liveDemoUrl: "https://play.google.com/store/apps/details?id=com.Team8.HealEMUp&hl=fr",
-    videoUrl: "/video/Heal.mp4",
-    videoGameplayUrl: "/video/HealGameplay.mp4",
+    videoUrl: "https://www.youtube.com/embed/lkO8rYcXZXY?autoplay=1&mute=1&vq=hd1080",
+    videoGameplayUrl: "https://www.youtube.com/embed/lkO8rYcXZXY?autoplay=1&volume=100&vq=hd1080",
     contentPath: "/content/project1.md",
   },
   {

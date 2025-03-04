@@ -89,17 +89,14 @@ const ProjectOverview = ({ params }: { params: { projectName: string } }) => {
             </div>
 
 {/* Video Section */}
-<div className="rounded-lg overflow-hidden mb-16">
-  <video
-    className="w-full rounded-lg"
-    controls
-    autoPlay
-    loop
-    muted
-  >
-    <source src={videoUrl} type="video/mp4" />
-    Sorry, your browser does not support the video tag.
-  </video>
+<div className="rounded-lg overflow-hidden mb-16 aspect-video">
+  <iframe
+    className="w-full h-full rounded-lg"
+    src={videoUrl}
+    title={`${heading} Video`}
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  ></iframe>
 </div>
             {markdownContent && (
         <div className="mt-16 mb-32">
