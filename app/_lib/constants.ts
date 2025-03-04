@@ -74,6 +74,7 @@ export const portfolioProjects = [
     liveDemoUrl: "https://thomasboeglin.itch.io/twice-upon-a-time",
     videoUrl: "/video/Twice.mp4",
     videoGameplayUrl: "/video/TwiceGameplay.mp4",
+    contentPath: "/content/project1.md",
   },
   {
     id: "heal",
@@ -106,6 +107,7 @@ export const portfolioProjects = [
     liveDemoUrl: "https://play.google.com/store/apps/details?id=com.Team8.HealEMUp&hl=fr",
     videoUrl: "/video/Heal.mp4",
     videoGameplayUrl: "/video/HealGameplay.mp4",
+    contentPath: "/content/project1.md",
   },
   {
     id: "sfml",
@@ -136,6 +138,7 @@ export const portfolioProjects = [
     liveDemoUrl: "https://usofeurasia.itch.io/the-mothership-calls",
     videoUrl: "/video/Mothership.mp4",
     videoGameplayUrl: "/video/MothershipGamePlay.mp4",
+    contentPath: "/content/project1.md",
   },
   {
     id: "jamo",
@@ -167,6 +170,7 @@ export const portfolioProjects = [
     liveDemoUrl: "",
     videoUrl: "/video/Jamo.mp4",
     videoGameplayUrl: "/video/Jamo.mp4",
+    contentPath: "/content/project1.md",
   },
   {
     id: "camera",
@@ -197,6 +201,7 @@ export const portfolioProjects = [
     liveDemoUrl: "",
     videoUrl: "/video/Camera.mp4",
     videoGameplayUrl: "/video/Camera.mp4",
+    contentPath: "/content/project1.md",
   },
   {
     id: "rast",
@@ -226,6 +231,7 @@ export const portfolioProjects = [
     liveDemoUrl: "",
     videoUrl: "/video/Rasterizer.mp4",
     videoGameplayUrl: "/video/Rasterizer.mp4",
+    contentPath: "/content/project1.md",
   },
   {
     id: "cript",
@@ -255,6 +261,7 @@ export const portfolioProjects = [
     liveDemoUrl: "https://zukkinioni.itch.io/tcmc",
     videoUrl: "/video/Unreal.mp4",
     videoGameplayUrl: "/video/UnrealGameplay.mp4",
+    contentPath: "/content/project1.md",
   },
   {
     id: "coming",
@@ -284,6 +291,7 @@ export const portfolioProjects = [
     liveDemoUrl: "",
     videoUrl: "",
     videoGameplayUrl: "",
+    contentPath: "/content/project1.md",
   }
 ];
 

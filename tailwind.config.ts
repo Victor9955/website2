@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import typography from '@tailwindcss/typography'; 
 
 const svgToDataUri = require("mini-svg-data-uri");
 
@@ -44,6 +45,7 @@ const config: Config = {
     },
   },
   plugins: [
+    typography(),
     addVariablesForColors,
     function ({ matchUtilities, theme }: any) {
       matchUtilities(

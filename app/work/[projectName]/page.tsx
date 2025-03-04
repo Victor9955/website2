@@ -3,6 +3,9 @@ import ProjectTechnologiesMini from "@/app/_components/ProjectTechnologiesMini";
 import { Navbar } from "@/app/_components/ui/Navbar";
 import ShinyButton from "@/app/_components/ui/ShinyButton";
 import { portfolioProjects } from "@/app/_lib/constants";
+import fs from "fs";
+import path from "path";
+import MarkdownContent from "@/app/_components/MarkdownContent";
 import {
   BriefcaseBusiness,
   Code,
@@ -55,6 +58,13 @@ const ProjectOverview = ({ params }: { params: { projectName: string } }) => {
     videoUrl
   } = project;
 
+  let markdownContent = '';
+  if (project.contentPath) {
+    const markdownPath = path.join(process.cwd(), 'public', project.contentPath);
+    markdownContent = fs.readFileSync(markdownPath, 'utf-8');
+  }
+
+
   return (
     <main className="flex flex-col px-5 sm:px-10 relative">
       <div className="max-w-7xl mx-auto w-full">
@@ -91,38 +101,11 @@ const ProjectOverview = ({ params }: { params: { projectName: string } }) => {
     Sorry, your browser does not support the video tag.
   </video>
 </div>
-
-{/* Grid display for 'features' items */}
-<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
-  {features.map((item) => (
-    <div
-      key={item.imageUrl}
-      className="rounded-lg p-4 shadow-lg bg-gray-100 dark:bg-dark-200"
-    >
-      <p className="text-lg font-semibold text-center mb-4">{item.text}</p>
-      {/* Image container */}
-      <div className="w-full">
-        <Image
-          src={item.imageUrl}
-          alt="portfolio"
-          width={400} // Fixed width
-          height={500} // Fixed height
-          className="rounded-lg object-contain" // Ensure the image scales properly
-        />
-      </div>
-    </div>
-  ))}
-</div>
-
-
-
-            {/* Text after the features grid */}
-            <div className="text-center mt-16">
-              <p className="text-lg font-semibold mb-6">
-                {description}
-              </p>
-            </div>
-
+            {markdownContent && (
+        <div className="mt-16 mb-32">
+          <MarkdownContent content={markdownContent} />
+        </div>
+      )}
             <div className="mt-8 mb-32 flex flex-col md:flex-row gap-10 md:gap-5 justify-between">
               <div className="flex items-center">
                 <ProjectTechnologiesMini techStack={techStack} />
