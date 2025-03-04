@@ -50,11 +50,8 @@ const ProjectOverview = ({ params }: { params: { projectName: string } }) => {
   const {
     heading,
     subheading,
-    description,
-    imageUrl,
     techStack,
     liveDemoUrl,
-    features,
     videoUrl
   } = project;
 
