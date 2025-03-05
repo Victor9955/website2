@@ -57,7 +57,8 @@ export const portfolioProjects = [
       "Platformer",
     ],
     liveDemoUrl: "https://thomasboeglin.itch.io/twice-upon-a-time",
-    videoUrl: "https://www.youtube.com/embed/lkO8rYcXZXY?autoplay=1&volume=20&vq=hd1080",
+    videoUrl: "https://player.vimeo.com/video/1062785072",
+    
     videoGameplayUrl: "https://www.youtube.com/embed/lkO8rYcXZXY?autoplay=1&volume=20&vq=hd1080",
     contentPath: "/content/project1.md",
   },

@@ -1,44 +1,82 @@
-<div style="overflow: auto; margin: 20px 0;">
-<img src="https://picsum.photos/300/200" 
-     alt="Floating image" 
-     style="float: left; 
-            margin: 0 20px 20px 0;
-            width: 500px; 
+<!-- Summary Section with Navigation -->
+<div style="background:rgb(26, 26, 26); padding: 1.5rem; margin-bottom: 2rem; border-radius: 4px; text-align: center;">
+<a href="#introduction" style="color: #007bff; text-decoration: none; margin: 0 10px;">🌟 Introduction</a>
+<a href="#demos" style="color: #007bff; text-decoration: none; margin: 0 10px;">🎥 Video Demos</a>
+<a href="#stats" style="color: #007bff; text-decoration: none; margin: 0 10px;">📊 Statistics</a>
+</div>
+
+<!-- Main Content with Anchor -->
+<div id="introduction" style="overflow: auto; margin: 2rem 0;">
+<img src="https://picsum.photos/600/400" 
+     alt="Featured Concept Art" 
+     style="float: right; 
+            margin: 0 0 20px 20px;
+            width: 45%; 
             height: auto;
-            border-radius: 8px;
-            shape-outside: margin-box;">
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            shape-outside: ellipse(40% 50% at 60% 50%);">
 
-<div style="margin-left: 270px; padding: 10px;">
-**This text will properly wrap around the image**  
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+<div style="margin-right: 50%; padding: 0 15px; color: #fff;">
+<h2>🌟 Introduction to Modern Layouts</h2>
+
+Welcome to the future of content presentation! This guide demonstrates how to create engaging layouts that combine multiple media formats seamlessly. 
+
+Key features include:
+- Responsive image wrapping
+- Dynamic video integration
+- Clean typography
+- Interactive elements
+- Mobile-friendly design
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 </div>
 </div>
 
-<div style="overflow: auto; margin: 20px 0;">
-<img src="https://picsum.photos/300/200" 
-     alt="Floating image" 
-     style="float: left; 
-            margin: 0 20px 20px 0;
-            width: 500px; 
-            height: auto;
-            border-radius: 8px;
-            shape-outside: margin-box;">
+<!-- Video Gallery with Anchor -->
+<div id="demos">
+<h2>🎥 Featured Demonstrations</h2>
 
-<div style="margin-left: 270px; padding: 10px;">
-**This text will properly wrap around the image**  
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+<div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 2rem 0;">
+  <div style="flex: 1 1 48%; min-width: 300px; border-radius: 8px; overflow: hidden; background: rgb(26, 26, 26);">
+    <video controls style="width: 100%; height: auto;">
+      <source src="demo-1.mp4" type="video/mp4">
+    </video>
+    <div style="padding: 1rem; color: #fff;">
+      <strong>Concept Overview</strong><br>
+      Basic principles of layout design
+    </div>
+  </div>
+
+  <div style="flex: 1 1 48%; min-width: 300px; border-radius: 8px; overflow: hidden; background: rgb(26, 26, 26);">
+    <video controls style="width: 100%; height: auto;">
+      <source src="demo-2.mp4" type="video/mp4">
+    </video>
+    <div style="padding: 1rem; color: #fff;">
+      <strong>Advanced Techniques</strong><br>
+      Interactive elements and animations
+    </div>
+  </div>
 </div>
 </div>
 
-<!-- Continuing content -->
-<div style="margin-top: 2rem;">
-More text content following the video section. Add any additional markdown or HTML components here.
+<!-- Data Section with Anchor -->
+<div id="stats">
+<h2>📊 Key Statistics</h2>
 
-You can also embed videos using the HTML5 video tag:
-<div style="border-radius: 8px; overflow: hidden; margin: 1rem 0;">
-  <video controls style="width: 100%;">
-    <source src="https://cdn.discordapp.com/attachments/1212459753343557682/1346801882458226729/vineyard_vine_production_greece_958.mp4?ex=67c9827f&is=67c830ff&hm=c4f6629d08751eec92b0b2474c9fa28eff04c39abbae3b9df31f1b2d91a8f8ef&" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0;">
+  <div style="background: rgb(26, 26, 26); padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); color: #fff;">
+    <h3>User Engagement</h3>
+    <p>📈 62% increase with visual layouts</p>
+  </div>
+  <div style="background: rgb(26, 26, 26); padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); color: #fff;">
+    <h3>Content Retention</h3>
+    <p>💡 45% better recall with mixed media</p>
+  </div>
 </div>
+</div>
+
+<!-- Footer -->
+<div style="border-top: 1px solid rgb(26, 26, 26); margin-top: 3rem; padding-top: 1rem; color: #fff;">
+⚠️ Note: Click any section title in the summary to jump directly to that content. Replace demo videos with actual MP4 files.
 </div>
