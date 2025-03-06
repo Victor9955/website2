@@ -187,7 +187,7 @@ export const portfolioProjects = [
     liveDemoUrl: "",
     videoUrl: "",
     videoGameplayUrl: "",
-    contentPath: "/content/project1.md",
+    contentPath: "/content/Quantictactoe.md",
   }
 ];
 
