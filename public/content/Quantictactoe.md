@@ -6,9 +6,9 @@
 </div>
 
 <!-- Main Content with Anchor -->
-<div id="introduction" style="display: flex; align-items: flex-start; margin: 2rem 0;">
+<div id="introduction" style="display: flex; align-items: center; margin: 2rem 0;">
     <div style="flex: 1; padding: 0 15px; color: #fff;">
-        <h2>🌟 Introduction</h2>
+        <h2 style="font-size: 2rem; color: #007bff;">🌟 Introduction</h2>
         <p>
             Quantictactoe is a personal project I developed after completing an intensive one-month class on multiplayer game development (learn more about this class in the Space Multiplayer project). Inspired by the classic game of Tic-Tac-Toe, I aimed to create a more complex and strategic multiplayer experience by introducing a layered 3x3 grid system and integrating it with Steamworks for online play.
         </p>
@@ -21,14 +21,179 @@
     </div>
     <img src="https://media.discordapp.net/attachments/1347326761993769041/1347326784995332117/Design_sans_titre.jpg?ex=67cb6b59&is=67ca19d9&hm=4b9b0b6e22d35f62f34fd3b6bcd7c682e16f3db96664b8bdad40d8f5984bd3bf&=&format=webp&width=926&height=521" 
          alt="Featured Concept Art" 
-         style="width: 45%; 
-                height: auto;
-                border-radius: 12px;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-                margin-left: 20px;">
+         style="margin-left: 12px;">
 </div>
 
 
+<!-- Main Content with Anchor -->
+<div id="steam" style="display: flex; align-items: center; margin: 2rem 0;">
+    <div style="flex: 1; padding: 0 15px; color: #fff;">
+        <h2 style="font-size: 2rem; color: #007bff;">👨‍💻 Steamworks Integration</h2>
+        <ul style="font-size: 120%;">
+            <li>
+                <span style="font-weight: bold;">Steam Lobbies</span>
+                <p>
+                    I used Facepunch API to make lobbies when needed, such as when a friend sends an invite or when you want to join a public lobby.
+                </p>
+                    <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
+        <summary style="cursor: pointer; padding: 4px; background-color: #2a2f3a; color: #fff;">
+            Code Snippet
+        </summary>
+        <div style="background-color: #1a1a1a; padding: 15px; border-radius: 0 0 4px 4px;">
+            <pre style="margin: 0; color:rgb(238, 238, 238);">
+  public async void CreateLobby()
+  {
+      try
+      {
+          var createLobbyOutput = await SteamLobby.CreateLobbyAsync();
+          if (createLobbyOutput.Success)
+          {
+              Debug.Log($"Lobby created: {createLobbyOutput.LobbyId}");
+              // Initialize lobby settings and player data
+              SteamLobby.SetLobbyData("game_mode", "survival");
+              SteamLobby.SetLobbyMemberData("player_ready", "false");
+          }
+          else
+          {
+              Debug.LogError("Failed to create lobby");
+          }
+      }
+      catch (Exception e)
+      {
+          Debug.LogError($"Lobby creation error: {e.Message}");
+      }
+  }
+                        </code>
+                    </pre>
+                </details>
+            </li>
+            <li>
+    <span style="font-weight: bold;">Steam Socket Server</span>
+    <p>
+        This class handles the server-side logic for managing connections, player data, and game state using Steamworks networking. It implements the `ISocketManager` interface to handle events like connecting, disconnecting, and receiving messages.
+    </p>
+    <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
+        <summary style="cursor: pointer; padding: 4px; background-color: #2a2f3a; color: #fff;">
+            Code Snippet
+        </summary>
+        <div style="background-color: #1a1a1a; padding: 15px; border-radius: 0 0 4px 4px;">
+            <pre style="margin: 0; color:rgb(238, 238, 238);">
+<code class="language-csharp">
+public class SteamSocketServer : ScriptableObject, ISocketManager
+{
+    [SerializeField] float waitBeforeStart = 3f;
+    static int globalPlayerCount = 0;
+    Awaitable waitBegin = null;
+
+    static Dictionary&lt;Connection, PlayerData&gt; players = new();
+
+    public void ResetPlayers()
+    {
+        players.Clear();
+    }
+
+    public void OnConnecting(Connection connection, ConnectionInfo info)
+    {
+        connection.Accept();
+        "Client Try To Connect".Log();
+    }
+
+    public void OnConnected(Connection connection, ConnectionInfo info)
+    {
+        "Client is Connected".Log();
+
+        PlayerData playerData = new PlayerData();
+        playerData.connection = connection;
+        playerData.steamId = info.Identity.SteamId;
+        playerData.playerNum = globalPlayerCount;
+        players.Add(connection, playerData);
+        globalPlayerCount++;
+
+        if (players.Count != SteamManager.instance.maxPlayer) return;
+
+        globalPlayerCount = 0;
+        bigGrid = new();
+        bigGrid.Clear();
+        for (int i = 0; i < 9; i++)
+        {
+            bigGrid.Add(new SmallGrid());
+        }
+        waitForAllType = true;
+
+        foreach (var player in players.Keys)
+        {
+            PacketBuilder.SendPacket(new LoadScene(2), player, SendType.Reliable);
+        }
+    }
+
+    public void OnDisconnected(Connection connection, ConnectionInfo info)
+    {
+        connection.Close();
+        "Client Disconnected".Log();
+    }
+
+    public void OnMessage(Connection connection, NetIdentity identity, IntPtr data, int size, long messageNum, long recvTime, int channel)
+    {
+        "Server Receive Packet".Log();
+        byte[] byteArray = new byte[size];
+        Marshal.Copy(data, byteArray, 0, size);
+        int offset = 0;
+        Opcode opcode = (Opcode)Serialization.DeserializeU16(byteArray, ref offset);
+        switch (opcode)
+        {
+            case Opcode.Message:
+                {
+                    MessagePacket packet = MessagePacket.Deserialize<MessagePacket>(byteArray, ref offset);
+                    packet.messsage.Log();
+                    break;
+                }
+            case Opcode.Ready:
+                {
+                    if (players.TryGetValue(connection, out PlayerData player))
+                    {
+                        player.isReady = true;
+                        foreach (var playerConnection in players.Keys)
+                        {
+                            PacketBuilder.SendPacket(new Ready(player.playerNum), playerConnection, SendType.Reliable);
+                        }
+                    }
+                    CheckToStart();
+                    break;
+                }
+            case Opcode.CancelReady:
+                {
+                    if (players.TryGetValue(connection, out PlayerData player))
+                    {
+                        player.isReady = false;
+                        foreach (var playerConnection in players.Keys)
+                        {
+                            PacketBuilder.SendPacket(new CancelReady(player.playerNum), playerConnection, SendType.Reliable);
+                        }
+                        CheckToStart();
+                    }
+                    break;
+                }
+            case Opcode.Play:
+                {
+                    if (players.TryGetValue(connection, out PlayerData player))
+                    {
+                        PlayClient playTurnPacket = PlayClient.Deserialize&lt;PlayClient&gt;(byteArray, ref offset);
+                        HandleTurnPakcet(player, playTurnPacket.pos, playTurnPacket.bigPos);
+                    }
+                    break;
+                }
+        }
+    }
+}
+</code>
+            </pre>
+        </div>
+    </details>
+</li>
+            <li>Data serialization</li>
+        </ul>
+    </div>
+</div>
 
 
 <!-- Video Gallery with Anchor -->

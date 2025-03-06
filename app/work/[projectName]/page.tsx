@@ -64,7 +64,7 @@ const ProjectOverview = ({ params }: { params: { projectName: string } }) => {
 
   return (
     <main className="flex flex-col px-5 sm:px-10 relative">
-      <div className="max-w-7xl mx-auto w-full">
+      <div className="max-w-7xl mx-auto w-full ">
         <Navbar navItems={navItems} />
 
         <div className="pt-36">
@@ -96,7 +96,7 @@ const ProjectOverview = ({ params }: { params: { projectName: string } }) => {
   ></iframe>
 </div>
             {markdownContent && (
-        <div className="mt-16 mb-32">
+        <div className="mt-16 mb-32 w-full">
           <MarkdownContent content={markdownContent} />
         </div>
       )}
