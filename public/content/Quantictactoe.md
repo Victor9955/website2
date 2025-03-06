@@ -1,8 +1,8 @@
 <!-- Summary Section with Navigation -->
 <div style="background:rgb(26, 26, 26); padding: 1.5rem; margin-bottom: 2rem; border-radius: 4px; text-align: center;">
 <a href="#introduction" style="color: #007bff; text-decoration: none; margin: 0 10px;">🌟 Introduction</a>
-<a href="#code" style="color: #007bff; text-decoration: none; margin: 0 10px;">👨‍💻 Steamworks</a>
-<a href="#stats" style="color: #007bff; text-decoration: none; margin: 0 10px;">📊 Statistics</a>
+<a href="#steam" style="color: #007bff; text-decoration: none; margin: 0 10px;">👨‍💻 Steamworks Integration</a>
+<a href="#game" style="color: #007bff; text-decoration: none; margin: 0 10px;">👾 Game Mechanics</a>
 </div>
 
 <!-- Main Content with Anchor -->
@@ -18,23 +18,21 @@
             shape-outside: ellipse(40% 50% at 60% 50%);">
 
 <div style="margin-right: 50%; padding: 0 15px; color: #fff;">
-<h2>🌟 Introduction to Modern Layouts</h2>
+<h2>🌟 Introduction</h2>
 
-Welcome to the future of content presentation! This guide demonstrates how to create engaging layouts that combine multiple media formats seamlessly. 
+Quantictactoe is a personal project I developed after completing an intensive one-month class on multiplayer game development (learn more about this class in the Space Multiplayer project). Inspired by the classic game of Tic-Tac-Toe, I aimed to create a more complex and strategic multiplayer experience by introducing a layered 3x3 grid system and integrating it with Steamworks for online play.
 
-Key features include:
-- Responsive image wrapping
-- Dynamic video integration
-- Clean typography
-- Interactive elements
-- Mobile-friendly design
+Using Unity and C#, I implemented advanced features such as Steam lobby creation, socket-based server-client communication and data serialization. The game challenges players to think several steps ahead, with rules that dynamically restrict and open up gameplay possibilities based on previous moves.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+This project not only solidified my understanding of multiplayer systems but also allowed me to explore a different API such as Steamworks (on previous projects I used Enet or winsock).
 </div>
 </div>
+
+
+
 
 <!-- Video Gallery with Anchor -->
-<div id="demos">
+<div id="steam">
 <h2>🎥 Featured Demonstrations</h2>
 
 <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 2rem 0;">
@@ -61,7 +59,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
 </div>
 
 <!-- Data Section with Anchor -->
-<div id="stats">
+<div id="game">
 <h2>📊 Key Statistics</h2>
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0;">
