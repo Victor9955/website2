@@ -40,31 +40,32 @@
             Code Snippet
         </summary>
         <div style="background-color: #1a1a1a; padding: 15px; border-radius: 0 0 4px 4px;">
-            <pre style="margin: 0; color:rgb(238, 238, 238);">
-  public async void CreateLobby()
+<code class="language-csharp">
+
+  public async void CreateFriendLobbyAsync()
   {
       try
       {
-          var createLobbyOutput = await SteamLobby.CreateLobbyAsync();
-          if (createLobbyOutput.Success)
+          var createLobbyResult = await SteamMatchmaking.CreateLobbyAsync(maxPlayer);
+          if (createLobbyResult.HasValue)
           {
-              Debug.Log($"Lobby created: {createLobbyOutput.LobbyId}");
-              // Initialize lobby settings and player data
-              SteamLobby.SetLobbyData("game_mode", "survival");
-              SteamLobby.SetLobbyMemberData("player_ready", "false");
+              currentLobby = createLobbyResult.Value;
+
+              currentLobby.SetFriendsOnly();
+              currentLobby.SetJoinable(true);
           }
           else
           {
-              Debug.LogError("Failed to create lobby");
+              Debug.LogError("Failed to create lobby.");
           }
       }
-      catch (Exception e)
+      catch (System.Exception ex)
       {
-          Debug.LogError($"Lobby creation error: {e.Message}");
+          Debug.LogError($"Error creating lobby: {ex.Message}");
       }
+
   }
-                        </code>
-                    </pre>
+</code>
                 </details>
             </li>
             <li>
@@ -77,8 +78,9 @@
             Code Snippet
         </summary>
         <div style="background-color: #1a1a1a; padding: 15px; border-radius: 0 0 4px 4px;">
-            <pre style="margin: 0; color:rgb(238, 238, 238);">
 <code class="language-csharp">
+
+[CreateAssetMenu(fileName = "SteamSocketServer", menuName = "ScriptableObjects/SteamSocketServer", order = 1)]
 public class SteamSocketServer : ScriptableObject, ISocketManager
 {
     [SerializeField] float waitBeforeStart = 3f;
@@ -186,7 +188,6 @@ public class SteamSocketServer : ScriptableObject, ISocketManager
     }
 }
 </code>
-            </pre>
         </div>
     </details>
 </li>
