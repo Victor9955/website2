@@ -6,26 +6,26 @@
 </div>
 
 <!-- Main Content with Anchor -->
-<div id="introduction" style="overflow: auto; margin: 2rem 0;">
-<img src="https://picsum.photos/600/400" 
-     alt="Featured Concept Art" 
-     style="float: right; 
-            margin: 0 0 20px 20px;
-            width: 45%; 
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            shape-outside: ellipse(40% 50% at 60% 50%);">
-
-<div style="margin-right: 50%; padding: 0 15px; color: #fff;">
-<h2>🌟 Introduction</h2>
-
-Quantictactoe is a personal project I developed after completing an intensive one-month class on multiplayer game development (learn more about this class in the Space Multiplayer project). Inspired by the classic game of Tic-Tac-Toe, I aimed to create a more complex and strategic multiplayer experience by introducing a layered 3x3 grid system and integrating it with Steamworks for online play.
-
-Using Unity and C#, I implemented advanced features such as Steam lobby creation, socket-based server-client communication and data serialization. The game challenges players to think several steps ahead, with rules that dynamically restrict and open up gameplay possibilities based on previous moves.
-
-This project not only solidified my understanding of multiplayer systems but also allowed me to explore a different API such as Steamworks (on previous projects I used Enet or winsock).
-</div>
+<div id="introduction" style="display: flex; align-items: flex-start; margin: 2rem 0;">
+    <div style="flex: 1; padding: 0 15px; color: #fff;">
+        <h2>🌟 Introduction</h2>
+        <p>
+            Quantictactoe is a personal project I developed after completing an intensive one-month class on multiplayer game development (learn more about this class in the Space Multiplayer project). Inspired by the classic game of Tic-Tac-Toe, I aimed to create a more complex and strategic multiplayer experience by introducing a layered 3x3 grid system and integrating it with Steamworks for online play.
+        </p>
+        <p>
+            Using Unity Engine and C#, I implemented advanced features such as Steam lobby creation, socket-based server-client communication, and data serialization. Notably, I created my own custom netcode using Steam Datagram Relay (SDR) instead of relying on pre-built solutions like Netcode for GameObjects, which allowed me to gain a deeper understanding of low-level networking.
+        </p>
+        <p>
+            This project not only solidified my understanding of multiplayer systems but also allowed me to explore a different API such as Steamworks (on previous projects I used Enet or winsock).
+        </p>
+    </div>
+    <img src="https://media.discordapp.net/attachments/1347326761993769041/1347326784995332117/Design_sans_titre.jpg?ex=67cb6b59&is=67ca19d9&hm=4b9b0b6e22d35f62f34fd3b6bcd7c682e16f3db96664b8bdad40d8f5984bd3bf&=&format=webp&width=926&height=521" 
+         alt="Featured Concept Art" 
+         style="width: 45%; 
+                height: auto;
+                border-radius: 12px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                margin-left: 20px;">
 </div>
 
 
