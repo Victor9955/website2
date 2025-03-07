@@ -42,29 +42,29 @@
         <div style="background-color: #1a1a1a; padding: 15px; border-radius: 0 0 4px 4px;">
 <code class="language-csharp">
 
-  public async void CreateFriendLobbyAsync()
-  {
-      try
-      {
-          var createLobbyResult = await SteamMatchmaking.CreateLobbyAsync(maxPlayer);
-          if (createLobbyResult.HasValue)
-          {
-              currentLobby = createLobbyResult.Value;
+    public async void CreateFriendLobbyAsync()
+    {
+        try
+        {
+            var createLobbyResult = await SteamMatchmaking.CreateLobbyAsync(maxPlayer);
+            if (createLobbyResult.HasValue)
+            {
+                currentLobby = createLobbyResult.Value;
 
-              currentLobby.SetFriendsOnly();
-              currentLobby.SetJoinable(true);
-          }
-          else
-          {
-              Debug.LogError("Failed to create lobby.");
-          }
-      }
-      catch (System.Exception ex)
-      {
-          Debug.LogError($"Error creating lobby: {ex.Message}");
-      }
+                currentLobby.SetFriendsOnly();
+                currentLobby.SetJoinable(true);
+            }
+            else
+            {
+                Debug.LogError("Failed to create lobby.");
+            }
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"Error creating lobby: {ex.Message}");
+        }
+    }
 
-  }
 </code>
                 </details>
             </li>
@@ -80,113 +80,113 @@
         <div style="background-color: #1a1a1a; padding: 15px; border-radius: 0 0 4px 4px;">
 <code class="language-csharp">
 
-[CreateAssetMenu(fileName = "SteamSocketServer", menuName = "ScriptableObjects/SteamSocketServer", order = 1)]
-public class SteamSocketServer : ScriptableObject, ISocketManager
-{
-    [SerializeField] float waitBeforeStart = 3f;
-    static int globalPlayerCount = 0;
-    Awaitable waitBegin = null;
-
-    static Dictionary&lt;Connection, PlayerData&gt; players = new();
-
-    public void ResetPlayers()
+    [CreateAssetMenu(fileName = "SteamSocketServer", menuName = "ScriptableObjects/SteamSocketServer", order = 1)]
+    public class SteamSocketServer : ScriptableObject, ISocketManager
     {
-        players.Clear();
-    }
+        [SerializeField] float waitBeforeStart = 3f;
+        static int globalPlayerCount = 0;
+        Awaitable waitBegin = null;
 
-    public void OnConnecting(Connection connection, ConnectionInfo info)
-    {
-        connection.Accept();
-        "Client Try To Connect".Log();
-    }
+        static Dictionary&lt;Connection, PlayerData&gt; players = new();
 
-    public void OnConnected(Connection connection, ConnectionInfo info)
-    {
-        "Client is Connected".Log();
-
-        PlayerData playerData = new PlayerData();
-        playerData.connection = connection;
-        playerData.steamId = info.Identity.SteamId;
-        playerData.playerNum = globalPlayerCount;
-        players.Add(connection, playerData);
-        globalPlayerCount++;
-
-        if (players.Count != SteamManager.instance.maxPlayer) return;
-
-        globalPlayerCount = 0;
-        bigGrid = new();
-        bigGrid.Clear();
-        for (int i = 0; i < 9; i++)
+        public void ResetPlayers()
         {
-            bigGrid.Add(new SmallGrid());
+            players.Clear();
         }
-        waitForAllType = true;
 
-        foreach (var player in players.Keys)
+        public void OnConnecting(Connection connection, ConnectionInfo info)
         {
-            PacketBuilder.SendPacket(new LoadScene(2), player, SendType.Reliable);
+            connection.Accept();
+            "Client Try To Connect".Log();
         }
-    }
 
-    public void OnDisconnected(Connection connection, ConnectionInfo info)
-    {
-        connection.Close();
-        "Client Disconnected".Log();
-    }
-
-    public void OnMessage(Connection connection, NetIdentity identity, IntPtr data, int size, long messageNum, long recvTime, int channel)
-    {
-        "Server Receive Packet".Log();
-        byte[] byteArray = new byte[size];
-        Marshal.Copy(data, byteArray, 0, size);
-        int offset = 0;
-        Opcode opcode = (Opcode)Serialization.DeserializeU16(byteArray, ref offset);
-        switch (opcode)
+        public void OnConnected(Connection connection, ConnectionInfo info)
         {
-            case Opcode.Message:
-                {
-                    MessagePacket packet = MessagePacket.Deserialize<MessagePacket>(byteArray, ref offset);
-                    packet.messsage.Log();
-                    break;
-                }
-            case Opcode.Ready:
-                {
-                    if (players.TryGetValue(connection, out PlayerData player))
+            "Client is Connected".Log();
+
+            PlayerData playerData = new PlayerData();
+            playerData.connection = connection;
+            playerData.steamId = info.Identity.SteamId;
+            playerData.playerNum = globalPlayerCount;
+            players.Add(connection, playerData);
+            globalPlayerCount++;
+
+            if (players.Count != SteamManager.instance.maxPlayer) return;
+
+            globalPlayerCount = 0;
+            bigGrid = new();
+            bigGrid.Clear();
+            for (int i = 0; i < 9; i++)
+            {
+                bigGrid.Add(new SmallGrid());
+            }
+            waitForAllType = true;
+
+            foreach (var player in players.Keys)
+            {
+                PacketBuilder.SendPacket(new LoadScene(2), player, SendType.Reliable);
+            }
+        }
+
+        public void OnDisconnected(Connection connection, ConnectionInfo info)
+        {
+            connection.Close();
+            "Client Disconnected".Log();
+        }
+
+        public void OnMessage(Connection connection, NetIdentity identity, IntPtr data, int size, long messageNum, long recvTime, int channel)
+        {
+            "Server Receive Packet".Log();
+            byte[] byteArray = new byte[size];
+            Marshal.Copy(data, byteArray, 0, size);
+            int offset = 0;
+            Opcode opcode = (Opcode)Serialization.DeserializeU16(byteArray, ref offset);
+            switch (opcode)
+            {
+                case Opcode.Message:
                     {
-                        player.isReady = true;
-                        foreach (var playerConnection in players.Keys)
-                        {
-                            PacketBuilder.SendPacket(new Ready(player.playerNum), playerConnection, SendType.Reliable);
-                        }
+                        MessagePacket packet = MessagePacket.Deserialize<MessagePacket>(byteArray, ref offset);
+                        packet.messsage.Log();
+                        break;
                     }
-                    CheckToStart();
-                    break;
-                }
-            case Opcode.CancelReady:
-                {
-                    if (players.TryGetValue(connection, out PlayerData player))
+                case Opcode.Ready:
                     {
-                        player.isReady = false;
-                        foreach (var playerConnection in players.Keys)
+                        if (players.TryGetValue(connection, out PlayerData player))
                         {
-                            PacketBuilder.SendPacket(new CancelReady(player.playerNum), playerConnection, SendType.Reliable);
+                            player.isReady = true;
+                            foreach (var playerConnection in players.Keys)
+                            {
+                                PacketBuilder.SendPacket(new Ready(player.playerNum), playerConnection, SendType.Reliable);
+                            }
                         }
                         CheckToStart();
+                        break;
                     }
-                    break;
-                }
-            case Opcode.Play:
-                {
-                    if (players.TryGetValue(connection, out PlayerData player))
+                case Opcode.CancelReady:
                     {
-                        PlayClient playTurnPacket = PlayClient.Deserialize&lt;PlayClient&gt;(byteArray, ref offset);
-                        HandleTurnPakcet(player, playTurnPacket.pos, playTurnPacket.bigPos);
+                        if (players.TryGetValue(connection, out PlayerData player))
+                        {
+                            player.isReady = false;
+                            foreach (var playerConnection in players.Keys)
+                            {
+                                PacketBuilder.SendPacket(new CancelReady(player.playerNum), playerConnection, SendType.Reliable);
+                            }
+                            CheckToStart();
+                        }
+                        break;
                     }
-                    break;
-                }
+                case Opcode.Play:
+                    {
+                        if (players.TryGetValue(connection, out PlayerData player))
+                        {
+                            PlayClient playTurnPacket = PlayClient.Deserialize&lt;PlayClient&gt;(byteArray, ref offset);
+                            HandleTurnPakcet(player, playTurnPacket.pos, playTurnPacket.bigPos);
+                        }
+                        break;
+                    }
+            }
         }
     }
-}
 </code>
         </div>
     </details>

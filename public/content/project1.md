@@ -1,5 +1,5 @@
 <!-- Summary Section with Navigation -->
-<div style="background:rgb(26, 26, 26); padding: 1.5rem; margin-bottom: 2rem; border-radius: 4px; text-align: center;">
+<div style="background:rgb(26, 26, 26);  padding: 1.5rem; margin-bottom: 2rem; border-radius: 4px; text-align: center;">
 <a href="#introduction" style="color: #007bff; text-decoration: none; margin: 0 10px;">🌟 Introduction</a>
 <a href="#demos" style="color: #007bff; text-decoration: none; margin: 0 10px;">🎥 Video Demos</a>
 <a href="#stats" style="color: #007bff; text-decoration: none; margin: 0 10px;">📊 Statistics</a>
