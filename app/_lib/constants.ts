@@ -13,7 +13,7 @@ export const techCardsItems = [
   },
   {
     name: "Steamworks",
-    description: "Lobbies and Achivements",
+    description: "Low level Multiplayer, Lobbies and Achievement",
     imageUrl: "/imgs/logos/steam.svg",
     bgColor: "bg-[#00ADEE]/15",
   },
@@ -44,7 +44,23 @@ export const techCardsItems = [
 ];
 
 export const portfolioProjects = [
-  {
+    {
+      id: "quantic",
+      heading: "Quantictactoe",
+      subheading: "",
+      imageUrl: "https://media.discordapp.net/attachments/1212459753343557682/1348606174001369159/Quantic.PNG?ex=67d012df&is=67cec15f&hm=749aad91edf287fbfcf6abe87c74b5e398180df9f99905260d4159cab4eddaf6&=&format=webp&quality=lossless&width=1449&height=810",
+      techStack: [
+        "Steamworks",
+        "Unity",
+        "Online Multiplayer",
+        "Reflexion Game",
+      ],
+      liveDemoUrl: "",
+      videoUrl: "",
+      videoGameplayUrl: "",
+      contentPath: "/content/Quantictactoe.md",
+    },
+    {
     id: "twice",
     heading: "Twice Upon a Time",
     subheading: "",
@@ -172,22 +188,6 @@ export const portfolioProjects = [
     videoUrl: "/video/Unreal.mp4",
     videoGameplayUrl: "/video/UnrealGameplay.mp4",
     contentPath: "/content/project1.md",
-  },
-  {
-    id: "coming",
-    heading: "Quantictactoe",
-    subheading: "",
-    imageUrl: "/imgs/projects/Coming.png",
-    techStack: [
-      "Unity",
-      "Steamworks",
-      "Online Multiplayer",
-      "Reflexion Game",
-    ],
-    liveDemoUrl: "",
-    videoUrl: "",
-    videoGameplayUrl: "",
-    contentPath: "/content/Quantictactoe.md",
   }
 ];
 

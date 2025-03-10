@@ -60,6 +60,19 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
 </div>
 </div>
 
+<!-- Video Gallery with Anchor -->
+<div id="game" style="display: flex; align-items: center; margin: 2rem 0;">
+    <div style="flex: 1; padding: 0 15px; color: #fff;">
+        <h2 style="font-size: 2rem; color: #007bff;">👾 Gameplay Showcase </h2>
+  <div style="flex: 1 1 48%; min-width: 300px; border-radius: 8px; overflow: hidden; background: rgb(26, 26, 26);">
+    <video controls style="width: 100%; height: auto;">
+      <source src="demo-1.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+</div>
+
+
 <!-- Data Section with Anchor -->
 <div id="stats">
 <h2>📊 Key Statistics</h2>
