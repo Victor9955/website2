@@ -1,4 +1,5 @@
 <!-- Summary Section with Navigation -->
+
 <div style="background:rgb(26, 26, 26); padding: 1.5rem; margin-bottom: 2rem; border-radius: 4px; text-align: center;">
 <a href="#introduction" style="color: #007bff; text-decoration: none; margin: 0 10px;">🌟 Introduction</a>
 <a href="#steam" style="color: #007bff; text-decoration: none; margin: 0 10px;">👨‍💻 Steamworks Integration</a>
@@ -40,7 +41,7 @@
             OnLobbyEntered(Lobby lobby)
         </summary>
         <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
-<code class="language-csharp">
+<div>
 
     private void OnLobbyEntered(Lobby lobby)
     {
@@ -65,7 +66,7 @@
         connectionManager = SteamNetworkingSockets.ConnectRelay(lobby.Owner.Id, 0, client);
     }
 
-</code>
+</div>
                 </details>
             </li>
             <li style= "padding-bottom: 15px">
@@ -78,7 +79,7 @@
             CreateFriendLobbyAsync()
         </summary>
         <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
-<code class="language-csharp">
+<div>
 
     public async void CreateFriendLobbyAsync()
     {
@@ -103,7 +104,7 @@
         }
     }
 
-</code>
+</div>
                 </details>
             </li>
             <li style= "padding-bottom: 15px">
@@ -116,7 +117,7 @@
             SteamSocketServer.cs
         </summary>
         <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
-<code class="language-csharp">
+<div>
 
     [CreateAssetMenu(fileName = "SteamSocketServer", menuName = "ScriptableObjects/SteamSocketServer", order = 1)]
     public class SteamSocketServer : ScriptableObject, ISocketManager
@@ -225,7 +226,7 @@
             }
         }
     }
-</code>
+</div>
         </div>
     </details>
 </li>
@@ -239,7 +240,7 @@
             SteamSocketClient.cs
         </summary>
         <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
-<code class="language-csharp">
+<div>
 
     [CreateAssetMenu(fileName = "SteamSocketClient", menuName = "ScriptableObjects/SteamSocketClient", order = 1)]
     public class SteamSocketClient : ScriptableObject, IConnectionManager
@@ -319,7 +320,7 @@
             }
         }
     }
-</code>
+</div>
         </div>
     </details>
 </li>
@@ -337,7 +338,7 @@
             Serialization.cs
         </summary>
         <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
-<code class="language-csharp">
+<div>
 
     public static class Serialization
     {
@@ -506,7 +507,7 @@
         }
     }
 
-</code>
+</div>
                 </details>
             </li>
         </ul>
