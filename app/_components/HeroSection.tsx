@@ -42,7 +42,7 @@ const HeroSection = () => {
 
           {/* Subtitle */}
           <p className="pt-6 sm:pt-7 pb-8 sm:pb-10 text-base sm:text-lg md:text-xl text-dark-200 dark:text-stone-200/70 max-w-xl">
-            Hi, I&apos;m Victor, I create intricate systems and complex game mechanics.
+            I create smooth multiplayer experiences and complex game mechanics.
           </p>
 
           {/* Buttons */}

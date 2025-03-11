@@ -40,6 +40,12 @@ export const techCardsItems = [
     description: "C and C++",
     imageUrl: "/imgs/logos/raylib.svg",
     bgColor: "bg-[#FFFFFF]/90",
+  },
+  {
+    name: "Enet",
+    description: "C# and C++ UDP networking library",
+    imageUrl: "/imgs/logos/networking.svg",
+    bgColor: "bg-[#FFFFFF]/90",
   }
 ];
 
@@ -48,7 +54,7 @@ export const portfolioProjects = [
       id: "quantic",
       heading: "Quantictactoe",
       subheading: "",
-      imageUrl: "https://media.discordapp.net/attachments/1212459753343557682/1348606174001369159/Quantic.PNG?ex=67d012df&is=67cec15f&hm=749aad91edf287fbfcf6abe87c74b5e398180df9f99905260d4159cab4eddaf6&=&format=webp&quality=lossless&width=1449&height=810",
+      imageUrl: "https://media.discordapp.net/attachments/1212459753343557682/1348978988139417680/lrs01_1.png?ex=67d16e15&is=67d01c95&hm=e95adb41e9e4fdf058115745fea928ac225ea2214cfdc328c6f43dab873765dd&=&format=webp&quality=lossless&width=1175&height=940",
       techStack: [
         "Steamworks",
         "Unity",
@@ -59,6 +65,22 @@ export const portfolioProjects = [
       videoUrl: "",
       videoGameplayUrl: "",
       contentPath: "/content/Quantictactoe.md",
+    },
+    {
+      id: "space",
+      heading: "Space Multiplayer",
+      subheading: "",
+      imageUrl: "https://media.discordapp.net/attachments/1212459753343557682/1348972950505918537/lrs01.png?ex=67d16876&is=67d016f6&hm=4dadbb793f4ab48a7793a5efb3c1bd96b7a09ddabc4c595230014257b0019115&=&format=webp&quality=lossless&width=1175&height=940",
+      techStack: [
+        "Enet",
+        "Unity",
+        "Online Multiplayer",
+        "Space Arena Shooter",
+      ],
+      liveDemoUrl: "",
+      videoUrl: "",
+      videoGameplayUrl: "",
+      contentPath: "/content/Space.md",
     },
     {
     id: "twice",

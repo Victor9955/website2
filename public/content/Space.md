@@ -1,11 +1,9 @@
 <!-- Summary Section with Navigation -->
 
 <div style="background:rgb(26, 26, 26); padding: 1.5rem; margin-bottom: 2rem; border-radius: 4px; text-align: center;">
-<a href="#introduction" style="color: #007bff; text-decoration: none; margin: 0 10px;">🌟 Introduction</a>
-<a href="#game" style="color: #007bff; text-decoration: none; margin: 0 10px;">👾 Gameplay Architecture </a>
-<a href="#steam" style="color: #007bff; text-decoration: none; margin: 0 10px;">👨‍💻 Custom Netcode</a>
-<a href="#lesson" style="color: #007bff; text-decoration: none; margin: 0 10px;">📌 Lessons Learned </a>
-
+<a href="#introduction" style="color: #007bff; text-decoration: none; margin: 0 10px;">🌟 Introduction </a>
+<a href="#introduction" style="color: #007bff; text-decoration: none; margin: 0 10px;">🌟 Introduction </a>
+<a href="#steam" style="color: #007bff; text-decoration: none; margin: 0 10px;">👨‍💻 Features </a>
 </div>
 
 <!-- Main Content with Anchor -->
@@ -27,51 +25,11 @@
          style="margin-left: 12px;">
 </div>
 
-<div id="introduction" style="display: flex; align-items: center; margin: 2rem 0;">
-    <div style="flex: 1; padding: 0 15px; color: #fff;">
-        <h2 style="font-size: 2rem; color: #007bff;">👾 Gameplay Architecture</h2>
-        <p>
-            The game is based on Ultimate Tic-Tac-Toe, a strategic twist on the classic game, played on a 3x3 grid of smaller 3x3 grids. Players take turns placing their marks (X or O), with the first move allowed anywhere. Each subsequent move is determined by the previous one—the small grid you play in corresponds to the position of the last move within its grid. If a player wins a small grid, it’s claimed, and the next time that grid is targeted, the player can place their mark anywhere. The goal is to win three small grids in a row, column, or diagonal on the larger grid. This game combines tactical depth and foresight, making it a challenging and engaging experience.
-        </p>
-        <!-- Adding the image three times under the text -->
-        <div style="display: flex; justify-content: space-between; margin-top: 20px; gap: 15px;">
-            <div style="flex: 1; min-width: 0;"> <!-- Fix for flexbox overflow -->
-                <img src="https://media.discordapp.net/attachments/1347326761993769041/1347326784995332117/Design_sans_titre.jpg?ex=67cb6b59&is=67ca19d9&hm=4b9b0b6e22d35f62f34fd3b6bcd7c682e16f3db96664b8bdad40d8f5984bd3bf&=&format=webp&width=926&height=521" 
-                     alt="Featured Concept Art" 
-                     style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px;">
-            </div>
-            <div style="flex: 1; min-width: 0;">
-                <img src="https://media.discordapp.net/attachments/1347326761993769041/1347326784995332117/Design_sans_titre.jpg?ex=67cb6b59&is=67ca19d9&hm=4b9b0b6e22d35f62f34fd3b6bcd7c682e16f3db96664b8bdad40d8f5984bd3bf&=&format=webp&width=926&height=521" 
-                     alt="Featured Concept Art" 
-                     style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px;">
-            </div>
-            <div style="flex: 1; min-width: 0;">
-                <img src="https://media.discordapp.net/attachments/1347326761993769041/1347326784995332117/Design_sans_titre.jpg?ex=67cb6b59&is=67ca19d9&hm=4b9b0b6e22d35f62f34fd3b6bcd7c682e16f3db96664b8bdad40d8f5984bd3bf&=&format=webp&width=926&height=521" 
-                     alt="Featured Concept Art" 
-                     style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px;">
-            </div>
-        </div>
-        <!-- Adding text under the images -->
-        <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-            <div style="width: 30%; margin: 0 5px; color: #fff;">
-                <p>THIS IS TEXT</p>
-            </div>
-            <div style="width: 30%; margin: 0 5px; color: #fff;">
-                <p>THIS IS TEXT</p>
-            </div>
-            <div style="width: 30%; margin: 0 5px; color: #fff;">
-                <p>THIS IS TEXT</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 
 <!-- Main Content with Anchor -->
 <div id="steam" style="display: flex; align-items: center; margin: 2rem 0;">
     <div style="flex: 1; color: #fff;">
-        <h2 style="font-size: 2rem; color: #007bff;">👨‍💻 Custom Netcode</h2>
+        <h2 style="font-size: 2rem; color: #007bff;">👨‍💻 Steamworks Integration</h2>
         <ul style="font-size: 120%;">
         <li style= "padding-bottom: 15px">
                 <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Player Connection</span>
