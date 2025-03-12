@@ -54,7 +54,7 @@ export const portfolioProjects = [
       id: "quantic",
       heading: "Quantictactoe",
       subheading: "",
-      imageUrl: "https://media.discordapp.net/attachments/1212459753343557682/1348978988139417680/lrs01_1.png?ex=67d16e15&is=67d01c95&hm=e95adb41e9e4fdf058115745fea928ac225ea2214cfdc328c6f43dab873765dd&=&format=webp&quality=lossless&width=1175&height=940",
+      imageUrl: "https://media.discordapp.net/attachments/1212459753343557682/1348978988139417680/lrs01_1.png?ex=67d216d5&is=67d0c555&hm=2c763f3c0b7a6f4fa3508069ea36d77d3164b346ce864e0af9ad709e1ec2ff35&=&format=webp&quality=lossless&width=1175&height=940",
       techStack: [
         "Steamworks",
         "Unity",
