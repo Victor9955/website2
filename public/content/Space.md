@@ -18,7 +18,7 @@
             - client movement synchronisation
         </p>
     </div>
-    <img src="https://media.discordapp.net/attachments/1347326761993769041/1347326784995332117/Design_sans_titre.jpg?ex=67cb6b59&is=67ca19d9&hm=4b9b0b6e22d35f62f34fd3b6bcd7c682e16f3db96664b8bdad40d8f5984bd3bf&=&format=webp&width=926&height=521" 
+    <img src="https://i.imgur.com/HqrZtYh.png" 
          alt="Featured Concept Art" 
          style="margin-left: 12px;">
 </div>

@@ -54,7 +54,7 @@ export const portfolioProjects = [
       id: "quantic",
       heading: "Quantictactoe",
       subheading: "",
-      imageUrl: "https://media.discordapp.net/attachments/1212459753343557682/1348978988139417680/lrs01_1.png?ex=67d216d5&is=67d0c555&hm=2c763f3c0b7a6f4fa3508069ea36d77d3164b346ce864e0af9ad709e1ec2ff35&=&format=webp&quality=lossless&width=1175&height=940",
+      imageUrl: "https://i.imgur.com/m1EeNUk.png",
       techStack: [
         "Steamworks",
         "Unity",
@@ -70,7 +70,7 @@ export const portfolioProjects = [
       id: "space",
       heading: "Space Multiplayer",
       subheading: "",
-      imageUrl: "https://media.discordapp.net/attachments/1212459753343557682/1348972950505918537/lrs01.png?ex=67d16876&is=67d016f6&hm=4dadbb793f4ab48a7793a5efb3c1bd96b7a09ddabc4c595230014257b0019115&=&format=webp&quality=lossless&width=1175&height=940",
+      imageUrl: "https://i.imgur.com/HqrZtYh.png",
       techStack: [
         "Enet",
         "Unity",
