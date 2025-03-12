@@ -11,13 +11,11 @@
     <div style="flex: 1; padding: 0 15px; color: #fff;">
         <h2 style="font-size: 2rem; color: #007bff;">🌟 Introduction</h2>
         <p>
-            Quantictactoe is a personal project I developed after completing an intensive one-month class on multiplayer game development (learn more about this class in the Space Multiplayer project). Inspired by the classic game of Tic-Tac-Toe, I aimed to create a more complex and strategic multiplayer experience by introducing a layered 3x3 grid system and integrating it with Steamworks for online play.
+            Space Multiplayer is a end of course project where we had to develope a multiplayer game in one week. The constrains were that we had to use Enet6 and any engine of our choice. We deceided to make a simple space shooter with a leaderboard, skins and name.
         </p>
         <p>
-            Using Unity Engine and C#, I implemented advanced features such as Steam lobby creation, socket-based server-client communication, and data serialization. Notably, I created my own custom netcode using Steam Datagram Relay (SDR) instead of relying on pre-built solutions like Netcode for GameObjects, which allowed me to gain a deeper understanding of low-level networking.
-        </p>
-        <p>
-            This project not only solidified my understanding of multiplayer systems but also allowed me to explore a different API such as Steamworks (on previous projects I used Enet or winsock).
+            <span style ="font-weight: bold;"> Challenges : </span>
+            - client movement synchronisation
         </p>
     </div>
     <img src="https://media.discordapp.net/attachments/1347326761993769041/1347326784995332117/Design_sans_titre.jpg?ex=67cb6b59&is=67ca19d9&hm=4b9b0b6e22d35f62f34fd3b6bcd7c682e16f3db96664b8bdad40d8f5984bd3bf&=&format=webp&width=926&height=521" 

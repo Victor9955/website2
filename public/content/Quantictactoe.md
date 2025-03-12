@@ -22,7 +22,7 @@
             This project not only solidified my understanding of multiplayer systems but also allowed me to explore a different API such as Steamworks (on previous projects I used Enet or winsock).
         </p>
     </div>
-    <img src="https://media.discordapp.net/attachments/1347326761993769041/1347326784995332117/Design_sans_titre.jpg?ex=67cb6b59&is=67ca19d9&hm=4b9b0b6e22d35f62f34fd3b6bcd7c682e16f3db96664b8bdad40d8f5984bd3bf&=&format=webp&width=926&height=521" 
+    <img src="https://media.discordapp.net/attachments/1212459753343557682/1348978988139417680/lrs01_1.png?ex=67d216d5&is=67d0c555&hm=2c763f3c0b7a6f4fa3508069ea36d77d3164b346ce864e0af9ad709e1ec2ff35&=&format=webp&quality=lossless&width=1175&height=940" 
          alt="Featured Concept Art" 
          style="margin-left: 12px;">
 </div>
