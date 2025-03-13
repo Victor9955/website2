@@ -23,6 +23,36 @@
          style="margin-left: 12px;">
 </div>
 
+<div style="display: flex; justify-content: space-between; margin-top: 20px; gap: 15px;">
+            <div style="flex: 1; min-width: 0;"> <!-- Fix for flexbox overflow -->
+                <img src="https://media.discordapp.net/attachments/1347326761993769041/1347326784995332117/Design_sans_titre.jpg?ex=67cb6b59&is=67ca19d9&hm=4b9b0b6e22d35f62f34fd3b6bcd7c682e16f3db96664b8bdad40d8f5984bd3bf&=&format=webp&width=926&height=521" 
+                     alt="Featured Concept Art" 
+                     style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px;">
+            </div>
+            <div style="flex: 1; min-width: 0;">
+                <img src="https://media.discordapp.net/attachments/1347326761993769041/1347326784995332117/Design_sans_titre.jpg?ex=67cb6b59&is=67ca19d9&hm=4b9b0b6e22d35f62f34fd3b6bcd7c682e16f3db96664b8bdad40d8f5984bd3bf&=&format=webp&width=926&height=521" 
+                     alt="Featured Concept Art" 
+                     style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px;">
+            </div>
+            <div style="flex: 1; min-width: 0;">
+                <img src="https://media.discordapp.net/attachments/1347326761993769041/1347326784995332117/Design_sans_titre.jpg?ex=67cb6b59&is=67ca19d9&hm=4b9b0b6e22d35f62f34fd3b6bcd7c682e16f3db96664b8bdad40d8f5984bd3bf&=&format=webp&width=926&height=521" 
+                     alt="Featured Concept Art" 
+                     style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px;">
+            </div>
+        </div>
+        <!-- Adding text under the images -->
+        <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+            <div style="width: 30%; margin: 0 5px; color: #fff;">
+                <p>THIS IS TEXT</p>
+            </div>
+            <div style="width: 30%; margin: 0 5px; color: #fff;">
+                <p>THIS IS TEXT</p>
+            </div>
+            <div style="width: 30%; margin: 0 5px; color: #fff;">
+                <p>THIS IS TEXT</p>
+            </div>
+        </div>
+</div>
 
 <!-- Main Content with Anchor -->
 <div id="steam" style="display: flex; align-items: center; margin: 2rem 0;">

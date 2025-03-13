@@ -130,8 +130,8 @@ export const portfolioProjects = [
       "Shoot 'Em Up",
     ],
     liveDemoUrl: "https://usofeurasia.itch.io/the-mothership-calls",
-    videoUrl: "/video/Mothership.mp4",
-    videoGameplayUrl: "/video/MothershipGamePlay.mp4",
+    videoUrl: "https://www.youtube.com/embed/WlBDnu0Lm2w?si=elGPA5yFjg_uVz1u",
+    videoGameplayUrl: "https://www.youtube.com/embed/WlBDnu0Lm2w?si=elGPA5yFjg_uVz1u",
     contentPath: "/content/project1.md",
   },
   {
