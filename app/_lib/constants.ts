@@ -95,10 +95,10 @@ export const portfolioProjects = [
       "Platformer",
     ],
     liveDemoUrl: "https://thomasboeglin.itch.io/twice-upon-a-time",
-    videoUrl: "https://player.vimeo.com/video/1062785072",
+    videoUrl: "https://www.youtube.com/embed/TZRwV7C3Y18?si=JCpkjBn9Fth_H_Pv",
     
-    videoGameplayUrl: "https://www.youtube.com/embed/lkO8rYcXZXY?autoplay=1&volume=20&vq=hd1080",
-    contentPath: "/content/project1.md",
+    videoGameplayUrl: "https://www.youtube.com/embed/TZRwV7C3Y18?si=JCpkjBn9Fth_H_Pv",
+    contentPath: "/content/Twice.md",
   },
   {
     id: "heal",
@@ -114,8 +114,8 @@ export const portfolioProjects = [
       "Turnbased",
     ],
     liveDemoUrl: "https://play.google.com/store/apps/details?id=com.Team8.HealEMUp&hl=fr",
-    videoUrl: "https://www.youtube.com/embed/lkO8rYcXZXY?autoplay=1&mute=1&vq=hd1080",
-    videoGameplayUrl: "https://www.youtube.com/embed/lkO8rYcXZXY?autoplay=1&volume=100&vq=hd1080",
+    videoUrl: "https://www.youtube.com/embed/TOMXh5y_iCg?si=3r_8iQVHlI1Kqepj",
+    videoGameplayUrl: "https://www.youtube.com/embed/TOMXh5y_iCg?si=3r_8iQVHlI1Kqepj",
     contentPath: "/content/project1.md",
   },
   {
@@ -207,8 +207,8 @@ export const portfolioProjects = [
         text: "Grid Game",
       },],
     liveDemoUrl: "https://zukkinioni.itch.io/tcmc",
-    videoUrl: "/video/Unreal.mp4",
-    videoGameplayUrl: "/video/UnrealGameplay.mp4",
+    videoUrl: "https://www.youtube.com/embed/Z7_DwYu2pBg?si=p81MlH4zgNv0AH0s",
+    videoGameplayUrl: "https://www.youtube.com/embed/Z7_DwYu2pBg?si=p81MlH4zgNv0AH0s",
     contentPath: "/content/project1.md",
   }
 ];
