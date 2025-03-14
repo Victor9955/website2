@@ -95,9 +95,8 @@ export const portfolioProjects = [
       "Platformer",
     ],
     liveDemoUrl: "https://thomasboeglin.itch.io/twice-upon-a-time",
-    videoUrl: "https://www.youtube.com/embed/TZRwV7C3Y18?si=JCpkjBn9Fth_H_Pv",
-    
-    videoGameplayUrl: "https://www.youtube.com/embed/TZRwV7C3Y18?si=JCpkjBn9Fth_H_Pv",
+    videoUrl: "https://www.youtube.com/embed/TZRwV7C3Y18?rel=0",
+    videoGameplayUrl: "https://www.youtube.com/embed/TZRwV7C3Y18?rel=0",
     contentPath: "/content/Twice.md",
   },
   {
@@ -114,9 +113,9 @@ export const portfolioProjects = [
       "Turnbased",
     ],
     liveDemoUrl: "https://play.google.com/store/apps/details?id=com.Team8.HealEMUp&hl=fr",
-    videoUrl: "https://www.youtube.com/embed/TOMXh5y_iCg?si=3r_8iQVHlI1Kqepj",
-    videoGameplayUrl: "https://www.youtube.com/embed/TOMXh5y_iCg?si=3r_8iQVHlI1Kqepj",
-    contentPath: "/content/project1.md",
+    videoUrl: "https://www.youtube.com/embed/TOMXh5y_iCg?rel=0",
+    videoGameplayUrl: "https://www.youtube.com/embed/TOMXh5y_iCg?rel=0",
+    contentPath: "/content/Heal.md",
   },
   {
     id: "sfml",
@@ -130,8 +129,8 @@ export const portfolioProjects = [
       "Shoot 'Em Up",
     ],
     liveDemoUrl: "https://usofeurasia.itch.io/the-mothership-calls",
-    videoUrl: "https://www.youtube.com/embed/WlBDnu0Lm2w?si=elGPA5yFjg_uVz1u",
-    videoGameplayUrl: "https://www.youtube.com/embed/WlBDnu0Lm2w?si=elGPA5yFjg_uVz1u",
+    videoUrl: "https://www.youtube.com/embed/WlBDnu0Lm2w?rel=0",
+    videoGameplayUrl: "https://www.youtube.com/embed/WlBDnu0Lm2w?rel=0",
     contentPath: "/content/project1.md",
   },
   {
@@ -193,19 +192,6 @@ export const portfolioProjects = [
       "Horror",
       "Escape Game",
     ],
-    features: [
-      {
-        imageUrl: "/imgs/projects/PickUp.gif",
-        text: "Interaction System",
-      },
-      {
-        imageUrl: "/imgs/projects/Platforme.gif",
-        text: "Platform Power",
-      },
-      {
-        imageUrl: "/imgs/projects/Grid.gif",
-        text: "Grid Game",
-      },],
     liveDemoUrl: "https://zukkinioni.itch.io/tcmc",
     videoUrl: "https://www.youtube.com/embed/Z7_DwYu2pBg?si=p81MlH4zgNv0AH0s",
     videoGameplayUrl: "https://www.youtube.com/embed/Z7_DwYu2pBg?si=p81MlH4zgNv0AH0s",
