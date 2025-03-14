@@ -131,7 +131,7 @@ export const portfolioProjects = [
     liveDemoUrl: "https://usofeurasia.itch.io/the-mothership-calls",
     videoUrl: "https://www.youtube.com/embed/WlBDnu0Lm2w?rel=0",
     videoGameplayUrl: "https://www.youtube.com/embed/WlBDnu0Lm2w?rel=0",
-    contentPath: "/content/project1.md",
+    contentPath: "/content/Ship.md",
   },
   {
     id: "jamo",

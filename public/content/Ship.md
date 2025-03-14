@@ -2,9 +2,7 @@
 
 <div style="background:rgb(26, 26, 26); padding: 1.5rem; margin-bottom: 2rem; border-radius: 4px; text-align: center;">
 <a href="#introduction" style="color: #007bff; text-decoration: none; margin: 0 10px;">🌟 Introduction </a>
-<a href="#game" style="color: #007bff; text-decoration: none; margin: 0 10px;">👾 Gameplay </a>
-<a href="#tools" style="color: #007bff; text-decoration: none; margin: 0 10px;">🛠️ Tools </a>
-<a href="#lesson" style="color: #007bff; text-decoration: none; margin: 0 10px;">📌 Lessons Learned </a>
+<a href="#game" style="color: #007bff; text-decoration: none; margin: 0 10px;">👾 Game </a>
 
 </div>
 
@@ -13,10 +11,10 @@
     <div style="flex: 1; padding: 0 15px; color: #fff;">
         <h2 style="font-size: 2rem; color: #007bff;">🌟 Introduction</h2>
         <p>
-            Twice Upon a Time is a 2D local multiplayer platformer developed as a six-month school project. Tasked with creating a vertical slice, my team and I made a narrative-driven experience centered on a brother and sister interacting with a book. The gameplay blends cooperative puzzles—such as manipulating book tabs and rotating wheels. While the narrative does not directly affect gameplay, the duo’s playful banter and discoveries deepen immersion, framing their journey through the book’s imaginative world.
+            The Mothership Calls is a 2D local multiplayer asteroid game developed as a one-week shcool project. The purpose was to create a small game in groups of three using only C++ and SFML. We decided to make small game where two player save a planet from incoming asteroids when both players press on their "shoot" key they create a beam that destroy any asteroid in the way. Their are two types of steroids ones that folow the closest player and one that go toward the planet. Each players have two lives.
         </p>
     </div>
-    <img src="https://i.imgur.com/dNOutQa.png" 
+    <img src="https://i.imgur.com/2ldxkpv.png" 
          alt="Featured Concept Art" 
          style="margin-left: 12px;">
 </div>
@@ -26,13 +24,7 @@
     <div style="flex: 1; padding: 0 15px; color: #fff;">
         <h2 style="font-size: 2rem; color: #007bff;">👾 Gameplay Architecture</h2>
         <p>
-            The game is based on Ultimate Tic-Tac-Toe, a strategic twist on the classic game, played on a 3x3 grid of smaller 3x3 grids. Players take turns placing their marks (X or O), with the first move allowed anywhere. Each subsequent move is determined by the previous one—the small grid you play in corresponds to the position of the last move within its grid. 
-        </p>
-        <p>
-            If a player wins a small grid, it’s claimed, and the next time that grid is targeted, the player can place their mark anywhere.
-        </p>
-        <p>
-            The goal is to win three small grids in a row, column, or diagonal on the larger grid. This game combines tactical depth and foresight, making it a challenging and engaging experience.
+            In this project I made the collision systems with two types of collision : Line to sphere and sphere to sphere. 
         </p>
     </div>
 </div>
