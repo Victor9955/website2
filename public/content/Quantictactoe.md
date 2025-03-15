@@ -2,7 +2,7 @@
 
 <div style="background:rgb(26, 26, 26); padding: 1.5rem; margin-bottom: 2rem; border-radius: 4px; text-align: center;">
 <a href="#introduction" style="color: #007bff; text-decoration: none; margin: 0 10px;">🌟 Introduction</a>
-<a href="#game" style="color: #007bff; text-decoration: none; margin: 0 10px;">👾 Gameplay Architecture </a>
+<a href="#game" style="color: #007bff; text-decoration: none; margin: 0 10px;">👾 Gameplay </a>
 <a href="#steam" style="color: #007bff; text-decoration: none; margin: 0 10px;">👨‍💻 Custom Netcode</a>
 <a href="#lesson" style="color: #007bff; text-decoration: none; margin: 0 10px;">📌 Lessons Learned </a>
 
@@ -30,7 +30,7 @@
 
 <div id="game" style="display: flex; align-items: center; margin: 2rem 0;">
     <div style="flex: 1; padding: 0 15px; color: #fff;">
-        <h2 style="font-size: 2rem; color: #007bff;">👾 Gameplay Architecture</h2>
+        <h2 style="font-size: 2rem; color: #007bff;">👾 Gameplay</h2>
         <p>
             The game is based on Ultimate Tic-Tac-Toe, a strategic twist on the classic game, played on a 3x3 grid of smaller 3x3 grids. Players take turns placing their marks (X or O), with the first move allowed anywhere. Each subsequent move is determined by the previous one—the small grid you play in corresponds to the position of the last move within its grid. 
         </p>
@@ -528,4 +528,16 @@
             </li>
         </ul>
     </div>
+</div>
+
+<div id="lesson" style="display: flex; align-items: center; margin: 2rem 0;">
+    <div style="flex: 1; padding: 0 15px; color: #fff;">
+        <h2 style="font-size: 2rem; color: #007bff;">📌 Lessons Learned</h2>
+        <p>
+            As this project was outside my curiculum I learned to be selfsufficent and learned how to make a custom netcode with only using the base of steamworks. When I needed help I was able to contact my Networking Teacher. 
+        </p>
+    </div>
+    <img src="https://media.discordapp.net/attachments/1212459753343557682/1348978988139417680/lrs01_1.png?ex=67d216d5&is=67d0c555&hm=2c763f3c0b7a6f4fa3508069ea36d77d3164b346ce864e0af9ad709e1ec2ff35&=&format=webp&quality=lossless&width=1175&height=940" 
+         alt="Featured Concept Art" 
+         style="margin-left: 12px;">
 </div>

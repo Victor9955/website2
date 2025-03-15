@@ -13,13 +13,13 @@
     <div style="flex: 1; padding: 0 15px; color: #fff;">
         <h2 style="font-size: 2rem; color: #007bff;">🌟 Introduction</h2>
         <p>
-            Quantictactoe is a personal project I developed after completing an intensive one-month class on multiplayer game development (learn more about this class in the Space Multiplayer project). Inspired by the classic game of Tic-Tac-Toe, I aimed to create a more complex and strategic multiplayer experience by introducing a layered 3x3 grid system and integrating it with Steamworks for online play.
+            Heal Em Up is a 4 month long school project I developed in a team of 10 peoples. The aim of this project was to familiarise ourselves with mobile game developement. The gameplay of this game is really simple, your the healer of a team of adventurers and in real time you have to heal, shield or buff your teamates but you have limited mana (similar to Clash Royale).
         </p>
         <p>
-            Using Unity Engine and C#, I implemented advanced features such as Steam lobby creation, socket-based server-client communication, and data serialization. Notably, I created my own custom netcode using Steam Datagram Relay (SDR) instead of relying on pre-built solutions like Netcode for GameObjects, which allowed me to gain a deeper understanding of low-level networking.
+            Using Unity Engine and C#, I implemented various gameplay elements such as dragging and dropping items, scriptable object based card mechanics, card inventory, mana management and card playing and recharging.
         </p>
         <p>
-            This project not only solidified my understanding of multiplayer systems but also allowed me to explore a different API such as Steamworks (on previous projects I used Enet or winsock).
+            This project not only solidified my understanding of mobile game developent but also helped me better understand the unity engine and use tools such as scriptables objects and coroutines.
         </p>
     </div>
     <img src="https://media.discordapp.net/attachments/1212459753343557682/1348978988139417680/lrs01_1.png?ex=67d216d5&is=67d0c555&hm=2c763f3c0b7a6f4fa3508069ea36d77d3164b346ce864e0af9ad709e1ec2ff35&=&format=webp&quality=lossless&width=1175&height=940" 
@@ -30,22 +30,16 @@
 
 <div id="game" style="display: flex; align-items: center; margin: 2rem 0;">
     <div style="flex: 1; padding: 0 15px; color: #fff;">
-        <h2 style="font-size: 2rem; color: #007bff;">👾 Gameplay Architecture</h2>
+        <h2 style="font-size: 2rem; color: #007bff;">👾 Gameplay</h2>
         <p>
-            The game is based on Ultimate Tic-Tac-Toe, a strategic twist on the classic game, played on a 3x3 grid of smaller 3x3 grids. Players take turns placing their marks (X or O), with the first move allowed anywhere. Each subsequent move is determined by the previous one—the small grid you play in corresponds to the position of the last move within its grid. 
-        </p>
-        <p>
-            If a player wins a small grid, it’s claimed, and the next time that grid is targeted, the player can place their mark anywhere.
-        </p>
-        <p>
-            The goal is to win three small grids in a row, column, or diagonal on the larger grid. This game combines tactical depth and foresight, making it a challenging and engaging experience.
+            First you choose the four cards you choose wich boss you want to play against, then you choose your four starter cards and finally you play your cards accordingly so that the boss is deafeted and your team is healed enough.
         </p>
     </div>
 </div>
 
 <div id="steam" style="display: flex; align-items: center; margin: 2rem 0;">
     <div style="flex: 1; color: #fff;">
-        <h2 style="font-size: 2rem; color: #007bff;">👨‍💻 Custom Netcode</h2>
+        <h2 style="font-size: 2rem; color: #007bff;">👨‍💻 Programming </h2>
         <ul style="font-size: 120%;">
         <li style= "padding-bottom: 15px">
                 <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Player Connection</span>

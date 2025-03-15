@@ -148,7 +148,7 @@ export const portfolioProjects = [
     liveDemoUrl: "",
     videoUrl: "/video/Jamo.mp4",
     videoGameplayUrl: "/video/Jamo.mp4",
-    contentPath: "/content/project1.md",
+    contentPath: "/content/Unreal.md",
   },
   {
     id: "camera",
@@ -164,7 +164,7 @@ export const portfolioProjects = [
     liveDemoUrl: "",
     videoUrl: "/video/Camera.mp4",
     videoGameplayUrl: "/video/Camera.mp4",
-    contentPath: "/content/project1.md",
+    contentPath: "/content/Camera.md",
   },
   {
     id: "rast",
@@ -179,7 +179,7 @@ export const portfolioProjects = [
     liveDemoUrl: "",
     videoUrl: "/video/Rasterizer.mp4",
     videoGameplayUrl: "/video/Rasterizer.mp4",
-    contentPath: "/content/project1.md",
+    contentPath: "/content/Raz.md",
   },
   {
     id: "cript",
@@ -195,7 +195,7 @@ export const portfolioProjects = [
     liveDemoUrl: "https://zukkinioni.itch.io/tcmc",
     videoUrl: "https://www.youtube.com/embed/Z7_DwYu2pBg?si=p81MlH4zgNv0AH0s",
     videoGameplayUrl: "https://www.youtube.com/embed/Z7_DwYu2pBg?si=p81MlH4zgNv0AH0s",
-    contentPath: "/content/project1.md",
+    contentPath: "/content/Crypt.md",
   }
 ];
 
