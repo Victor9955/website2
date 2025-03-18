@@ -6,6 +6,29 @@
 <a href="#steam" style="color: #007bff; text-decoration: none; margin: 0 10px;">👨‍💻 Features </a>
 </div>
 
+<div id="introduction" style="display: flex; align-items: center; margin: 2rem 0;">
+    <div style="flex: 1; padding: 0 15px; color: #fff;">
+        <h2 style="font-size: 2rem; color: #007bff;">🚀 Space Multiplayer</h2>
+        <p>
+            A fast-paced multiplayer space shooter developed in Unity under strict constraints: 
+            1-week timeline, ENET6 networking library, and multiplayer implementation. Features 
+            real-time ship combat, customizable skins, and dynamic leaderboards.
+        </p>
+        <div style="background: #1a1a1a; padding: 1rem; border-radius: 4px; margin-top: 1rem;">
+            <span style="font-weight: bold; color: #007bff;">Key Challenges:</span>
+            <ul>
+                <li>Networked physics synchronization</li>
+                <li>Lag-compensated shooting mechanics</li>
+                <li>Dynamic leaderboard updates</li>
+                <li>Client prediction and reconciliation</li>
+            </ul>
+        </div>
+    </div>
+    <img src="https://i.imgur.com/HqrZtYh.png" 
+         alt="Gameplay Screenshot" 
+         style="width: 50%; border-radius: 8px; margin-left: 20px;">
+</div>
+
 <!-- Main Content with Anchor -->
 <div id="introduction" style="display: flex; align-items: center; margin: 2rem 0;">
     <div style="flex: 1; padding: 0 15px; color: #fff;">

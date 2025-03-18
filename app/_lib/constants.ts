@@ -62,8 +62,8 @@ export const portfolioProjects = [
         "Reflexion Game",
       ],
       liveDemoUrl: "",
-      videoUrl: "https://www.youtube.com/embed/7jc1ONhnvX0?si=sBAne5ITG27x8XpN",
-      videoGameplayUrl: "https://www.youtube.com/embed/7jc1ONhnvX0?si=sBAne5ITG27x8XpN",
+      videoUrl: "https://www.youtube.com/embed/7jc1ONhnvX0?si=sBAne5ITG27x8XpN?rel=0",
+      videoGameplayUrl: "https://www.youtube.com/embed/7jc1ONhnvX0?si=sBAne5ITG27x8XpN?rel=0",
       contentPath: "/content/Quantictactoe.md",
     },
     {
