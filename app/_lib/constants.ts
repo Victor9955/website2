@@ -54,7 +54,7 @@ export const portfolioProjects = [
       id: "quantic",
       heading: "Quantictactoe",
       subheading: "",
-      imageUrl: "https://i.imgur.com/m1EeNUk.png",
+      imageUrl: "https://i.imgur.com/7NQ9qRK.png",
       techStack: [
         "Steamworks",
         "Unity",
@@ -78,9 +78,24 @@ export const portfolioProjects = [
         "Space Arena Shooter",
       ],
       liveDemoUrl: "",
-      videoUrl: "",
-      videoGameplayUrl: "",
+      videoUrl: "https://www.youtube.com/embed/3kGJ9-fZxmw?si=avUP_meTnzj9tN7m?rel=0",
+      videoGameplayUrl: "https://www.youtube.com/embed/3kGJ9-fZxmw?si=avUP_meTnzj9tN7m?rel=0",
       contentPath: "/content/Space.md",
+    },
+    {
+      id: "paco",
+      heading: "Paco's Anatomy",
+      subheading: "",
+      imageUrl: "https://i.imgur.com/WjkC0Nw.png",
+      techStack: [
+        "Alternative Controller",
+        "Unity",
+        "GDC 2025 Nominee"
+      ],
+      liveDemoUrl: "",
+      videoUrl: "https://www.youtube.com/embed/7jc1ONhnvX0?si=sBAne5ITG27x8XpN?rel=0",
+      videoGameplayUrl: "https://www.youtube.com/embed/7jc1ONhnvX0?si=sBAne5ITG27x8XpN?rel=0",
+      contentPath: "/content/Paco.md",
     },
     {
     id: "twice",
