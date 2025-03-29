@@ -48,15 +48,24 @@
         <h2 style="font-size: 2rem; color: #007bff;">👨‍💻 Custom Netcode</h2>
         <ul style="font-size: 120%;">
         <li style= "padding-bottom: 15px">
-                <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Player Connection</span>
+        <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px;">
+    <div style="flex: 1; min-width: 0;">
+        <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Player Connection</span>
                 <p>
-                    Each player when launching the game create a friends only lobby. Then when the player join a lobby it create or join the steam socket server based on who is the host. The host's SteamId is used as the "key" to connect to the socket server;
+                    Each player when launching the game create a friends only lobby. Then when the player join a lobby it create or join the steam socket server based on who is the host. The host's SteamId is used as the "key" to connect to the socket server.
                 </p>
-                    <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
-        <summary style="cursor: pointer; padding: 4px; background-color: #2a2f3a; color: #fff;">
-            OnLobbyEntered(Lobby lobby)
-        </summary>
-        <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
+    </div>
+    <div style="flex-shrink: 0;">
+        <img src="https://i.imgur.com/4TVF003.png" alt="Network Diagram" 
+             style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
+    </div>
+</div>
+
+<details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
+    <summary style="cursor: pointer; padding: 8px; background-color: #2a2f3a; color: #fff; font-family: monospace;">
+        OnLobbyEntered(Lobby lobby)
+    </summary>
+    <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
 <div>
 
     private void OnLobbyEntered(Lobby lobby)
@@ -83,18 +92,23 @@
     }
 
 </div>
-                </details>
-            </li>
-            <li style= "padding-bottom: 15px">
-                <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Steam Lobbies</span>
+        </div>
+        </li>
+        <li style= "padding-bottom: 15px">
+        <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px;">
+    <div style="flex: 1; min-width: 0;">
+        <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Steam Lobbies</span>
                 <p>
-                    I used Facepunch API to make lobbies when needed, such as when a friend sends an invite or when you want to join a public lobby.
+                    I used Facepunch API to make different kind of lobbies such as when a friend only or public lobbies.
                 </p>
-                    <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
-        <summary style="cursor: pointer; padding: 4px; background-color: #2a2f3a; color: #fff;">
-            CreateFriendLobbyAsync()
-        </summary>
-        <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
+    </div>
+</div>
+
+<details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
+    <summary style="cursor: pointer; padding: 8px; background-color: #2a2f3a; color: #fff; font-family: monospace;">
+        CreateFriendLobbyAsync()
+    </summary>
+    <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
 <div>
 
     public async void CreateFriendLobbyAsync()
@@ -121,8 +135,8 @@
     }
 
 </div>
-                </details>
-            </li>
+        </div>
+        </li>
             <li style= "padding-bottom: 15px">
     <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Steam Socket Server</span>
     <p>
