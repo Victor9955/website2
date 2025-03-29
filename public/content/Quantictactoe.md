@@ -9,14 +9,14 @@
 </div>
 
 <!-- Main Content with Anchor -->
-<div id="introduction" style="display: flex; align-items: center; margin: 2rem 0;">
-    <div style="flex: 1; padding: 0 15px; color: #fff;">
-        <h2 style="font-size: 2rem; color: #007bff;">🌟 Introduction</h2>
-        <p>
+<div id="introduction" style="display: flex; align-items: flex-start; gap: 2rem; margin: 2rem 0; max-width: 1200px; margin-left: auto; margin-right: auto;">
+    <div style="flex: 1; padding: 0 15px; color: #fff; text-align: justify; line-height: 1.6; max-width: 600px;">
+        <h2 style="font-size: 2rem; color: #007bff; margin-bottom: 1.5rem;">🌟 Introduction</h2>
+        <p style="margin-bottom: 1.2rem;">
             Quantictactoe is a personal project I developed after completing an intensive one-month class on multiplayer game development (learn more about this class in the Space Multiplayer project). Inspired by the classic game of Tic-Tac-Toe, I aimed to create a more complex and strategic multiplayer experience by introducing a layered 3x3 grid system and integrating it with Steamworks for online play.
         </p>
-        <p>
-            Using Unity Engine and C#, I implemented advanced features such as Steam lobby creation, socket-based server-client communication, and data serialization. Notably, I created my own custom netcode using Steam Datagram Relay (SDR) instead of relying on pre-built solutions like Netcode for GameObjects, which allowed me to gain a deeper understanding of low-level networking.
+        <p style="margin-bottom: 1.2rem;">
+            Using Unity and Facepunch, I implemented advanced features such as Steam lobby creation, socket-based server-client communication, and data serialization. Notably, I created my own custom netcode using Steam Datagram Relay (SDR) instead of relying on pre-built solutions like Netcode for GameObjects, which allowed me to gain a deeper understanding of low-level networking.
         </p>
         <p>
             This project not only solidified my understanding of multiplayer systems but also allowed me to explore a different API such as Steamworks (on previous projects I used Enet or winsock).
@@ -24,17 +24,17 @@
     </div>
     <img src="https://i.imgur.com/xkBMExc.jpeg" 
          alt="Featured Concept Art" 
-         style="margin-left: 12px;">
+         style="max-width: 500px; width: 100%; height: auto; border-radius: 8px; object-fit: cover; align-self: center;">
 </div>
 
 
-<div id="game" style="display: flex; align-items: center; margin: 2rem 0;">
-    <div style="flex: 1; padding: 0 15px; color: #fff;">
-        <h2 style="font-size: 2rem; color: #007bff;">👾 Gameplay</h2>
-        <p>
-            The game is based on Ultimate Tic-Tac-Toe, a strategic twist on the classic game, played on a 3x3 grid of smaller 3x3 grids. Players take turns placing their marks (X or O), with the first move allowed anywhere. Each subsequent move is determined by the previous one—the small grid you play in corresponds to the position of the last move within its grid. 
+<div id="game" style="margin: 4rem auto; max-width: 1200px; padding: 0 1rem;">
+    <div style="color: #fff; text-align: justify; line-height: 1.6;">
+        <h2 style="font-size: 2rem; color: #007bff; margin-bottom: 1.5rem;">👾 Gameplay</h2>
+        <p style="margin-bottom: 1.2rem;">
+            The game is based on Ultimate Tic-Tac-Toe, a strategic twist on the classic game, played on a 3x3 grid of smaller 3x3 grids. Players take turns placing their marks (X or O), with the first move allowed anywhere. Each subsequent move is determined by the previous one—the small grid you play in corresponds to the position of the last move within its grid.
         </p>
-        <p>
+        <p style="margin-bottom: 1.2rem;">
             If a player wins a small grid, it’s claimed, and the next time that grid is targeted, the player can place their mark anywhere.
         </p>
         <p>
@@ -42,7 +42,6 @@
         </p>
     </div>
 </div>
-
 <div id="steam" style="display: flex; align-items: center; margin: 2rem 0;">
     <div style="flex: 1; color: #fff;">
         <h2 style="font-size: 2rem; color: #007bff;">👨‍💻 Custom Netcode</h2>
@@ -51,7 +50,7 @@
         <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px;">
     <div style="flex: 1; min-width: 0;">
         <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Player Connection</span>
-                <p>
+                <p style="margin-bottom: 1.2rem;">
                     Each player when launching the game create a friends only lobby. Then when the player join a lobby it create or join the steam socket server based on who is the host. The host's SteamId is used as the "key" to connect to the socket server.
                 </p>
     </div>
@@ -98,7 +97,7 @@
         <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px;">
     <div style="flex: 1; min-width: 0;">
         <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Steam Lobbies</span>
-                <p>
+                <p style="margin-bottom: 1.2rem;">
                     I used Facepunch API to make different kind of lobbies such as when a friend only or public lobbies.
                 </p>
     </div>
@@ -137,16 +136,25 @@
 </div>
         </div>
         </li>
-            <li style= "padding-bottom: 15px">
-    <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Steam Socket Server</span>
-    <p>
-        This class handles the server-side logic that manage player connections, player data, and game states using Steamworks networking. It implements the `ISocketManager` interface to handle events like connecting, disconnecting, and receiving messages.
-    </p>
-    <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
-        <summary style="cursor: pointer; padding: 4px; background-color: #2a2f3a; color: #fff;">
-            SteamSocketServer.cs
-        </summary>
-        <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
+        <li style= "padding-bottom: 15px">
+        <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px;">
+    <div style="flex: 1; min-width: 0;">
+        <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Steam Socket Server</span>
+                <p style="margin-bottom: 1.2rem;">
+                    This class handles the server-side logic that manage player connections, player data, and game states using Steamworks networking. It implements the `ISocketManager` interface to handle events like connecting, disconnecting, and receiving messages.
+                </p>
+    </div>
+    <div style="flex-shrink: 0;">
+        <img src="https://i.imgur.com/LAyZkoc.png" alt="Network Diagram" 
+             style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
+    </div>
+</div>
+
+<details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
+    <summary style="cursor: pointer; padding: 8px; background-color: #2a2f3a; color: #fff; font-family: monospace;">
+        SteamSocketServer.cs
+    </summary>
+    <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
 <div>
 
     [CreateAssetMenu(fileName = "SteamSocketServer", menuName = "ScriptableObjects/SteamSocketServer", order = 1)]
@@ -256,20 +264,30 @@
             }
         }
     }
+
 </div>
         </div>
-    </details>
-</li>
-<li style= "padding-bottom: 15px">
-    <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Steam Socket Client</span>
-    <p>
-        This class handles the client-side logic that send the player's inputs to the server and listen to the server packets. The server's message is send to the reacting GameObject by using C# events that sends the packets data. It implements the `IConnectionManager` interface to handle events like connecting, disconnecting, and receiving messages from the server.
-    </p>
-    <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
-        <summary style="cursor: pointer; padding: 4px; background-color: #2a2f3a; color: #fff;">
-            SteamSocketClient.cs
-        </summary>
-        <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
+        </li>
+        <li style= "padding-bottom: 15px">
+        <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px;">
+    <div style="flex: 1; min-width: 0;">
+        <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Steam Socket Client</span>
+                <p style="margin-bottom: 1.2rem;">
+                    This class handles the client-side logic that react to the servers packets, it is made the same way the server ScriptableObject is.
+                    I realised that a lot of objects need to react to the servers packets so each packet have a C# event that can be bined if you have the reference to that ScriptableObjcet this is good because it is absctracted from the scene.
+                </p>
+    </div>
+    <div style="flex-shrink: 0;">
+        <img src="https://i.imgur.com/mcQAtKk.png" alt="Network Diagram" 
+             style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
+    </div>
+</div>
+
+<details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
+    <summary style="cursor: pointer; padding: 8px; background-color: #2a2f3a; color: #fff; font-family: monospace;">
+        SteamSocketClient.cs
+    </summary>
+    <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
 <div>
 
     [CreateAssetMenu(fileName = "SteamSocketClient", menuName = "ScriptableObjects/SteamSocketClient", order = 1)]
@@ -350,15 +368,11 @@
             }
         }
     }
+
 </div>
         </div>
-    </details>
-</li>
-
-<p style="background:rgb(26, 26, 26); padding: 0.5rem; margin-bottom: 1rem; border-radius: 2px; text-align: center;" >
-        I used <span style="color: #007bff"> Scriptable Objects</span> for the client and the server setup because I could have a reference to these objects whitout being scene dependant. I was inspired by SOAP a unity asset that makes game architecture easier.
-    </p>
-            <li style= "padding-bottom: 15px">
+        </li>
+        <li style= "padding-bottom: 15px">
                 <span style="color:rgb(164, 208, 255); font-weight: bold; font-size: 120%">Data Serialization</span>
                 <p>
                     I created a static class with functiun to serialize and deserialize types such as bytes, ushort, short, uint, int, float, Quaternions, Vectors and Color.
