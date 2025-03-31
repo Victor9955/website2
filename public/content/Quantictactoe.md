@@ -561,11 +561,11 @@
 <div id="lesson" style="display: flex; align-items: center; margin: 2rem 0;">
     <div style="flex: 1; padding: 0 15px; color: #fff;">
         <h2 style="font-size: 2rem; color: #007bff;">📌 Lessons Learned</h2>
-        <p>
-            As this project was outside my curiculum I learned to be selfsufficent and learned how to make a custom netcode with only using the base of steamworks. When I needed help I was able to contact my Networking Teacher. 
-        </p>
+        <ul style="margin-top: 0.5rem; padding-left: 1.2rem;">
+            <li>Learned <b style="color: #ff0000;">NOT</b> to use reflexion to make Packet class because it is slow (even if this is a turnbased game)</li>
+            <li>Learned to create custom netcode using Steamworks as a base</li>
+            <li>Learned to work with limited documentation</li>
+            <li>Developed self-sufficiency by working on a project outside my curriculum</li>
+        </ul>
     </div>
-    <img src="https://media.discordapp.net/attachments/1212459753343557682/1348978988139417680/lrs01_1.png?ex=67d216d5&is=67d0c555&hm=2c763f3c0b7a6f4fa3508069ea36d77d3164b346ce864e0af9ad709e1ec2ff35&=&format=webp&quality=lossless&width=1175&height=940" 
-         alt="Featured Concept Art" 
-         style="margin-left: 12px;">
 </div>
