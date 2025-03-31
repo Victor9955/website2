@@ -296,11 +296,11 @@
         public int firstTurn = -1;
         public int playerNum = 0;
 
-        public event Action<int, int, int> playTurn;
+        public event Action<PlayTurn> playTurn;
         public event Action activateAll;
         public event Action<int> activateSpecified;
-        public event Action<int, int> smallWin;
-        public event Action<int, float,float> timeUpdate;
+        public event Action<SmallWin> smallWin;
+        public event Action<TimePacket> timeUpdate;
 
         public void OnConnected(ConnectionInfo info)
         {
@@ -349,8 +349,7 @@
                     break;
                 case Opcode.PlayTurn:
                     PlayTurn playTurnPacket = PlayTurn.Deserialize<PlayTurn>(byteArray, ref offset);
-                    playTurn?.Invoke(playTurnPacket.playerNum, playTurnPacket.posBig, playTurnPacket.posSmall);
-                    timeUpdate?.Invoke(playTurnPacket.playerNum,playTurnPacket.time0,playTurnPacket.time1);
+                    playTurn?.Invoke(playTurnPacket);
                     break;
                 case Opcode.ActivateAll:
                     activateAll?.Invoke();
@@ -361,9 +360,12 @@
                     break;
                 case Opcode.SmallWin:
                     SmallWin smallWinPacket = SmallWin.Deserialize<SmallWin>(byteArray, ref offset);
-                    smallWin?.Invoke(smallWinPacket.bigPos, smallWinPacket.playerNum);
+                    smallWin?.Invoke(smallWinPacket);
                     break;
-
+                case Opcode.Time:
+                    TimePacket timePacket = TimePacket.Deserialize<TimePacket>(byteArray, ref offset);
+                    timeUpdate?.Invoke(timePacket);
+                    break;
 
             }
         }

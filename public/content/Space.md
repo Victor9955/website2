@@ -1,49 +1,35 @@
 <!-- Summary Section with Navigation -->
 
 <div style="background:rgb(26, 26, 26); padding: 1.5rem; margin-bottom: 2rem; border-radius: 4px; text-align: center;">
-<a href="#introduction" style="color: #007bff; text-decoration: none; margin: 0 10px;">🌟 Introduction </a>
-<a href="#introduction" style="color: #007bff; text-decoration: none; margin: 0 10px;">🌟 Introduction </a>
-<a href="#steam" style="color: #007bff; text-decoration: none; margin: 0 10px;">👨‍💻 Features </a>
-</div>
+<a href="#introduction" style="color: #007bff; text-decoration: none; margin: 0 10px;">🌟 Introduction</a>
+<a href="#game" style="color: #007bff; text-decoration: none; margin: 0 10px;">👾 Gameplay </a>
+<a href="#steam" style="color: #007bff; text-decoration: none; margin: 0 10px;">👨‍💻 Custom Netcode</a>
+<a href="#lesson" style="color: #007bff; text-decoration: none; margin: 0 10px;">📌 Lessons Learned </a>
 
-<div id="introduction" style="display: flex; align-items: center; margin: 2rem 0;">
-    <div style="flex: 1; padding: 0 15px; color: #fff;">
-        <h2 style="font-size: 2rem; color: #007bff;">🚀 Space Multiplayer</h2>
-        <p>
-            A fast-paced multiplayer space shooter developed in Unity under strict constraints: 
-            1-week timeline, ENET6 networking library, and multiplayer implementation. Features 
-            real-time ship combat, customizable skins, and dynamic leaderboards.
-        </p>
-        <div style="background: #1a1a1a; padding: 1rem; border-radius: 4px; margin-top: 1rem;">
-            <span style="font-weight: bold; color: #007bff;">Key Challenges:</span>
-            <ul>
-                <li>Networked physics synchronization</li>
-                <li>Lag-compensated shooting mechanics</li>
-                <li>Dynamic leaderboard updates</li>
-                <li>Client prediction and reconciliation</li>
-            </ul>
-        </div>
-    </div>
-    <img src="https://i.imgur.com/HqrZtYh.png" 
-         alt="Gameplay Screenshot" 
-         style="width: 50%; border-radius: 8px; margin-left: 20px;">
 </div>
 
 <!-- Main Content with Anchor -->
-<div id="introduction" style="display: flex; align-items: center; margin: 2rem 0;">
-    <div style="flex: 1; padding: 0 15px; color: #fff;">
-        <h2 style="font-size: 2rem; color: #007bff;">🌟 Introduction</h2>
-        <p>
-            Space Multiplayer is a end of course project where we had to develope a multiplayer game in one week. The constrains were that we had to use Enet6 and any engine of our choice. We deceided to make a simple space shooter with a leaderboard, skins and name.
+<div id="introduction" style="display: flex; align-items: flex-start; gap: 2rem; margin: 2rem 0; max-width: 1200px; margin-left: auto; margin-right: auto;">
+    <div style="flex: 1; padding: 0 15px; color: #fff; text-align: justify; line-height: 1.6; max-width: 600px;">
+        <h2 style="font-size: 2rem; color: #007bff; margin-bottom: 1.5rem;">🌟 Introduction</h2>
+        <p style="margin-bottom: 1.2rem;">
+            Space Multiplayer is a end of course project where we had to develope a multiplayer game in one week in groups of two. The constrains were that we had to use Enet6 and any engine of our choice (we choose Unity) .
         </p>
-        <p>
-            <span style ="font-weight: bold;"> Challenges : </span>
-            - client movement synchronisation
+        <p style="margin-bottom: 1.2rem;">
+            We implemented advanced features such as :
+            <ul style="margin-top: 0.5rem; padding-left: 1.2rem;">
+            <li>Socket-based server-client communication</li>
+            <li>Data serialization</li>
+            <li>Server authoritative movement with client-side prediction</li>
+            <li>Health System</li>
+            <li>Skins and Username</li>
+            <li>Leaderboard</li>
+        </ul>
         </p>
     </div>
     <img src="https://i.imgur.com/HqrZtYh.png" 
          alt="Featured Concept Art" 
-         style="margin-left: 12px;">
+         style="max-width: 500px; width: 100%; height: auto; border-radius: 8px; object-fit: cover; align-self: center;">
 </div>
 
 <div style="display: flex; justify-content: space-between; margin-top: 20px; gap: 15px;">
