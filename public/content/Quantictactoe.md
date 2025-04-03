@@ -161,107 +161,288 @@
     public class SteamSocketServer : ScriptableObject, ISocketManager
     {
         [SerializeField] float waitBeforeStart = 3f;
-        static int globalPlayerCount = 0;
-        Awaitable waitBegin = null;
+        private int _globalPlayerCount;
+        private Awaitable _countdown;
+        private CancellationTokenSource _cts = new();
 
-        static Dictionary&lt;Connection, PlayerData&gt; players = new();
+        private Dictionary<Connection, PlayerData> _players = new();
+        private List<SmallGrid> _bigGrid = new();
+        private int _currentPlayer;
+        private bool _waitForAllType;
+        private int _bigGridCursor;
 
-        public void ResetPlayers()
-        {
-            players.Clear();
-        }
+        public void ResetPlayers() => _players.Clear();
 
         public void OnConnecting(Connection connection, ConnectionInfo info)
         {
             connection.Accept();
-            "Client Try To Connect".Log();
+            Debug.Log("Client Try To Connect");
         }
 
         public void OnConnected(Connection connection, ConnectionInfo info)
         {
-            "Client is Connected".Log();
+            Debug.Log("Client is Connected");
 
-            PlayerData playerData = new PlayerData();
-            playerData.connection = connection;
-            playerData.steamId = info.Identity.SteamId;
-            playerData.playerNum = globalPlayerCount;
-            players.Add(connection, playerData);
-            globalPlayerCount++;
-
-            if (players.Count != SteamManager.instance.maxPlayer) return;
-
-            globalPlayerCount = 0;
-            bigGrid = new();
-            bigGrid.Clear();
-            for (int i = 0; i < 9; i++)
+            var playerData = new PlayerData
             {
-                bigGrid.Add(new SmallGrid());
-            }
-            waitForAllType = true;
+                connection = connection,
+                steamId = info.Identity.SteamId,
+                playerNum = _globalPlayerCount++
+            };
 
-            foreach (var player in players.Keys)
+            _players.Add(connection, playerData);
+
+            if (_players.Count == SteamManager.instance.maxPlayer)
             {
-                PacketBuilder.SendPacket(new LoadScene(2), player, SendType.Reliable);
+                InitializeGame();
+                BroadcastToAll(new LoadScene(2));
             }
+        }
+
+        private void InitializeGame()
+        {
+            _globalPlayerCount = 0;
+            _bigGrid = Enumerable.Range(0, 9).Select(_ => new SmallGrid()).ToList();
+            _waitForAllType = true;
+            _cts?.Cancel();
+            _cts = new CancellationTokenSource();
         }
 
         public void OnDisconnected(Connection connection, ConnectionInfo info)
         {
             connection.Close();
-            "Client Disconnected".Log();
+            _players.Remove(connection);
+            Debug.Log("Client Disconnected");
         }
 
         public void OnMessage(Connection connection, NetIdentity identity, IntPtr data, int size, long messageNum, long recvTime, int channel)
         {
-            "Server Receive Packet".Log();
-            byte[] byteArray = new byte[size];
+            var byteArray = new byte[size];
             Marshal.Copy(data, byteArray, 0, size);
-            int offset = 0;
-            Opcode opcode = (Opcode)Serialization.DeserializeU16(byteArray, ref offset);
+            HandlePacket(connection, byteArray);
+        }
+
+        private void HandlePacket(Connection connection, byte[] data)
+        {
+            var offset = 0;
+            var opcode = (Opcode)Serialization.DeserializeU16(data, ref offset);
+
             switch (opcode)
             {
-                case Opcode.Message:
-                    {
-                        MessagePacket packet = MessagePacket.Deserialize<MessagePacket>(byteArray, ref offset);
-                        packet.messsage.Log();
-                        break;
-                    }
                 case Opcode.Ready:
-                    {
-                        if (players.TryGetValue(connection, out PlayerData player))
-                        {
-                            player.isReady = true;
-                            foreach (var playerConnection in players.Keys)
-                            {
-                                PacketBuilder.SendPacket(new Ready(player.playerNum), playerConnection, SendType.Reliable);
-                            }
-                        }
-                        CheckToStart();
-                        break;
-                    }
+                    HandleReady(connection);
+                    break;
                 case Opcode.CancelReady:
-                    {
-                        if (players.TryGetValue(connection, out PlayerData player))
-                        {
-                            player.isReady = false;
-                            foreach (var playerConnection in players.Keys)
-                            {
-                                PacketBuilder.SendPacket(new CancelReady(player.playerNum), playerConnection, SendType.Reliable);
-                            }
-                            CheckToStart();
-                        }
-                        break;
-                    }
+                    HandleCancelReady(connection);
+                    break;
                 case Opcode.Play:
-                    {
-                        if (players.TryGetValue(connection, out PlayerData player))
-                        {
-                            PlayClient playTurnPacket = PlayClient.Deserialize&lt;PlayClient&gt;(byteArray, ref offset);
-                            HandleTurnPakcet(player, playTurnPacket.pos, playTurnPacket.bigPos);
-                        }
-                        break;
-                    }
+                    HandlePlay(connection, data, ref offset);
+                    break;
             }
+        }
+
+        private void HandleReady(Connection connection)
+        {
+            if (!_players.TryGetValue(connection, out PlayerData player)) return;
+
+            player.isReady = true;
+            BroadcastToAll(new Ready(player.playerNum));
+            CheckToStart();
+        }
+
+        private void HandleCancelReady(Connection connection)
+        {
+            if (!_players.TryGetValue(connection, out PlayerData player)) return;
+
+            player.isReady = false;
+            BroadcastToAll(new CancelReady(player.playerNum));
+            CheckToStart();
+        }
+
+        private void HandlePlay(Connection connection, byte[] data, ref int offset)
+        {
+            if (!_players.TryGetValue(connection, out PlayerData player)) return;
+
+            PlayClient playTurnPacket = PlayClient.Deserialize<PlayClient>(data, ref offset);
+            HandleTurnPacket(player, playTurnPacket.pos, playTurnPacket.bigPos);
+        }
+
+        private async void CheckToStart()
+        {
+            if (_players.Values.Count(p => p.isReady) == SteamManager.instance.maxPlayer)
+            {
+                await WaitBegin();
+            }
+        }
+
+        private async Awaitable WaitBegin()
+        {
+            await Awaitable.WaitForSecondsAsync(waitBeforeStart);
+            _currentPlayer = UnityEngine.Random.Range(0, 2);
+            foreach (Connection connection in _players.Keys)
+            {
+                PacketBuilder.SendPacket(new InitGame(_currentPlayer, _players[connection].playerNum), connection, SendType.Reliable);
+            }
+            _countdown = CountDown();
+            await _countdown;
+        }
+
+        private async Awaitable CountDown()
+        {
+            while (!_cts.IsCancellationRequested)
+            {
+                await Awaitable.NextFrameAsync();
+
+                PlayerData currentPlayer = _players.Values.FirstOrDefault(p => p.playerNum == _currentPlayer);
+                if (currentPlayer == null) continue;
+
+                currentPlayer.time -= Time.deltaTime;
+                BroadcastToAll(new TimePacket(_currentPlayer, currentPlayer.time));
+
+                if (currentPlayer.time <= 0f)
+                {
+                    HandleTimeout(currentPlayer);
+                    break;
+                }
+            }
+        }
+
+        private void HandleTimeout(PlayerData timedOutPlayer)
+        {
+            foreach (var connection in _players.Keys)
+            {
+                var scene = _players[connection].playerNum == timedOutPlayer.playerNum ? 4 : 3;
+                PacketBuilder.SendPacket(new LoadScene(scene), connection, SendType.Reliable);
+            }
+            ResetGameState();
+        }
+
+        private void HandleTurnPacket(PlayerData player, int pos, int bigPos)
+        {
+            if (player.playerNum != _currentPlayer) return;
+
+            if (_waitForAllType)
+            {
+                _waitForAllType = false;
+                _bigGridCursor = bigPos;
+            }
+
+            UpdateGameState(player, pos);
+            CheckWinConditions(player);
+            UpdateNextTurn(player, pos);
+        }
+
+        private void UpdateGameState(PlayerData player, int pos)
+        {
+            _bigGrid[_bigGridCursor].cells[pos] = player.playerNum;
+            _bigGrid[_bigGridCursor].win = CheckWin(_bigGrid[_bigGridCursor].cells);
+
+            BroadcastToAll(new PlayTurn(player.playerNum, pos, _bigGridCursor, player.time, player.time));
+        }
+
+        private void CheckWinConditions(PlayerData player)
+        {
+            if (_bigGrid[_bigGridCursor].win == -1) return;
+
+            BroadcastToAll(new SmallWin(player.playerNum, _bigGridCursor));
+
+            var bigWin = _bigGrid.Select(sg => sg.win).ToList();
+            int bigWinResult = CheckWin(bigWin);
+
+            if (bigWinResult != -1)
+            {
+                HandleGameEnd(bigWinResult);
+            }
+            else if (bigWin.All(num => num != -1))
+            {
+                BroadcastToAll(new LoadScene(5));
+            }
+        }
+
+        private void UpdateNextTurn(PlayerData player, int pos)
+        {
+            _bigGridCursor = pos;
+            _currentPlayer = 1 - _currentPlayer;
+
+            if (_bigGrid[_bigGridCursor].win != -1)
+            {
+                _waitForAllType = true;
+                BroadcastToAllExcept(new ActivateAll(), player.playerNum);
+            }
+            else
+            {
+                BroadcastToAllExcept(new ActivateSpecified(_bigGridCursor), player.playerNum);
+            }
+        }
+
+        private void HandleGameEnd(int winner)
+        {
+            _cts.Cancel();
+            foreach (Connection connection in _players.Keys)
+            {
+                var scene = _players[connection].playerNum == winner ? 3 : 4;
+                PacketBuilder.SendPacket(new LoadScene(scene), connection, SendType.Reliable);
+            }
+            ResetGameState();
+        }
+
+        private void ResetGameState()
+        {
+            _cts.Cancel();
+            _players.Clear();
+            _bigGrid.Clear();
+        }
+
+        private void BroadcastToAll<T>(T packet) where T : Packet<Opcode>
+        {
+            foreach (Connection connection in _players.Keys)
+            {
+                PacketBuilder.SendPacket(packet, connection, SendType.Reliable);
+            }
+        }
+
+        private void BroadcastToAllExcept<T>(T packet, int exceptPlayer) where T : Packet<Opcode>
+        {
+            foreach (PlayerData player in _players.Values.Where(p => p.playerNum != exceptPlayer))
+            {
+                PacketBuilder.SendPacket(packet, player.connection, SendType.Reliable);
+            }
+        }
+
+        public int CheckWin(List<int> board)
+        {
+            if (CheckPlayerWin(board, 0)) return 0;
+            if (CheckPlayerWin(board, 1)) return 1;
+            return -1;
+        }
+
+        private bool CheckPlayerWin(List<int> board, int player)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                if (board[i * 3] == player && board[i * 3 + 1] == player && board[i * 3 + 2] == player)
+                    return true;
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (board[i] == player && board[i + 3] == player && board[i + 6] == player)
+                    return true;
+            }
+
+            if (board[0] == player && board[4] == player && board[8] == player)
+                return true;
+
+            if (board[2] == player && board[4] == player && board[6] == player)
+                return true;
+
+            return false;
+        }
+
+        private class SmallGrid
+        {
+            public int win = -1;
+            public readonly List<int> cells = Enumerable.Repeat(-1, 9).ToList();
         }
     }
 
