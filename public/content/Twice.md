@@ -13,7 +13,7 @@
     <div style="flex: 1; padding: 0 15px; color: #fff;">
         <h2 style="font-size: 2rem; color: #007bff;">🌟 Introduction</h2>
         <p>
-            Twice Upon a Time is a 2D local multiplayer platformer developed as a six-month school project. Tasked with creating a vertical slice, my team and I made a narrative-driven experience centered on a brother and sister interacting with a book. The gameplay blends cooperative puzzles—such as manipulating book tabs and rotating wheels. While the narrative does not directly affect gameplay, the duo’s playful banter and discoveries deepen immersion, framing their journey through the book’s imaginative world.
+            Twice Upon a Time is a 2D local multiplayer platformer developed as a six-month school project. Tasked with creating a vertical slice, my team and we made a narrative-driven experience centered on a brother and sister interacting with a book. The gameplay blends cooperative puzzles—such as manipulating book tabs and rotating wheels and platformer movement. While the narrative does not directly affect gameplay, the duo’s playful banter and discoveries deepen immersion, framing their journey through the book’s imaginative world.
         </p>
     </div>
     <img src="https://i.imgur.com/dNOutQa.png" 
@@ -24,12 +24,22 @@
 
 <div id="game" style="display: flex; align-items: center; margin: 2rem 0;">
     <div style="flex: 1; padding: 0 15px; color: #fff;">
-        <h2 style="font-size: 2rem; color: #007bff;">👾 Gameplay Architecture</h2>
+        <h2 style="font-size: 2rem; color: #007bff;">👾 Gameplay</h2>
         <p>
-            The game is based on Ultimate Tic-Tac-Toe, a strategic twist on the classic game, played on a 3x3 grid of smaller 3x3 grids. Players take turns placing their marks (X or O), with the first move allowed anywhere. Each subsequent move is determined by the previous one—the small grid you play in corresponds to the position of the last move within its grid. 
+            Twice Upon a Time is a chill and cooperative two-player narrative platformer game.
+            In a broken family, a brother and sister find shelter in a book, explore with them a story shaped by their imagination and fantasies.
         </p>
         <p>
-            If a player wins a small grid, it’s claimed, and the next time that grid is targeted, the player can place their mark anywhere.
+            <p style="margin-bottom: 1.2rem;">
+                 On this project I developped :
+            <ul style="margin-top: 0.5rem; padding-left: 1.2rem;">
+            <li>Interface-based interaction system</li>
+            <li>World interactions</li>
+            <li>State machine-based platformer movement</li>
+            <li>Custom animation system</li>
+            <li>Skin system </li>
+            <li>Camera system</li>
+        </ul>
         </p>
         <p>
             The goal is to win three small grids in a row, column, or diagonal on the larger grid. This game combines tactical depth and foresight, making it a challenging and engaging experience.
