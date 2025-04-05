@@ -86,21 +86,23 @@
                     <div>
                         <strong>Component Custom Parameters UI:</strong> UI to better understand how to change the gameplay components
                     </div>
-                    <div style="display: flex; gap: 10px; margin: auto;">
-                        <img src="https://i.imgur.com/Xb5vs6A.jpeg" style="float: middle; 
-                        margin: 0 0 20px 20px;
-                        width: 45%; 
-                        height: auto;
-                        border-radius: 12px;
-                        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-                        shape-outside: ellipse(40% 50% at 60% 50%);">
-                        <img src="https://i.imgur.com/6Dcz3oC.jpeg" style="float: middle; 
-                        margin: 0 0 20px 20px;
-                        width: 45%; 
-                        height: auto;
-                        border-radius: 12px;
-                        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-                        shape-outside: ellipse(40% 50% at 60% 50%);">
+                    <div style="text-align: left;">
+                        <img src="https://i.imgur.com/deIfrex.gif" style="
+                            display: block; /* or inline-block */
+                            height: auto;
+                            max-width: 100%;
+                            border-radius: 12px;
+                            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                            margin: 0 0 20px 0;">
+                    </div>
+                    <div style="text-align: left;">
+                        <img src="https://i.imgur.com/jDpnj13.gif" style="
+                            display: block; /* or inline-block */
+                            height: auto;
+                            max-width: 100%;
+                            border-radius: 12px;
+                            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                            margin: 0 0 20px 0;">
                     </div>
                 </div>
             </li>
