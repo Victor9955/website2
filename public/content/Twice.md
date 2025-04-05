@@ -111,8 +111,7 @@
                         </div>
                     </details>
                     <div style="display: flex; gap: 10px; margin: auto;">
-                        <img src="https://i.imgur.com/KwcJC4U.jpeg" style="width: 45%; height: auto; border-radius: 12px;">
-                        <img src="https://i.imgur.com/Qksykf1.jpeg" style="width: 45%; height: auto; border-radius: 12px;">
+                        <img src="https://i.imgur.com/R8vTbpv.gif" style="max-width: 100%; border-radius: 12px;">
                     </div>
                 </div>
             </li>
