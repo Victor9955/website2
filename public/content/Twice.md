@@ -41,9 +41,6 @@
             <li>Camera system</li>
         </ul>
         </p>
-        <p>
-            The goal is to win three small grids in a row, column, or diagonal on the larger grid. This game combines tactical depth and foresight, making it a challenging and engaging experience.
-        </p>
     </div>
 </div>
 
@@ -60,12 +57,30 @@
                     <div>
                         <strong>Camera View Gizmos:</strong> Visual debugging tools to enhance camera system visualization
                     </div>
+                    <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
+                        <summary style="cursor: pointer; padding: 4px; background-color: #2a2f3a; color: #fff;">
+                            CameraGizmoDrawer.cs
+                        </summary>
+                        <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
+<div>
+
+    [ExecuteInEditMode]
+    public class CameraGizmoDrawer : MonoBehaviour {
+        public Color frustumColor = Color.cyan;
+        public float size = 0.3f;
+        
+        void OnDrawGizmos() {
+            Gizmos.color = frustumColor;
+            Gizmos.matrix = transform.localToWorldMatrix;
+            Gizmos.DrawFrustum(Vector3.zero, 60f, size, 0.1f, 1f);
+        }
+    }
+
+</div>
+                        </div>
+                    </details>
                     <img src="https://i.imgur.com/wylx2ky.jpeg" 
-                         style="float: right; 
-                        margin: 0 0 20px 20px;
-                        width: 60%; 
-                        height: 60%;
-                        border-radius: 10px;">
+                         style="float: right; margin: 0 0 20px 20px; width: 60%; height: 60%; border-radius: 10px;">
                 </div>
             </li>
             <li style="margin-bottom: 1.5rem;">
@@ -73,21 +88,31 @@
                     <div>
                         <strong>Component Linkers Based on Interface Implementation:</strong> Automated component retrieval for specific interfaces
                     </div>
+                    <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
+                        <summary style="cursor: pointer; padding: 4px; background-color: #2a2f3a; color: #fff;">
+                            InterfaceLinker.cs
+                        </summary>
+                        <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
+<div>
+
+    public static class InterfaceLinker {
+        public static T FindInterface<T>() where T : class {
+            MonoBehaviour[] allObjects = Object.FindObjectsOfType<MonoBehaviour>();
+            foreach(MonoBehaviour obj in allObjects) {
+                if(obj is T interfaceObj) {
+                    return interfaceObj as T;
+                }
+            }
+            return null;
+        }
+    }
+
+</div>
+                        </div>
+                    </details>
                     <div style="display: flex; gap: 10px; margin: auto;">
-                        <img src="https://i.imgur.com/KwcJC4U.jpeg" style="float: middle; 
-                        margin: 0 0 20px 20px;
-                        width: 45%; 
-                        height: auto;
-                        border-radius: 12px;
-                        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-                        shape-outside: ellipse(40% 50% at 60% 50%);">
-                        <img src="https://i.imgur.com/Qksykf1.jpeg" style="float: middle; 
-                        margin: 0 0 20px 20px;
-                        width: 45%; 
-                        height: auto;
-                        border-radius: 12px;
-                        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-                        shape-outside: ellipse(40% 50% at 60% 50%);">
+                        <img src="https://i.imgur.com/KwcJC4U.jpeg" style="width: 45%; height: auto; border-radius: 12px;">
+                        <img src="https://i.imgur.com/Qksykf1.jpeg" style="width: 45%; height: auto; border-radius: 12px;">
                     </div>
                 </div>
             </li>
@@ -96,39 +121,93 @@
                     <div>
                         <strong>Component Custom Parameters UI:</strong> UI to better understand how to change the gameplay components
                     </div>
-                    <div style="text-align: left;">
-                        <img src="https://i.imgur.com/deIfrex.gif" style="
-                            display: block; /* or inline-block */
-                            height: auto;
-                            max-width: 100%;
-                            border-radius: 12px;
-                            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-                            margin: 0 0 20px 0;">
-                    </div>
-                    <div style="text-align: left;">
-                        <img src="https://i.imgur.com/jDpnj13.gif" style="
-                            display: block; /* or inline-block */
-                            height: auto;
-                            max-width: 100%;
-                            border-radius: 12px;
-                            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-                            margin: 0 0 20px 0;">
-                    </div>
+                    <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
+                        <summary style="cursor: pointer; padding: 4px; background-color: #2a2f3a; color: #fff;">
+                            ParameterUIEditor.cs
+                        </summary>
+                        <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
+<div>
+
+    [CustomEditor(typeof(GameComponent))]
+    public class ParameterUIEditor : Editor {
+        public override void OnInspectorGUI() {
+            serializedObject.Update();
+            
+            EditorGUILayout.LabelField("Custom Parameters", EditorStyles.boldLabel);
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("damage"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("cooldown"));
+            
+            serializedObject.ApplyModifiedProperties();
+        }
+    }
+
+</div>
+                        </div>
+                    </details>
+                    <img src="https://i.imgur.com/6Q3vO5Z.gif" style="max-width: 100%; border-radius: 12px;">
+                    <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
+                        <summary style="cursor: pointer; padding: 4px; background-color: #2a2f3a; color: #fff;">
+                            ParameterUIEditor.cs
+                        </summary>
+                        <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
+<div>
+
+    [CustomEditor(typeof(GameComponent))]
+    public class ParameterUIEditor : Editor {
+        public override void OnInspectorGUI() {
+            serializedObject.Update();
+            
+            EditorGUILayout.LabelField("Custom Parameters", EditorStyles.boldLabel);
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("damage"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("cooldown"));
+            
+            serializedObject.ApplyModifiedProperties();
+        }
+    }
+
+</div>
+                        </div>
+                    </details>
+                    <img src="https://i.imgur.com/udv03C5.gif" style="max-width: 100%; border-radius: 12px;">
                 </div>
             </li>
             <li style="margin-bottom: 1.5rem;">
                 <div style="display: flex; flex-direction: column; gap: 10px;">
                     <div>
-                        <strong>Transform Snaping Tool:</strong> Transform position snapping tool with presets stored in scriptable objects
+                        <strong>Transform Snapping Tool:</strong> Transform position snapping tool with presets stored in scriptable objects
                     </div>
-                    <img src="https://i.imgur.com/Eqh4bq5.jpeg" 
-                         style="float: middle; 
-                        margin: 0 0 20px 20px;
-                        width: 45%; 
-                        height: auto;
-                        border-radius: 12px;
-                        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-                        shape-outside: ellipse(40% 50% at 60% 50%);">
+                    <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
+                        <summary style="cursor: pointer; padding: 4px; background-color: #2a2f3a; color: #fff;">
+                            SnapTool.cs
+                        </summary>
+                        <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
+<div>
+
+    public class SnapTool : MonoBehaviour {
+        public SnapPreset preset;
+        
+        public void SnapTransform() {
+            transform.position = preset.RoundToGrid(transform.position);
+        }
+    }
+    
+    [CreateAssetMenu]
+    public class SnapPreset : ScriptableObject {
+        public float gridSize = 1f;
+        
+        public Vector3 RoundToGrid(Vector3 input) {
+            return new Vector3(
+                Mathf.Round(input.x / gridSize) * gridSize,
+                Mathf.Round(input.y / gridSize) * gridSize,
+                Mathf.Round(input.z / gridSize) * gridSize
+            );
+        }
+    }
+
+</div>
+                        </div>
+                    </details>
+                    <img src="https://i.imgur.com/mdIcTNo.gif" style="max-width: 100%; border-radius: 12px;">
                 </div>
             </li>
         </ul>
@@ -139,7 +218,7 @@
 </div>
 
 
-<div id="hj" style="display: flex; align-items: center; margin: 2rem 0;">
+<div id="network" style="display: flex; align-items: center; margin: 2rem 0;">
     <div style="flex: 1; color: #fff;">
         <h2 style="font-size: 2rem; color: #007bff;">👨‍💻 Custom Netcode</h2>
         <ul style="font-size: 120%;">
