@@ -93,8 +93,8 @@ export const portfolioProjects = [
         "GDC 2025 Nominee"
       ],
       liveDemoUrl: "",
-      videoUrl: "https://www.youtube.com/embed/7jc1ONhnvX0?si=sBAne5ITG27x8XpN?rel=0",
-      videoGameplayUrl: "https://www.youtube.com/embed/7jc1ONhnvX0?si=sBAne5ITG27x8XpN?rel=0",
+      videoUrl: "https://www.youtube.com/embed/uoPGm1zaO68?si=umKYU6sSccOmAXwD?rel=0",
+      videoGameplayUrl: "https://www.youtube.com/embed/uoPGm1zaO68?si=umKYU6sSccOmAXwD?rel=0",
       contentPath: "/content/Paco.md",
     },
     {
