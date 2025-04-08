@@ -182,21 +182,6 @@ export const portfolioProjects = [
     contentPath: "/content/Camera.md",
   },
   {
-    id: "rast",
-    heading: "C++ Rasterizer",
-    subheading: "",
-    imageUrl: "/imgs/projects/Raz.png",
-    techStack: [
-      "C++",
-      "OpenGL",
-      "Rendering",
-    ],
-    liveDemoUrl: "",
-    videoUrl: "/video/Rasterizer.mp4",
-    videoGameplayUrl: "/video/Rasterizer.mp4",
-    contentPath: "/content/Raz.md",
-  },
-  {
     id: "cript",
     heading: "The Cryptic Mutation Conundrum",
     subheading: "",
