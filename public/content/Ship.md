@@ -11,7 +11,7 @@
     <div style="flex: 1; padding: 0 15px; color: #fff;">
         <h2 style="font-size: 2rem; color: #007bff;">🌟 Introduction</h2>
         <p>
-            The Mothership Calls is a 2D local multiplayer asteroid game developed as a one-week school project. The purpose was to create a small game in groups of three using only C++ and SFML. We decided to make small game where two player save a planet from incoming asteroids when both players press on their "shoot" key they create a beam that destroy any asteroid in the way. Their are two types of steroids ones that folow the closest player and one that go toward the planet. Each players have two lives.
+            The Mothership Calls is a 2D local multiplayer asteroid game developed as a one-week school project. The purpose was to create a small game in groups of three using only C++ and SFML. We decided to make small game where two player save a planet from incoming asteroids when both players press on their "shoot" key at the same time they create a beam that destroy any asteroid in the way appear between them. Their are two types of steroids ones that folow the closest player and one that go toward the planet. Each players have two lives.
         </p>
         <p>
             This project was a part of a C++ course 
@@ -27,7 +27,7 @@
     <div style="flex: 1; padding: 0 15px; color: #fff;">
         <h2 style="font-size: 2rem; color: #007bff;">👾 Gameplay Architecture</h2>
         <p>
-            In this project I made the collision systems with two types of collision : Line to sphere and sphere to sphere. 
+            In this project I made the collision systems with two types of collision : Line to sphere and sphere to sphere.
         </p>
     </div>
 </div>
