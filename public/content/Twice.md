@@ -20,29 +20,6 @@
          style="margin-left: 12px;">
 </div>
 
-
-<div id="game" style="display: flex; align-items: center; margin: 2rem 0;">
-    <div style="flex: 1; padding: 0 15px; color: #fff;">
-        <h2 style="font-size: 2rem; color: #007bff;">👾 Gameplay</h2>
-        <p>
-            Twice Upon a Time is a chill and cooperative two-player narrative platformer game.
-            In a broken family, a brother and sister find shelter in a book, explore with them a story shaped by their imagination and fantasies.
-        </p>
-        <p>
-            <p style="margin-bottom: 1.2rem;">
-                 On this project I developped :
-            <ul style="margin-top: 0.5rem; padding-left: 1.2rem;">
-            <li>Interface-based interaction system</li>
-            <li>World interactions</li>
-            <li>State machine-based platformer movement</li>
-            <li>Custom animation system</li>
-            <li>Skin system</li>
-            <li>Camera system</li>
-        </ul>
-        </p>
-    </div>
-</div>
-
 <div id="game" style="display: flex; align-items: center; margin: 2rem 0;">
     <div style="flex: 1; padding: 0 15px; color: #fff;">
         <h2 style="font-size: 2rem; color: #007bff;">👾 Gameplay</h2>
@@ -55,7 +32,7 @@
             <li style="margin-bottom: 1.5rem;">
                 <div style="display: flex; flex-direction: column; gap: 10px;">
                     <div>
-                        <strong>Interface-based interaction system:</strong> General interface that can be used by any GameObject for gameplay interactions. (the value range from 0 to 1 acting as a lerp kind of mechanism)
+                        <strong>Interface-based interaction system:</strong> General interface that can be used by any GameObject for gameplay interactions. (the value range from 0 to 1 acting as a lerp kind of mechanism). I also made most of the interactions that use this interface such as pulling tabs, turning wheels and bumpers that launch the player.
                     </div>
                     <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
                         <summary style="cursor: pointer; padding: 4px; background-color: #2a2f3a; color: #fff;">
@@ -174,52 +151,136 @@
             <li style="margin-bottom: 1.5rem;">
                 <div style="display: flex; flex-direction: column; gap: 10px;">
                     <div>
-                        <strong>Transform Snapping Tool:</strong> Transform position snapping tool with presets stored in scriptable objects
+                        <strong>Two Player Camera:</strong> Offers modes like centering between both players or locking to a fixed position/path, which can switch to free movement when triggered
                     </div>
                     <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
                         <summary style="cursor: pointer; padding: 4px; background-color: #2a2f3a; color: #fff;">
-                            TransformEditor.cs
+                            MyCamera.cs
                         </summary>
                         <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
 <div>
 
-    #if(UNITY_EDITOR)
-    [CustomEditor(typeof(Transform))]
-    public class TransformEditor : Editor
+    public class MyCamera : MonoBehaviour
     {
-        int _isBasic = 0;
-        private Transform _Transform = null;
-        public TransformEditorData _data;
-        private float _addAmount = 1f;
-        private float _deletedData = float.NaN;
+        enum Pos
+        {
+            Left,
+            Right,
+            Middle
         }
-    }
-    #endif
 
-</div>
-                        </div>
-                    </details>
-                    <img src="https://i.imgur.com/mdIcTNo.gif" style="max-width: 100%; border-radius: 12px;">
-                </div>
-            </li>
-            <li style="margin-bottom: 1.5rem;">
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <div>
-                        <strong>Camera View Gizmos:</strong> Visual debugging tools to enhance camera system visualization
-                    </div>
-                    <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
-                        <summary style="cursor: pointer; padding: 4px; background-color: #2a2f3a; color: #fff;">
-                            CameraWaypoint.cs
-                        </summary>
-                        <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
-<div>
+        int indexLeft = 0;
+        int indexRight = 1;
 
-    public enum WaypointType
-    {
-        Automatic,
-        Fixed
-    }
+        [SerializeField] Camera cameraRef;
+        [SerializeField] float speed = 0.2f;
+        [HideInInspector] public List<Transform> players;
+        [SerializeField] List<CameraWaypoint> waypoints;
 
+        void Start()
+        {
+            List<PlayerData> playersData = FindObjectsByType<PlayerData>(FindObjectsSortMode.None).ToList();
+            playersData.ForEach(p => players.Add(p.transform));
+        }
+
+        void Update()
+        {
+            CameraPoint();
+        }
+
+        void CameraPoint()
+        {
+            Bounds bounds = new Bounds(players[0].position, Vector3.zero);
+            bounds.Encapsulate(players[1].position);
+
+            if (waypoints[indexLeft].type == WaypointType.Automatic)
+            {
+                float dot = (((bounds.center.x - waypoints[indexLeft].transform.position.x) * (waypoints[indexRight].transform.position.x - waypoints[indexLeft].transform.position.x)) + ((bounds.center.y - waypoints[indexLeft].transform.position.y) * (waypoints[indexRight].transform.position.y - waypoints[indexLeft].transform.position.y))) / Mathf.Pow(Vector2.Distance(waypoints[indexLeft].transform.position, waypoints[indexRight].transform.position), 2f);
+                float X = waypoints[indexLeft].transform.position.x + (dot * (waypoints[indexRight].transform.position.x - waypoints[indexLeft].transform.position.x));
+                float Y = waypoints[indexLeft].transform.position.y + (dot * (waypoints[indexRight].transform.position.y - waypoints[indexLeft].transform.position.y));
+
+                switch (PointLine(new Vector2(X, Y)))
+                {
+                    case Pos.Left:
+                        SwitchLeft();
+                        break;
+                    case Pos.Right:
+                        SwitchRight();
+                        break;
+                    case Pos.Middle:
+                        Vector2 pos = Vector2.MoveTowards(cameraRef.transform.position, new Vector2(X, Y), speed);
+                        float len1 = Vector2.Distance(pos, waypoints[indexLeft].transform.position);
+                        float len2 = Vector2.Distance(pos, waypoints[indexRight].transform.position);
+                        cameraRef.orthographicSize = Mathf.Lerp(waypoints[indexLeft].size, waypoints[indexRight].size, len1 / len2);
+                        cameraRef.transform.position = new Vector3(pos.x, pos.y, cameraRef.transform.position.z);
+                        break;
+                }
+
+                if(waypoints[indexRight].IsInside() && waypoints[indexRight].type == WaypointType.Fixed)
+                {
+                    SwitchRight();
+                }
+            }
+            else
+            {
+                if(waypoints[indexLeft].IsInside())
+                {
+                    cameraRef.orthographicSize = waypoints[indexLeft].size;
+                    Vector2 pos = Vector2.MoveTowards(cameraRef.transform.position, waypoints[indexLeft].transform.position, speed);
+                    cameraRef.transform.position = new Vector3(pos.x, pos.y, cameraRef.transform.position.z);
+                }
+                else
+                {
+                    
+                    if(bounds.center.x > waypoints[indexLeft].transform.position.x)
+                    {
+                        SwitchRight();
+                    }
+                    else
+                    {
+                        SwitchLeft();
+                    }
+                }
+            }
+        }
+
+        Pos PointLine(Vector2 pos)
+        {
+            int len = (int)Vector2.Distance(waypoints[indexLeft].transform.position, waypoints[indexRight].transform.position);
+            float len1 = Vector2.Distance(pos, waypoints[indexLeft].transform.position);
+            float len2 = Vector2.Distance(pos, waypoints[indexRight].transform.position);
+
+            if((int)(len1 + len2) == len)
+            {
+                return Pos.Middle;
+            }
+            else if(len1 > len2)
+            {
+                return Pos.Right;
+            }
+            else
+            {
+                return Pos.Left;
+            }
+        }
+
+        public void SwitchRight()
+        {
+            if (indexRight + 1 < waypoints.Count)
+            {
+                indexLeft++;
+                indexRight++;
+            }
+        }
+
+        public void SwitchLeft()
+        {
+            if (indexLeft - 1 >= 0)
+            {
+                indexLeft--;
+                indexRight--;
+            }
+        }
     }
 
 </div>
@@ -230,9 +291,6 @@
                 </div>
             </li>
         </ul>
-        <p>
-            These tools prioritized usability for both developers and designers, enhancing efficiency in level design and system implementation.
-        </p>
     </div>
 </div>
 

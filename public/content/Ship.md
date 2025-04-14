@@ -32,8 +32,9 @@
     </div>
 </div>
 
+<div>
 <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
-    <summary style="cursor: pointer; padding: 8px; background-color: #2a2f3a; color: #fff; font-family: monospace;">
+    <summary style="cursor: pointer; padding: 4px; background-color: #2a2f3a; color: #fff;">
         SphereCollider.cpp
     </summary>
     <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
@@ -81,3 +82,4 @@
 
 </div>
         </div>
+</div>
