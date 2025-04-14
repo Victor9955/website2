@@ -27,7 +27,7 @@
     <div style="flex: 1; padding: 0 15px; color: #fff;">
         <h2 style="font-size: 2rem; color: #007bff;">👾 Gameplay Architecture</h2>
         <p>
-            In this project I made the collision systems with two types of collision : Line to sphere and sphere to sphere.
+            In this project I made the collision systems with two types of collision : Line to sphere and sphere to sphere. and we had to write a full uml for the project
         </p>
     </div>
 </div>
@@ -82,4 +82,12 @@
 
 </div>
         </div>
+</div>
+
+<div style="flex: 1; padding: 0 15px; color: #fff;">
+    <p>
+        We also had to write a full uml for the project :
+    </p>
+    <img src="https://i.imgur.com/c9oQuV6.jpeg" 
+         style="display: block; width: 90%; max-width: 1200px; border-radius: 8px; margin: 0 auto; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
 </div>
