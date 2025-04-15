@@ -13,15 +13,11 @@
         <p>
             The Mothership Calls is a 2D local multiplayer asteroid game developed as a one-week school project. The purpose was to create a small game in groups of three using only C++ and SFML. We decided to make small game where two player save a planet from incoming asteroids when both players press on their "shoot" key at the same time they create a beam that destroy any asteroid in the way appear between them. Their are two types of steroids ones that folow the closest player and one that go toward the planet. Each players have two lives.
         </p>
-        <p>
-            This project was a part of a C++ course 
-        </p>
     </div>
     <img src="https://i.imgur.com/2ldxkpv.png" 
          alt="Featured Concept Art" 
          style="margin-left: 12px;">
 </div>
-
 
 <div id="game" style="display: flex; align-items: center; margin: 2rem 0;">
     <div style="flex: 1; padding: 0 15px; color: #fff;">
@@ -31,8 +27,6 @@
         </p>
     </div>
 </div>
-
-<div>
 <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
     <summary style="cursor: pointer; padding: 4px; background-color: #2a2f3a; color: #fff;">
         SphereCollider.cpp
@@ -81,13 +75,15 @@
     }
 
 </div>
-        </div>
-</div>
-
-<div style="flex: 1; padding: 0 15px; color: #fff;">
+</details>
+<div style="width: 100%; display: block; clear: both; margin: 0 auto; padding: 0 15px; color: #fff; box-sizing: border-box;">
     <p>
         We also had to write a full uml for the project :
     </p>
-    <img src="https://i.imgur.com/c9oQuV6.jpeg" 
-         style="display: block; width: 90%; max-width: 1200px; border-radius: 8px; margin: 0 auto; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+    <img src="https://i.imgur.com/c9oQuV6.jpeg" style="max-width: 100%; border-radius: 12px;">
 </div>
+
+<p style="color:black;">
+    .
+</p>
+

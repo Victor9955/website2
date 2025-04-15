@@ -96,9 +96,18 @@ const ProjectOverview = ({ params }: { params: { projectName: string } }) => {
   ></iframe>
 </div>
             {markdownContent && (
-        <div className="mt-16 mb-32 w-full">
-          <MarkdownContent content={markdownContent} />
-        </div>
+        <div 
+        style={{
+          display: 'block',
+          clear: 'both',
+          width: '100%',
+          margin: '0 auto',
+          boxSizing: 'border-box'
+        }}
+        className="mt-16 mb-32"
+      >
+        <MarkdownContent content={markdownContent} />
+      </div>
       )}
             <div className="mt-8 mb-32 flex flex-col md:flex-row gap-10 md:gap-5 justify-between">
               <div className="flex items-center">

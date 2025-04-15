@@ -176,7 +176,7 @@ export const portfolioProjects = [
       "Camera",
       "TPS",
     ],
-    liveDemoUrl: "",
+    liveDemoUrl: "https://victor9955.itch.io/camera-system",
     videoUrl: "/video/Camera.mp4",
     videoGameplayUrl: "/video/Camera.mp4",
     contentPath: "/content/Camera.md",
