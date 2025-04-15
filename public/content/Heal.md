@@ -22,7 +22,7 @@
             This project not only solidified my understanding of mobile game developent but also helped me better understand the unity engine and use tools such as scriptables objects and coroutines.
         </p>
     </div>
-    <img src="https://media.discordapp.net/attachments/1212459753343557682/1348978988139417680/lrs01_1.png?ex=67d216d5&is=67d0c555&hm=2c763f3c0b7a6f4fa3508069ea36d77d3164b346ce864e0af9ad709e1ec2ff35&=&format=webp&quality=lossless&width=1175&height=940" 
+    <img src="https://i.imgur.com/IKdsLS3.png" 
          alt="Featured Concept Art" 
          style="margin-left: 12px;">
 </div>
