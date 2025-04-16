@@ -20,7 +20,7 @@ const ProjectsSection = () => {
           transition={{ duration: 0.5, delay: 0.25 }}
           className="text-3xl min-[430px]:text-4xl md:text-5xl font-bold dark:text-stone-200"
         >
-          My Projects and School works
+          My Main Projects
         </motion.h1>
 
 {/*<ShinyButton icon={<ChevronRight />}>

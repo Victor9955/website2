@@ -2,7 +2,7 @@
 
 <div style="background:rgb(26, 26, 26); padding: 1.5rem; margin-bottom: 2rem; border-radius: 4px; text-align: center;">
 <a href="#introduction" style="color: #007bff; text-decoration: none; margin: 0 10px;">🌟 Introduction </a>
-<a href="#game" style="color: #007bff; text-decoration: none; margin: 0 10px;">👾 Gameplay </a>
+<a href="#sys" style="color: #007bff; text-decoration: none; margin: 0 10px;">🖥️ System Implementation </a>
 
 </div>
 
@@ -30,14 +30,14 @@
 The project emphasized creating responsive, cinematic camera behaviors while exploring technical solutions for common game and simulation camera challenges.
         </p>
     </div>
-    <img src="https://i.imgur.com/dNOutQa.png" 
+    <img src="https://i.imgur.com/T9hJwtn.png" 
          alt="Featured Concept Art" 
          style="margin-left: 12px;">
 </div>
 
-<div id="game" style="display: flex; align-items: center; margin: 2rem 0;">
+<div id="sys" style="display: flex; align-items: center; margin: 2rem 0;">
     <div style="flex: 1; padding: 0 15px; color: #fff;">
-        <h2 style="font-size: 2rem; color: #007bff;">👾 Gameplay</h2>
+        <h2 style="font-size: 2rem; color: #007bff;">🖥️ System Implementation </h2>
         <p>
             Twice Upon a Time is a chill and cooperative two-player narrative platformer game.
             In a broken family, a brother and sister find shelter in a book, explore with them a story shaped by their imagination and fantasies.
