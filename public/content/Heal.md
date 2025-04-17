@@ -13,7 +13,16 @@
     <div style="flex: 1; padding: 0 15px; color: #fff;">
         <h2 style="font-size: 2rem; color: #007bff;">🌟 Introduction</h2>
         <p>
-            Heal Em Up is a 4 month long school project I developed in a team of 10 peoples. The aim of this project was to familiarise ourselves with mobile game developement. The gameplay of this game is really simple, your the healer of a team of adventurers and in real time you have to heal, shield or buff your teamates but you have limited mana (similar to Clash Royale).
+            Heal Em Up is a 4-month mobile game project I worked on with a 10-person team to learn mobile game development. In the game, you play as a healer managing real-time actions like healing, shielding, or buffing teammates with limited mana.
+        </p>
+        <p style="margin-bottom: 1.2rem;">
+            I implemented advanced features such as :
+            <ul style="margin-top: 0.5rem; padding-left: 1.2rem;">
+            <li>Custom mobile input system</li>
+            <li>Scriptable Object-driven card mechanics</li>
+            <li>Mana system</li>
+            <li>Card inventory</li>
+        </ul>
         </p>
         <p>
             Using Unity Engine and C#, I implemented various gameplay elements such as dragging and dropping items, scriptable object based card mechanics, card inventory, mana management and card playing and recharging.
