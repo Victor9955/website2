@@ -149,6 +149,22 @@ export const portfolioProjects = [
     contentPath: "/content/Ship.md",
   },
   {
+    id: "camera",
+    heading: "Dynamic Camera System",
+    subheading: "",
+    imageUrl: "/imgs/projects/Bezier.PNG",
+    techStack: [
+      "Unity",
+      "C#",
+      "Camera",
+      "TPS",
+    ],
+    liveDemoUrl: "https://victor9955.itch.io/camera-system",
+    videoUrl: "https://www.youtube.com/embed/6tD3o4-HE4c?si=AvKcs4OOo7Hi4Czt?rel=0",
+    videoGameplayUrl: "https://www.youtube.com/embed/6tD3o4-HE4c?si=AvKcs4OOo7Hi4Czt?rel=0",
+    contentPath: "/content/Camera.md",
+  },
+  {
     id: "cript",
     heading: "The Cryptic Mutation Conundrum",
     subheading: "",
