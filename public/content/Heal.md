@@ -52,7 +52,237 @@
                     <li>Resurrection (reviving allies at partial health)</li>
                     <li>Mana refund mechanics</li> 
                     <li>Shields</li>
-                    </ul>
+                    To enhance usability, I utilized conditional Inspector fields (via NaughtyAttributes) for clean data entry and added save/load functionality to persist unlocked cards. The modular architecture allowed rapid iteration, supporting 10+ unique card types and seamless collaboration between programmers and designers.
+                </p>
+    </div>
+    <div style="flex-shrink: 0;">
+        <img src="https://i.imgur.com/UTdRz9t.gif"
+             style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
+    </div>
+</div>
+
+<details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
+    <summary style="cursor: pointer; padding: 8px; background-color: #2a2f3a; color: #fff; font-family: monospace;">
+        CardBase.cs
+    </summary>
+    <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
+<div>
+
+    public enum CardBehaviour
+    {
+        heal,
+        massHeal,
+        regeneration,
+        resurection,
+        panacea,
+        spiritShield,
+        resonanceShield,
+        blessingOfStrength,
+        manaProfusion,
+        initiative
+    }
+
+
+    [CreateAssetMenu(fileName = "CardBase", menuName = "ScriptableObjects/CardBase")]
+    public class CardBase : ScriptableObject
+    {
+        [Header("If your not a GP don't touch!")]
+        public ManaObject manaObject;
+        public InputHandlerObject input;
+        public AllReferences refs;
+
+        [Space(30)]
+
+        public bool isUnlocked;
+        public int dataIndex;
+        public CardBehaviour cardBehaviour;
+        public string cardName;
+        [TextArea]
+        public string description;
+        public Sprite cardSprite;
+        public Sprite cardSpriteGrey;
+        public int manaCost;
+
+        bool doHeal
+        {
+            get
+            {
+                return cardBehaviour == CardBehaviour.heal || cardBehaviour == CardBehaviour.regeneration  || cardBehaviour == CardBehaviour.massHeal || cardBehaviour == CardBehaviour.panacea;
+            }
+        }
+
+        bool isTurnDependant
+        {
+            get
+            {
+                return cardBehaviour == CardBehaviour.regeneration || cardBehaviour == CardBehaviour.resonanceShield || cardBehaviour == CardBehaviour.blessingOfStrength;
+            }
+        }
+
+        [ShowIf("doHeal")]
+        public int healthHealed;
+
+        [ShowIf("isTurnDependant")]
+        public int turnActive;
+
+        [ShowIf("cardBehaviour", CardBehaviour.resurection)]
+        public float healthPercentage;
+
+        [ShowIf("cardBehaviour", CardBehaviour.spiritShield)]
+        public int shieldBreakAfter;
+
+        [ShowIf("cardBehaviour", CardBehaviour.blessingOfStrength)]
+        public int damageAdded;
+
+        public bool ApplyEffectOfTheCard(Character partyMember)
+        {
+
+            Status s = partyMember.GetStatus(Status.StatusEnum.Disapeared);
+            switch (cardBehaviour)
+            {
+                
+                case CardBehaviour.heal:
+                    if ((partyMember.GetCurrentHealth() == partyMember.GetMaxHealth()) || partyMember.IsDead() || s != null)
+                    {
+                        return false;
+                    }
+                    partyMember.GetComponent<IHealable>().Heal(healthHealed);
+                    partyMember.GetComponent<ICharacter>().GetParticulHandeler().ActiveEffect(ParticulesHandeler.CardEffect.Heal);
+                    break;
+                case CardBehaviour.resurection:
+                    if(!partyMember.IsDead() || s !=null)
+                    {
+                        return false;
+                    }
+                    partyMember.Revive(healthPercentage);
+                    partyMember.GetComponent<ICharacter>().GetParticulHandeler().ActiveEffect(ParticulesHandeler.CardEffect.Ressurect);
+                    break;
+
+                case CardBehaviour.manaProfusion:
+                    manaObject.manaRestauration = true;
+                    manaObject.manaRestaurationTurn = refs.fightManager.CurrentTurn;
+                    break;
+
+                case CardBehaviour.massHeal:
+                    int i = 0;
+                    foreach (var item in refs.fightManager.PartyMembers)
+                    {
+                        if (item.GetCurrentHealth() < item.GetMaxHealth() && !item.IsDead() && s == null)
+                        {
+                            item.GetComponent<IHealable>().Heal(healthHealed);
+                            item.GetParticulHandeler().ActiveEffect(ParticulesHandeler.CardEffect.Heal);
+                        }
+                        else
+                        {
+                            i++;
+                        }
+                    }
+                    if (i == refs.fightManager.PartyMembers.Length)
+                    {
+                        return false;
+                    }
+                    break;
+                case CardBehaviour.panacea:
+                    if (partyMember.GetCurrentHealth() < partyMember.GetMaxHealth() && !partyMember.IsDead() && s ==null)
+                    {
+                        partyMember.GetComponent<IHealable>().Heal(healthHealed);
+                        partyMember.GetComponent<ICharacter>().GetParticulHandeler().ActiveEffect(ParticulesHandeler.CardEffect.Panacea);
+                        foreach (var item in partyMember.Status.ToList())
+                        {
+                            partyMember.TryRemoveStatus(item.status);
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    break;
+
+                case CardBehaviour.spiritShield:
+                    if (partyMember.IsDead() || s != null)
+                    {
+                        return false;
+                    }
+                    partyMember.AddStatus(new Status(Status.StatusEnum.Shielded, 1));
+                    partyMember.GetComponent<ICharacter>().GetParticulHandeler().ActiveShield(Status.StatusEnum.Shielded);
+                    break;
+
+                case CardBehaviour.regeneration:
+                    if (partyMember.IsDead() || s != null)
+                    {
+                        return false;
+                    }
+                    partyMember.AddStatus(new Status(Status.StatusEnum.Regenerating,turnActive,healthHealed));
+                    break;
+
+                case CardBehaviour.resonanceShield:
+                    if (partyMember.IsDead() || s != null)
+                    {
+                        return false;
+                    }
+                    partyMember.AddStatus(new Status(Status.StatusEnum.ShieldedWithReflect, turnActive));
+                    partyMember.GetComponent<ICharacter>().GetParticulHandeler().ActiveShield(Status.StatusEnum.ShieldedWithReflect);
+                    break;
+
+                case CardBehaviour.initiative:
+                    if (partyMember.IsDead() || s != null)
+                    {
+                        return false;
+                    }
+                    partyMember.AddStatus(new Status(Status.StatusEnum.Initiative, 1));
+                    refs.fightManager.OrderCharacters();
+                    break;
+
+                case CardBehaviour.blessingOfStrength:
+                    if (partyMember.IsDead() || s != null)
+                    {
+                        return false;
+                    }
+                    partyMember.AddStatus(new Status(Status.StatusEnum.Strengthened, turnActive, damageAdded));
+                    partyMember.GetParticulHandeler().ActiveEffect(Status.StatusEnum.Strengthened);
+                    break;
+            }
+
+                Debug.Log($"{manaObject.manaRestauration} && {manaObject.manaRestaurationTurn} && {refs.fightManager.CurrentTurn}");
+            manaObject.ReduceMana(manaCost);
+            if (manaObject.manaRestauration && manaObject.manaRestaurationTurn < refs.fightManager.CurrentTurn)
+            {
+                manaObject.AddMana(manaCost);
+                manaObject.manaRestauration = false;
+            }
+            return true;
+        }
+
+        [Button("TestSave")]
+        public void Save()
+        {
+            GameData gameData;
+            gameData = SaveSystem.Load();
+            gameData.spellUnlocked[dataIndex] = isUnlocked;
+            SaveSystem.save(gameData);
+        }
+
+        [Button("TestLoad")]
+        public void Load()
+        {
+            GameData gameData;
+            gameData = SaveSystem.Load();
+            isUnlocked = gameData.spellUnlocked[dataIndex];
+        }
+    }
+
+
+</div>
+</div>
+    </details>
+</li>
+    <li style= "padding-bottom: 15px">
+        <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px;">
+    <div style="flex: 1; min-width: 0;">
+        <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Custom mobile input system</span>
+                <p style="margin-bottom: 1.2rem;">
+                    <p>I implemented a custom mobile input system using colliders and number of fingers on the screen.</p>
+                    <p>With Custom Behavior like Dragging and Droping and Tooltip like mechanic</p>
                     To enhance usability, I utilized conditional Inspector fields (via NaughtyAttributes) for clean data entry and added save/load functionality to persist unlocked cards. The modular architecture allowed rapid iteration, supporting 10+ unique card types and seamless collaboration between programmers and designers.
                 </p>
     </div>
