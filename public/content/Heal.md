@@ -282,225 +282,208 @@
         <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Custom mobile input system</span>
                 <p style="margin-bottom: 1.2rem;">
                     <p>I implemented a custom mobile input system using colliders and number of fingers on the screen.</p>
-                    <p>With Custom Behavior like Dragging and Droping and Tooltip like mechanic</p>
+                    <p>With custom behavior like dragging and droping and long press</p>
                     To enhance usability, I utilized conditional Inspector fields (via NaughtyAttributes) for clean data entry and added save/load functionality to persist unlocked cards. The modular architecture allowed rapid iteration, supporting 10+ unique card types and seamless collaboration between programmers and designers.
                 </p>
     </div>
     <div style="flex-shrink: 0;">
-        <img src="https://i.imgur.com/UTdRz9t.gif"
+        <img src="https://i.imgur.com/Ig9j5CN.gif"
              style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
     </div>
 </div>
 
 <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
     <summary style="cursor: pointer; padding: 8px; background-color: #2a2f3a; color: #fff; font-family: monospace;">
-        CardBase.cs
+        InteractInput.cs
     </summary>
     <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
 <div>
 
-    public enum CardBehaviour
+    interface IInteractable
     {
-        heal,
-        massHeal,
-        regeneration,
-        resurection,
-        panacea,
-        spiritShield,
-        resonanceShield,
-        blessingOfStrength,
-        manaProfusion,
-        initiative
+        public void Interact();
+        public void Cancel();
+
+        public void InteractTween();
+        public void DropTween();
+        
     }
 
-
-    [CreateAssetMenu(fileName = "CardBase", menuName = "ScriptableObjects/CardBase")]
-    public class CardBase : ScriptableObject
+    interface IToolTip
     {
-        [Header("If your not a GP don't touch!")]
-        public ManaObject manaObject;
-        public InputHandlerObject input;
-        public AllReferences refs;
+        public void ShowToolTip(ToolTip tooltip);
+    }
 
-        [Space(30)]
+    public class InteractInput : MonoBehaviour
+    {
+        [SerializeField] InputHandlerObject _inputs;
+        [SerializeField] AllReferences refs;
+        [SerializeField] float secondsForToolTip = 1f;
+        [SerializeField] float value = 0.7f;
+        [SerializeField] ToolTip toolTipCanva;
+        Coroutine _dragCoroutine = null;
+        Coroutine _toolTipCoroutine = null;
+        GameObject _getObject;
+        bool wasTooltip = false;
 
-        public bool isUnlocked;
-        public int dataIndex;
-        public CardBehaviour cardBehaviour;
-        public string cardName;
-        [TextArea]
-        public string description;
-        public Sprite cardSprite;
-        public Sprite cardSpriteGrey;
-        public int manaCost;
-
-        bool doHeal
+        private void Start()
         {
-            get
+            _inputs.pressedEvent += Interact;
+            _inputs.unPressedEvent += Drop;
+            refs.fightManager.OnTurnEnd += CanceledDrop;
+            _inputs.cancel += CanceledDrop;
+        }
+
+        private void OnDestroy()
+        {
+            _inputs.pressedEvent -= Interact;
+            _inputs.unPressedEvent -= Drop;
+            refs.fightManager.OnTurnEnd -= CanceledDrop;
+            _inputs.cancel -= CanceledDrop;
+
+        }
+        void Interact()
+        {
+            
+            if(Input.touchCount > 0)
             {
-                return cardBehaviour == CardBehaviour.heal || cardBehaviour == CardBehaviour.regeneration  || cardBehaviour == CardBehaviour.massHeal || cardBehaviour == CardBehaviour.panacea;
+                Collider2D col = Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(Input.touches[0].position), 0.2f);
+                if (col != null)
+                {
+                    _getObject = col.gameObject;
+                    if (_getObject.CompareTag("Grabbable"))//Drag if Grabbable
+                    {
+                        _getObject.GetComponent<IInteractable>().InteractTween();
+                        _dragCoroutine = StartCoroutine(Drag());
+                    }
+                    else if(_getObject.CompareTag("ToolTip"))
+                    {
+                        _toolTipCoroutine = StartCoroutine(WaitForTooltip());
+                    }
+                }
             }
         }
 
-        bool isTurnDependant
+        void Drop()
         {
-            get
+            
+            if (_getObject != null) // Check if we got object to interact with
             {
-                return cardBehaviour == CardBehaviour.regeneration || cardBehaviour == CardBehaviour.resonanceShield || cardBehaviour == CardBehaviour.blessingOfStrength;
-            }
-        }
-
-        [ShowIf("doHeal")]
-        public int healthHealed;
-
-        [ShowIf("isTurnDependant")]
-        public int turnActive;
-
-        [ShowIf("cardBehaviour", CardBehaviour.resurection)]
-        public float healthPercentage;
-
-        [ShowIf("cardBehaviour", CardBehaviour.spiritShield)]
-        public int shieldBreakAfter;
-
-        [ShowIf("cardBehaviour", CardBehaviour.blessingOfStrength)]
-        public int damageAdded;
-
-        public bool ApplyEffectOfTheCard(Character partyMember)
-        {
-
-            Status s = partyMember.GetStatus(Status.StatusEnum.Disapeared);
-            switch (cardBehaviour)
-            {
+                if (!wasTooltip)
+                {
+                    if (_getObject.GetComponent<IInteractable>() != null)
+                    {
+                        //_getObject.transform.DOScale(_getObject.transform.localScale / 1.15f, 0.2f);
+                        _getObject.GetComponent<IInteractable>().DropTween();
+                        _getObject.GetComponent<IInteractable>().Interact();//Interact with object
+                    }
+                }
                 
-                case CardBehaviour.heal:
-                    if ((partyMember.GetCurrentHealth() == partyMember.GetMaxHealth()) || partyMember.IsDead() || s != null)
-                    {
-                        return false;
-                    }
-                    partyMember.GetComponent<IHealable>().Heal(healthHealed);
-                    partyMember.GetComponent<ICharacter>().GetParticulHandeler().ActiveEffect(ParticulesHandeler.CardEffect.Heal);
-                    break;
-                case CardBehaviour.resurection:
-                    if(!partyMember.IsDead() || s !=null)
-                    {
-                        return false;
-                    }
-                    partyMember.Revive(healthPercentage);
-                    partyMember.GetComponent<ICharacter>().GetParticulHandeler().ActiveEffect(ParticulesHandeler.CardEffect.Ressurect);
-                    break;
+                if (_dragCoroutine != null)
+                {
+                    StopCoroutine(_dragCoroutine);
+                    _dragCoroutine = null;
+                }
 
-                case CardBehaviour.manaProfusion:
-                    manaObject.manaRestauration = true;
-                    manaObject.manaRestaurationTurn = refs.fightManager.CurrentTurn;
-                    break;
+                _getObject = null;
+            }
 
-                case CardBehaviour.massHeal:
-                    int i = 0;
-                    foreach (var item in refs.fightManager.PartyMembers)
+            if (_toolTipCoroutine != null)
+            {
+                StopCoroutine(_toolTipCoroutine);
+                _toolTipCoroutine = null;
+            }
+
+            if(wasTooltip)
+            {
+                wasTooltip = false;
+                toolTipCanva.gameObject.SetActive(false);
+            }
+        }
+
+        IEnumerator Drag()
+        {
+            float time = Time.time;
+            float waitTime = time + secondsForToolTip;
+            bool stopToolTip = false;
+            while (true)
+            {
+                if(Input.touches.Length > 0 && _getObject != null)
+                {
+                    if(!stopToolTip)
                     {
-                        if (item.GetCurrentHealth() < item.GetMaxHealth() && !item.IsDead() && s == null)
+                        if (((Vector2)(Camera.main.ScreenToWorldPoint(Input.touches[0].position) - _getObject.transform.position)).magnitude <= value)
                         {
-                            item.GetComponent<IHealable>().Heal(healthHealed);
-                            item.GetParticulHandeler().ActiveEffect(ParticulesHandeler.CardEffect.Heal);
+                            if (time < waitTime)
+                            {
+                                time += Time.deltaTime;
+                            }
+                            else
+                            {
+                                stopToolTip = true;
+                                ToolTip();
+                                CanceledDrop();
+                            }
                         }
                         else
                         {
-                            i++;
-                        }
-                    }
-                    if (i == refs.fightManager.PartyMembers.Length)
-                    {
-                        return false;
-                    }
-                    break;
-                case CardBehaviour.panacea:
-                    if (partyMember.GetCurrentHealth() < partyMember.GetMaxHealth() && !partyMember.IsDead() && s ==null)
-                    {
-                        partyMember.GetComponent<IHealable>().Heal(healthHealed);
-                        partyMember.GetComponent<ICharacter>().GetParticulHandeler().ActiveEffect(ParticulesHandeler.CardEffect.Panacea);
-                        foreach (var item in partyMember.Status.ToList())
-                        {
-                            partyMember.TryRemoveStatus(item.status);
+                            stopToolTip = true;
                         }
                     }
                     else
                     {
-                        return false;
+                        _getObject.transform.position = Camera.main.ScreenToWorldPoint(Input.touches[0].position) + Vector3.forward * 10f;
                     }
-                    break;
 
-                case CardBehaviour.spiritShield:
-                    if (partyMember.IsDead() || s != null)
-                    {
-                        return false;
-                    }
-                    partyMember.AddStatus(new Status(Status.StatusEnum.Shielded, 1));
-                    partyMember.GetComponent<ICharacter>().GetParticulHandeler().ActiveShield(Status.StatusEnum.Shielded);
-                    break;
-
-                case CardBehaviour.regeneration:
-                    if (partyMember.IsDead() || s != null)
-                    {
-                        return false;
-                    }
-                    partyMember.AddStatus(new Status(Status.StatusEnum.Regenerating,turnActive,healthHealed));
-                    break;
-
-                case CardBehaviour.resonanceShield:
-                    if (partyMember.IsDead() || s != null)
-                    {
-                        return false;
-                    }
-                    partyMember.AddStatus(new Status(Status.StatusEnum.ShieldedWithReflect, turnActive));
-                    partyMember.GetComponent<ICharacter>().GetParticulHandeler().ActiveShield(Status.StatusEnum.ShieldedWithReflect);
-                    break;
-
-                case CardBehaviour.initiative:
-                    if (partyMember.IsDead() || s != null)
-                    {
-                        return false;
-                    }
-                    partyMember.AddStatus(new Status(Status.StatusEnum.Initiative, 1));
-                    refs.fightManager.OrderCharacters();
-                    break;
-
-                case CardBehaviour.blessingOfStrength:
-                    if (partyMember.IsDead() || s != null)
-                    {
-                        return false;
-                    }
-                    partyMember.AddStatus(new Status(Status.StatusEnum.Strengthened, turnActive, damageAdded));
-                    partyMember.GetParticulHandeler().ActiveEffect(Status.StatusEnum.Strengthened);
-                    break;
+                }
+                else
+                {
+                    //CanceledDrop();
+                }
+                yield return null;
             }
+        }
 
-                Debug.Log($"{manaObject.manaRestauration} && {manaObject.manaRestaurationTurn} && {refs.fightManager.CurrentTurn}");
-            manaObject.ReduceMana(manaCost);
-            if (manaObject.manaRestauration && manaObject.manaRestaurationTurn < refs.fightManager.CurrentTurn)
+        void CanceledDrop()
+        {
+            if(_dragCoroutine != null)
             {
-                manaObject.AddMana(manaCost);
-                manaObject.manaRestauration = false;
+                if (_getObject != null) // Check if we got object to interact with
+                {
+                    _getObject.GetComponent<IInteractable>().DropTween();
+                    if (_getObject.GetComponent<IInteractable>() != null)
+                    {
+                        _getObject.GetComponent<IInteractable>().Cancel();//Interact with object
+                    }
+                    _getObject = null;
+                }
+                StopCoroutine(_dragCoroutine);
+                _dragCoroutine = null;
             }
-            return true;
         }
 
-        [Button("TestSave")]
-        public void Save()
+        void ToolTip()
         {
-            GameData gameData;
-            gameData = SaveSystem.Load();
-            gameData.spellUnlocked[dataIndex] = isUnlocked;
-            SaveSystem.save(gameData);
+            wasTooltip = true;
+            toolTipCanva.gameObject.SetActive(true);
+            if(_getObject != null && _getObject.GetComponent<IToolTip>() != null)
+            {
+                _getObject.GetComponent<IToolTip>().ShowToolTip(toolTipCanva);
+            }
         }
 
-        [Button("TestLoad")]
-        public void Load()
+        IEnumerator WaitForTooltip()
         {
-            GameData gameData;
-            gameData = SaveSystem.Load();
-            isUnlocked = gameData.spellUnlocked[dataIndex];
+            wasTooltip = true;
+            yield return new WaitForSeconds(secondsForToolTip);
+            toolTipCanva.gameObject.SetActive(true);
+            if (_getObject != null && _getObject.GetComponent<IToolTip>() != null)
+            {
+                _getObject.GetComponent<IToolTip>().ShowToolTip(toolTipCanva);
+            }
         }
     }
+
 
 
 </div>
