@@ -283,7 +283,6 @@
                 <p style="margin-bottom: 1.2rem;">
                     <p>I implemented a custom mobile input system using colliders and number of fingers on the screen.</p>
                     <p>With custom behavior like dragging and droping and long press</p>
-                    To enhance usability, I utilized conditional Inspector fields (via NaughtyAttributes) for clean data entry and added save/load functionality to persist unlocked cards. The modular architecture allowed rapid iteration, supporting 10+ unique card types and seamless collaboration between programmers and designers.
                 </p>
     </div>
     <div style="flex-shrink: 0;">
@@ -487,6 +486,180 @@
 </div>
                 </details>
             </li>
+            <li style= "padding-bottom: 15px">
+        <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px;">
+    <div style="flex: 1; min-width: 0;">
+        <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Mana System</span>
+                <p style="margin-bottom: 1.2rem;">
+                    <p>I implemented a custom mobile input system using colliders and number of fingers on the screen.</p>
+                    <p>With custom behavior like dragging and droping and long press</p>
+                </p>
+    </div>
+    <div style="flex-shrink: 0;">
+        <img src="https://i.imgur.com/HHrWeCV.gif"
+             style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
+    </div>
+</div>
+
+<details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
+    <summary style="cursor: pointer; padding: 8px; background-color: #2a2f3a; color: #fff; font-family: monospace;">
+        ManaHandler.cs
+    </summary>
+    <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
+<div>
+    [CreateAssetMenu(fileName = "ManaEventHandler", menuName = "ScriptableObjects/ManaEventHandler")]
+    public class ManaHandler : ScriptableObject
+    {
+        public float currentMana;
+        public float maxMana = 10f;
+        public int increaseManaTurn;
+
+        [HideInInspector]
+        public int turnsNumber;
+        [HideInInspector]
+        public bool manaRestauration;
+        [HideInInspector]
+        public int manaRestaurationTurn;
+        [HideInInspector]
+        public bool isManaBoost;
+
+        public event Action manaUpdate;
+        public event Action manaAddTurn;
+
+        private void Awake()
+        {
+            manaRestaurationTurn = 0;
+            manaRestauration = false;
+        }
+        public void AddMana(int amount)
+        {
+            if (amount > 0f)
+            {
+                currentMana += amount;
+                if (currentMana >= maxMana) currentMana = maxMana;
+                manaUpdate?.Invoke();
+            }
+        }
+
+        public void ReduceMana(int amount)
+        {
+            if (amount > 0f)
+            {
+                currentMana -= amount;
+                if (currentMana <= 0f) currentMana = 0f;
+                manaUpdate?.Invoke();
+            }
+        }
+
+        public void ManaAddTurn()
+        {
+            manaAddTurn?.Invoke();
+        }
+
+
+        [Button]
+        void AddMana()
+        {
+            AddMana(2);
+        }
+
+        [Button]
+        void ReduceMana()
+        {
+            ReduceMana(2);
+        }
+    }
+
+</div>
+                </details>
+            </li>
+            <li style= "padding-bottom: 15px">
+        <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px;">
+    <div style="flex: 1; min-width: 0;">
+        <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Card Inventory</span>
+                <p style="margin-bottom: 1.2rem;">
+                    <p>I implemented a custom mobile input system using colliders and number of fingers on the screen.</p>
+                    <p>With custom behavior like dragging and droping and long press</p>
+                </p>
+    </div>
+    <div style="flex-shrink: 0;">
+        <img src="https://i.imgur.com/Cpy2QUc.gif"
+             style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
+    </div>
+</div>
+
+<details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
+    <summary style="cursor: pointer; padding: 8px; background-color: #2a2f3a; color: #fff; font-family: monospace;">
+        ManaHandler.cs
+    </summary>
+    <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
+<div>
+    [CreateAssetMenu(fileName = "ManaEventHandler", menuName = "ScriptableObjects/ManaEventHandler")]
+    public class ManaHandler : ScriptableObject
+    {
+        public float currentMana;
+        public float maxMana = 10f;
+        public int increaseManaTurn;
+
+        [HideInInspector]
+        public int turnsNumber;
+        [HideInInspector]
+        public bool manaRestauration;
+        [HideInInspector]
+        public int manaRestaurationTurn;
+        [HideInInspector]
+        public bool isManaBoost;
+
+        public event Action manaUpdate;
+        public event Action manaAddTurn;
+
+        private void Awake()
+        {
+            manaRestaurationTurn = 0;
+            manaRestauration = false;
+        }
+        public void AddMana(int amount)
+        {
+            if (amount > 0f)
+            {
+                currentMana += amount;
+                if (currentMana >= maxMana) currentMana = maxMana;
+                manaUpdate?.Invoke();
+            }
+        }
+
+        public void ReduceMana(int amount)
+        {
+            if (amount > 0f)
+            {
+                currentMana -= amount;
+                if (currentMana <= 0f) currentMana = 0f;
+                manaUpdate?.Invoke();
+            }
+        }
+
+        public void ManaAddTurn()
+        {
+            manaAddTurn?.Invoke();
+        }
+
+
+        [Button]
+        void AddMana()
+        {
+            AddMana(2);
+        }
+
+        [Button]
+        void ReduceMana()
+        {
+            ReduceMana(2);
+        }
+    }
+
+</div>
+                </details>
+            </li>
         </ul>
     </div>
 </div>
@@ -500,6 +673,7 @@
             <li>Learned C# events</li>
             <li>Learned Scriptable Object style singleton</li>
             <li>Play Store Publishing</li>
+            <li>Use PointerHandler interfaces instead of custom system</li>
         </ul>
     </div>
 </div>
