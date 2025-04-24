@@ -32,340 +32,684 @@
          style="max-width: 500px; width: 100%; height: auto; border-radius: 8px; object-fit: cover; align-self: center;">
 </div>
 
-<div style="display: flex; justify-content: space-between; margin-top: 20px; gap: 15px;">
-            <div style="flex: 1; min-width: 0;"> <!-- Fix for flexbox overflow -->
-                <img src="https://media.discordapp.net/attachments/1347326761993769041/1347326784995332117/Design_sans_titre.jpg?ex=67cb6b59&is=67ca19d9&hm=4b9b0b6e22d35f62f34fd3b6bcd7c682e16f3db96664b8bdad40d8f5984bd3bf&=&format=webp&width=926&height=521" 
-                     alt="Featured Concept Art" 
-                     style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px;">
-            </div>
-            <div style="flex: 1; min-width: 0;">
-                <img src="https://media.discordapp.net/attachments/1347326761993769041/1347326784995332117/Design_sans_titre.jpg?ex=67cb6b59&is=67ca19d9&hm=4b9b0b6e22d35f62f34fd3b6bcd7c682e16f3db96664b8bdad40d8f5984bd3bf&=&format=webp&width=926&height=521" 
-                     alt="Featured Concept Art" 
-                     style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px;">
-            </div>
-            <div style="flex: 1; min-width: 0;">
-                <img src="https://media.discordapp.net/attachments/1347326761993769041/1347326784995332117/Design_sans_titre.jpg?ex=67cb6b59&is=67ca19d9&hm=4b9b0b6e22d35f62f34fd3b6bcd7c682e16f3db96664b8bdad40d8f5984bd3bf&=&format=webp&width=926&height=521" 
-                     alt="Featured Concept Art" 
-                     style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px;">
-            </div>
-        </div>
-        <!-- Adding text under the images -->
-        <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-            <div style="width: 30%; margin: 0 5px; color: #fff;">
-                <p>THIS IS TEXT</p>
-            </div>
-            <div style="width: 30%; margin: 0 5px; color: #fff;">
-                <p>THIS IS TEXT</p>
-            </div>
-            <div style="width: 30%; margin: 0 5px; color: #fff;">
-                <p>THIS IS TEXT</p>
-            </div>
-        </div>
-</div>
 
-<!-- Main Content with Anchor -->
+<div id="game" style="margin: 4rem auto; max-width: 1200px; padding: 0 1rem;">
+    <div style="color: #fff; text-align: justify; line-height: 1.6;">
+        <h2 style="font-size: 2rem; color: #007bff; margin-bottom: 1.5rem;">👾 Gameplay</h2>
+        <p style="margin-bottom: 1.2rem;">
+            The game is based on Ultimate Tic-Tac-Toe, a strategic twist on the classic game, played on a 3x3 grid of smaller 3x3 grids. Players take turns placing their marks (X or O), with the first move allowed anywhere. Each subsequent move is determined by the previous one—the small grid you play in corresponds to the position of the last move within its grid.
+        </p>
+        <p style="margin-bottom: 1.2rem;">
+            If a player wins a small grid, it’s claimed, and the next time that grid is targeted, the player can place their mark anywhere.
+        </p>
+        <p>
+            The goal is to win three small grids in a row, column, or diagonal on the larger grid. This game combines tactical depth and foresight, making it a challenging and engaging experience.
+        </p>
+    </div>
+</div>
 <div id="steam" style="display: flex; align-items: center; margin: 2rem 0;">
     <div style="flex: 1; color: #fff;">
-        <h2 style="font-size: 2rem; color: #007bff;">👨‍💻 Steamworks Integration</h2>
+        <h2 style="font-size: 2rem; color: #007bff;">👨‍💻 Custom Netcode</h2>
         <ul style="font-size: 120%;">
         <li style= "padding-bottom: 15px">
-                <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Player Connection</span>
-                <p>
-                    Each player when launching the game create a friends only lobby. Then when the player join a lobby it create or join the steam socket server based on who is the host. The host's SteamId is used as the "key" to connect to the socket server;
+        <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px;">
+    <div style="flex: 1; min-width: 0;">
+        <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Client</span>
+                <p style="margin-bottom: 1.2rem;">
+                    When launching the game you can type the ip you want to connect to.
                 </p>
-                    <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
-        <summary style="cursor: pointer; padding: 4px; background-color: #2a2f3a; color: #fff;">
-            OnLobbyEntered(Lobby lobby)
-        </summary>
-        <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
+    </div>
+    <div style="flex-shrink: 0;">
+        <img src="https://i.imgur.com/4TVF003.png" alt="Network Diagram" 
+             style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
+    </div>
+</div>
+
+<details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
+    <summary style="cursor: pointer; padding: 8px; background-color: #2a2f3a; color: #fff; font-family: monospace;">
+        NetworkClient.cs
+    </summary>
+    <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
 <div>
 
-    private void OnLobbyEntered(Lobby lobby)
+    public class PlayerData
     {
-        "Lobby Entered".Log();
-        if (connectionManager != null)
-        {
-            connectionManager.Close();
-        }
-
-        if (socketManager != null)
-        {
-            socketManager.Close();
-        }
-
-        currentLobby = lobby;
-
-        if (lobby.Owner.Id == SteamClient.SteamId)
-        {
-            socketManager = SteamNetworkingSockets.CreateRelaySocket(0, server);
-            server.ResetPlayers();
-        }
-        connectionManager = SteamNetworkingSockets.ConnectRelay(lobby.Owner.Id, 0, client);
+        public InitData initData;
+        public Transform playerTransform;
+        public SpaceMovement spaceMovement;
+        public List<PlayerInputData> predictedInput = new List<PlayerInputData>();
+        public ShootManager shoot;
+        public OtherClientUIManager otherUIManager;
+        public ushort score;
     }
 
-</div>
-                </details>
-            </li>
-            <li style= "padding-bottom: 15px">
-                <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Steam Lobbies</span>
-                <p>
-                    I used Facepunch API to make lobbies when needed, such as when a friend sends an invite or when you want to join a public lobby.
-                </p>
-                    <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
-        <summary style="cursor: pointer; padding: 4px; background-color: #2a2f3a; color: #fff;">
-            CreateFriendLobbyAsync()
-        </summary>
-        <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
-<div>
 
-    public async void CreateFriendLobbyAsync()
+    public class NetworkClient : MonoBehaviour
     {
-        try
-        {
-            var createLobbyResult = await SteamMatchmaking.CreateLobbyAsync(maxPlayer);
-            if (createLobbyResult.HasValue)
-            {
-                currentLobby = createLobbyResult.Value;
+        private ENet6.Host enetHost = null;
+        private ENet6.Peer? serverPeer = null;
 
-                currentLobby.SetFriendsOnly();
-                currentLobby.SetJoinable(true);
+
+        PlayerData ownPlayer;
+        PacketBuilder packetBuilder = null;
+        uint currentId = 0;
+
+        Dictionary<uint, PlayerData> players = new();
+
+        [SerializeField] CinemachineVirtualCamera virtualCamera;
+        [SerializeField] GameObject client;
+        [SerializeField] GameObject otherClient;
+        [SerializeField] ClientGlobalInfo clientInfo;
+        [SerializeField] GameObject deathParticles;
+
+        private float tickRate = 1f / 75f;
+        private float tickTime;
+
+        public bool Connect(string addressString)
+        {
+            ENet6.Address address = new ENet6.Address();
+            if (!address.SetHost(ENet6.AddressType.Any, addressString))
+            {
+                Debug.LogError("failed to resolve \"" + addressString + "\"");
+                return false;
             }
-            else
+
+            address.Port = 14769;
+            Debug.Log("connecting to " + address.GetIP());
+
+
+            // On recréé l'host à la connexion pour l'avoir en IPv4 / IPv6 selon l'adresse
+            if (enetHost != null)
+                enetHost.Dispose();
+
+            enetHost = new ENet6.Host();
+            enetHost.Create(address.Type, 1, 0);
+            serverPeer = enetHost.Connect(address, 0);
+
+            // On laisse la connexion se faire pendant un maximum de 50 * 100ms = 5s
+            for (uint i = 0; i < 50; ++i)
             {
-                Debug.LogError("Failed to create lobby.");
+                ENet6.Event evt = new ENet6.Event();
+                if (enetHost.Service(100, out evt) > 0)
+                {
+                    Debug.Log("Successfully connected !");
+                    packetBuilder = new PacketBuilder(serverPeer.Value, 0);
+                    // Nous avons un événement, la connexion a soit pu s'effectuer (ENET_EVENT_TYPE_CONNECT) soit échoué (ENET_EVENT_TYPE_DISCONNECT)
+                    break; //< On sort de la boucle
+                }
             }
-        }
-        catch (System.Exception ex)
-        {
-            Debug.LogError($"Error creating lobby: {ex.Message}");
-        }
-    }
 
-</div>
-                </details>
-            </li>
-            <li style= "padding-bottom: 15px">
-    <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Steam Socket Server</span>
-    <p>
-        This class handles the server-side logic that manage player connections, player data, and game states using Steamworks networking. It implements the `ISocketManager` interface to handle events like connecting, disconnecting, and receiving messages.
-    </p>
-    <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
-        <summary style="cursor: pointer; padding: 4px; background-color: #2a2f3a; color: #fff;">
-            SteamSocketServer.cs
-        </summary>
-        <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
-<div>
-
-    [CreateAssetMenu(fileName = "SteamSocketServer", menuName = "ScriptableObjects/SteamSocketServer", order = 1)]
-    public class SteamSocketServer : ScriptableObject, ISocketManager
-    {
-        [SerializeField] float waitBeforeStart = 3f;
-        static int globalPlayerCount = 0;
-        Awaitable waitBegin = null;
-
-        static Dictionary&lt;Connection, PlayerData&gt; players = new();
-
-        public void ResetPlayers()
-        {
-            players.Clear();
-        }
-
-        public void OnConnecting(Connection connection, ConnectionInfo info)
-        {
-            connection.Accept();
-            "Client Try To Connect".Log();
-        }
-
-        public void OnConnected(Connection connection, ConnectionInfo info)
-        {
-            "Client is Connected".Log();
-
-            PlayerData playerData = new PlayerData();
-            playerData.connection = connection;
-            playerData.steamId = info.Identity.SteamId;
-            playerData.playerNum = globalPlayerCount;
-            players.Add(connection, playerData);
-            globalPlayerCount++;
-
-            if (players.Count != SteamManager.instance.maxPlayer) return;
-
-            globalPlayerCount = 0;
-            bigGrid = new();
-            bigGrid.Clear();
-            for (int i = 0; i < 9; i++)
+            if (serverPeer.Value.State != PeerState.Connected)
             {
-                bigGrid.Add(new SmallGrid());
+                Debug.LogError("connection to \"" + addressString + "\" failed");
+                return false;
             }
-            waitForAllType = true;
 
-            foreach (var player in players.Keys)
+            return true;
+        }
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            if (!ENet6.Library.Initialize())
+                throw new Exception("Failed to initialize ENet");
+
+            if (Connect(clientInfo.ip))
             {
-                PacketBuilder.SendPacket(new LoadScene(2), player, SendType.Reliable);
+                ownPlayer = new PlayerData() { initData = new InitData() { clientInitData = new ClientInitData() { matId = (byte)clientInfo.matId, playerName = clientInfo.playerName, skinId = (byte)clientInfo.skinId } } };
+                packetBuilder.SendPacket(new ClientInitData(clientInfo.playerName, clientInfo.skinId, clientInfo.matId));
             }
         }
 
-        public void OnDisconnected(Connection connection, ConnectionInfo info)
+        private void OnApplicationQuit()
         {
-            connection.Close();
-            "Client Disconnected".Log();
+            ENet6.Library.Deinitialize();
         }
 
-        public void OnMessage(Connection connection, NetIdentity identity, IntPtr data, int size, long messageNum, long recvTime, int channel)
+        private void Update()
         {
-            "Server Receive Packet".Log();
-            byte[] byteArray = new byte[size];
-            Marshal.Copy(data, byteArray, 0, size);
+            if (Time.time >= tickTime && ownPlayer.spaceMovement != null)
+            {
+                tickTime += tickRate;
+                ownPlayer.spaceMovement.AdvanceSpaceShip(tickRate);
+
+                //tick reseau d'envoie d'inputs
+                SendPlayerInputs();
+            }
+        }
+
+        void FixedUpdate()
+        {
+            ENet6.Event evt = new ENet6.Event();
+            if (enetHost.Service(0, out evt) > 0)
+            {
+                do
+                {
+                    switch (evt.Type)
+                    {
+                        case ENet6.EventType.None:
+                            Debug.Log("?");
+                            break;
+
+                        case ENet6.EventType.Connect:
+                            Debug.Log("Connect");
+                            break;
+
+                        case ENet6.EventType.Disconnect:
+                            Debug.Log("Disconnect");
+                            serverPeer = null;
+                            break;
+
+                        case ENet6.EventType.Receive:
+                            byte[] buffer = new byte[1024];
+                            evt.Packet.CopyTo(buffer);
+                            HandleMessage(buffer);
+                            Debug.Log("Receive");
+                            break;
+
+                        case ENet6.EventType.Timeout:
+                            Debug.Log("Timeout");
+                            break;
+                    }
+                }
+                while (enetHost.CheckEvents(out evt) > 0);
+            }
+        }
+
+        public void SendPlayerInputs()
+        {
+            Debug.Log("Send player inputs");
+            PlayerInputData inputData = new PlayerInputData(currentId, ownPlayer.spaceMovement.moveInput, ownPlayer.playerTransform.rotation, ownPlayer.initData.serverClientInitData.playerNum, ownPlayer.spaceMovement.MoveSpeed);
+            ownPlayer.predictedInput.Add(inputData);
+            packetBuilder.SendPacket(inputData);
+            currentId++;
+        }
+
+        public void SendPlayerShoot()
+        {
+            if (ownPlayer.spaceMovement)
+            {
+                packetBuilder.SendPacket(new ClientSendShoot(ownPlayer.initData.serverClientInitData.playerNum));
+            }
+        }
+
+        private void HandleMessage(byte[] buffer)
+        {
             int offset = 0;
-            Opcode opcode = (Opcode)Serialization.DeserializeU16(byteArray, ref offset);
+            Opcode opcode = (Opcode)Serialization.DeserializeU8(buffer, ref offset);
+            Debug.Log("Opcode" + opcode.ToString());
             switch (opcode)
             {
-                case Opcode.Message:
+                case Opcode.OnClientConnectResponse:
                     {
-                        MessagePacket packet = MessagePacket.Deserialize<MessagePacket>(byteArray, ref offset);
-                        packet.messsage.Log();
+                        ConnectServerInitData responseFromConnect = new();
+                        responseFromConnect.Deserialize(buffer, ref offset);
+                        GameObject player = Instantiate(client, responseFromConnect.playerStartPos, Quaternion.identity);
+                        player.GetComponent<ClientSkinLoader>().LoadSkin(clientInfo.skinId, clientInfo.matId);
+
+                        ownPlayer.initData.serverClientInitData = responseFromConnect;
+                        ownPlayer.playerTransform = player.transform;
+                        ownPlayer.spaceMovement = player.GetComponent<SpaceMovement>();
+                        ownPlayer.shoot = player.GetComponent<ShootManager>();
+                        ownPlayer.shoot.ShootEvent += SendPlayerShoot;
+
+                        virtualCamera.Follow = player.transform;
+                        virtualCamera.LookAt = player.transform;
+                        UIManager.instance.UpdateLeaderBoard(ownPlayer.initData.clientInitData.playerName, 0);
                         break;
                     }
-                case Opcode.Ready:
+
+                case Opcode.OnOtherClientConnect:
                     {
-                        if (players.TryGetValue(connection, out PlayerData player))
+                        InitData dataFromServer = new();
+                        dataFromServer.Deserialize(buffer, ref offset);
+                        GameObject player2 = Instantiate(otherClient, dataFromServer.serverClientInitData.playerStartPos, Quaternion.identity);
+                        player2.GetComponent<ClientSkinLoader>().LoadSkin(dataFromServer.clientInitData.skinId, dataFromServer.clientInitData.matId);
+                        OtherClientUIManager uIManager = player2.GetComponent<OtherClientUIManager>();
+                        uIManager.LoadName(dataFromServer.clientInitData.playerName);
+                        players.Add(dataFromServer.serverClientInitData.playerNum, new PlayerData() { playerTransform = player2.transform, initData = dataFromServer, otherUIManager = uIManager});
+                        UIManager.instance.UpdateLeaderBoard(dataFromServer.clientInitData.playerName, 0);
+                        break;
+                    }
+
+                case Opcode.FromServerPlayerPosition:
+                    {
+                        Debug.Log("Receive position FROM SERVER");
+                        ServerToPlayerPosition positionFromServer = new();
+                        positionFromServer.Deserialize(buffer, ref offset);
+
+                        if (positionFromServer.playerNum == ownPlayer.initData.serverClientInitData.playerNum)
                         {
-                            player.isReady = true;
-                            foreach (var playerConnection in players.Keys)
+                            Debug.Log("PREDICTED CURRENT POSITION : " + ownPlayer.playerTransform.position + " with input ID : " + (currentId - 1));
+                            Debug.Log("ROLL BACK POSITION : " + positionFromServer.position + " with input ID : " + positionFromServer.inputId);
+                            ownPlayer.playerTransform.position = positionFromServer.position;
+                            ownPlayer.playerTransform.rotation = positionFromServer.rotation;
+
+                            ownPlayer.predictedInput.RemoveAll(input => input.inputId <= positionFromServer.inputId);
+
+
+                            for (int i = 0; i < ownPlayer.predictedInput.Count; i++)
                             {
-                                PacketBuilder.SendPacket(new Ready(player.playerNum), playerConnection, SendType.Reliable);
+                                ownPlayer.spaceMovement.AdvanceSpaceShip(ownPlayer.predictedInput[i].moveInput, ownPlayer.predictedInput[i].rotation, tickRate);
+                                Debug.Log("ADVANCE STEPS : " + ownPlayer.predictedInput[i].inputId + "To position : " + ownPlayer.playerTransform.position);
                             }
                         }
-                        CheckToStart();
+                        else
+                        {
+                            players[positionFromServer.playerNum].playerTransform.position = positionFromServer.position;
+                            players[positionFromServer.playerNum].playerTransform.rotation = positionFromServer.rotation;
+                        }
+
                         break;
                     }
-                case Opcode.CancelReady:
+
+            case Opcode.FromServerHealthUpdate:
                     {
-                        if (players.TryGetValue(connection, out PlayerData player))
+                        ServerHealthUpdate serverHealthUpdate = new ServerHealthUpdate();
+                        serverHealthUpdate.Deserialize(buffer, ref offset);
+                        if (serverHealthUpdate.playerNumber == ownPlayer.initData.serverClientInitData.playerNum)
                         {
-                            player.isReady = false;
-                            foreach (var playerConnection in players.Keys)
-                            {
-                                PacketBuilder.SendPacket(new CancelReady(player.playerNum), playerConnection, SendType.Reliable);
-                            }
-                            CheckToStart();
+                            UIManager.instance.lifeBar.size = (float)serverHealthUpdate.health / (float)serverHealthUpdate.maxHealth;
+                        }
+                        else
+                        {
+                            players[serverHealthUpdate.playerNumber].otherUIManager.UpdateHealth(serverHealthUpdate.health, serverHealthUpdate.maxHealth);
                         }
                         break;
                     }
-                case Opcode.Play:
+
+            case Opcode.LeaderBoardUpdate:
                     {
-                        if (players.TryGetValue(connection, out PlayerData player))
+                        LeaderBoardUpdate leaderBoardUpdate = new LeaderBoardUpdate();
+                        leaderBoardUpdate.Deserialize(buffer, ref offset);
+
+                        if(leaderBoardUpdate.playerNum == ownPlayer.initData.serverClientInitData.playerNum)
                         {
-                            PlayClient playTurnPacket = PlayClient.Deserialize&lt;PlayClient&gt;(byteArray, ref offset);
-                            HandleTurnPakcet(player, playTurnPacket.pos, playTurnPacket.bigPos);
+                            ownPlayer.score = leaderBoardUpdate.score;
+                            UIManager.instance.UpdateLeaderBoard(ownPlayer.initData.clientInitData.playerName, leaderBoardUpdate.score);
+                        }
+                        else
+                        {
+                            players[leaderBoardUpdate.playerNum].score = leaderBoardUpdate.score;
+                            UIManager.instance.UpdateLeaderBoard(players[leaderBoardUpdate.playerNum].initData.clientInitData.playerName, leaderBoardUpdate.score);
                         }
                         break;
                     }
+
+            case Opcode.ClientDead:
+                {
+                    ClientDead clientDead = new ClientDead();
+                    clientDead.Deserialize(buffer, ref offset);
+
+                    if(clientDead.playerKilled == ownPlayer.initData.serverClientInitData.playerNum)
+                    {
+                        ownPlayer.playerTransform.gameObject.SetActive(false);
+                        virtualCamera.LookAt = players[clientDead.killedBy].playerTransform;
+                        Instantiate(deathParticles, ownPlayer.playerTransform.position, Quaternion.identity);
+                        UIManager.instance.ShowDeadUI();
+                    }
+                    else
+                    {
+                        if(players.TryGetValue(clientDead.playerKilled, out PlayerData deadPlayerData))
+                        {
+                            deadPlayerData.playerTransform.gameObject.SetActive(false);
+                            Instantiate(deathParticles, deadPlayerData.playerTransform.position, Quaternion.identity);
+                        }
+                    }
+                    
+                    break;
+                }
+            case Opcode.ClientRespawn:
+                {
+                    ClientRespawn clientRespawn = new ClientRespawn();
+                    clientRespawn.Deserialize(buffer, ref offset);
+
+                    if (clientRespawn.playerNum == ownPlayer.initData.serverClientInitData.playerNum)
+                    {
+                        ownPlayer.playerTransform.gameObject.SetActive(true);
+                        virtualCamera.LookAt = ownPlayer.playerTransform;
+                        UIManager.instance.HideDeadUI();
+                    }
+                    else
+                    {
+                        if (players.TryGetValue(clientRespawn.playerNum, out PlayerData deadPlayerData))
+                        {
+                            deadPlayerData.playerTransform.gameObject.SetActive(true);
+                        }
+                    }
+
+                    break;
+                }
             }
+
         }
     }
+
 </div>
         </div>
-    </details>
-</li>
-<li style= "padding-bottom: 15px">
-    <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Steam Socket Client</span>
-    <p>
-        This class handles the client-side logic that send the player's inputs to the server and listen to the server packets. The server's message is send to the reacting GameObject by using C# events that sends the packets data. It implements the `IConnectionManager` interface to handle events like connecting, disconnecting, and receiving messages from the server.
-    </p>
-    <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
-        <summary style="cursor: pointer; padding: 4px; background-color: #2a2f3a; color: #fff;">
-            SteamSocketClient.cs
-        </summary>
-        <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
+        </li>
+        <li style= "padding-bottom: 15px">
+        <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px;">
+    <div style="flex: 1; min-width: 0;">
+        <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Server</span>
+                <p style="margin-bottom: 1.2rem;">
+                    Server
+                </p>
+    </div>
+</div>
+
+<details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
+    <summary style="cursor: pointer; padding: 8px; background-color: #2a2f3a; color: #fff; font-family: monospace;">
+        NetworkServer.cs
+    </summary>
+    <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
 <div>
 
-    [CreateAssetMenu(fileName = "SteamSocketClient", menuName = "ScriptableObjects/SteamSocketClient", order = 1)]
-    public class SteamSocketClient : ScriptableObject, IConnectionManager
+    class ServerClientData
     {
-        public int firstTurn = -1;
-        public int playerNum = 0;
+        public PacketBuilder packetBuilder;
+        public InitData initData = new InitData();
+        public List<PlayerInputData> playerInputsDatas = new List<PlayerInputData>();
+        public Vector3 Position;
 
-        public event Action<int, int, int> playTurn;
-        public event Action activateAll;
-        public event Action<int> activateSpecified;
-        public event Action<int, int> smallWin;
-        public event Action<int, float,float> timeUpdate;
+        public ushort health = 5;
+        public Quaternion Rotation;
 
-        public void OnConnected(ConnectionInfo info)
+        public Transform transform;
+        public ushort score;
+    }
+
+    public class NetworkServer : MonoBehaviour
+    {
+        private ENet6.Host enetHost = null;
+        Dictionary<uint, ServerClientData> players = new();
+        Dictionary<ushort, ushort> scoreboard = new ();
+        [SerializeField] GameObject clientPrefab;
+
+        private float tickDelay = 1f / 75f;
+        private float tickTime;
+        private ushort damagePerShoot = 1;
+        private ushort maxHealth = 5;
+        private float respawnTime = 5f;
+
+        public bool CreateServer(string addressString)
         {
+            ENet6.Address address = Address.BuildAny(AddressType.IPv6);
+            address.Port = 14769;
 
+            Debug.Log("Creating server : " + address.GetIP());
+
+            // On recréé l'host à la connexion pour l'avoir en IPv4 / IPv6 selon l'adresse
+            if (enetHost != null)
+                enetHost.Dispose();
+
+            enetHost = new ENet6.Host();
+            enetHost.Create(AddressType.Any, address, 10, 0);
+
+            return true;
         }
 
-        public void OnConnecting(ConnectionInfo info)
+        private void Update()
         {
+            if (Time.time >= tickTime)
+            {
+                tickTime += tickDelay;
+                foreach (ServerClientData data in players.Values)
+                {
+                    if (data.playerInputsDatas.Count <= 0)
+                        continue;
 
+                    PlayerInputData lastPlayerInputs = data.playerInputsDatas[0];
+                    data.playerInputsDatas.RemoveAt(0);
+
+                    data.transform.rotation = lastPlayerInputs.rotation;
+                    AdvancePhysics(lastPlayerInputs.moveInput, data.transform, lastPlayerInputs.moveSpeed, ref data.Position);
+                    data.Rotation = lastPlayerInputs.rotation;
+                    data.transform.position = data.Position;
+
+                    Debug.Log("Server send player positions");
+                    foreach (ServerClientData otherDatas in players.Values)
+                    {
+                        ServerToPlayerPosition serverPositionData = new ServerToPlayerPosition(lastPlayerInputs.inputId, data.Rotation, data.initData.serverClientInitData.playerNum, data.Position);
+                        otherDatas.packetBuilder.SendPacket(serverPositionData);
+                    }
+                }
+            }
         }
 
-        public void OnDisconnected(ConnectionInfo info)
+        private void AdvancePhysics (Vector2 moveInput, Transform transformShip, float moveSpeed, ref Vector3 position)
         {
+            Vector3 movementZ = moveInput.y * transformShip.forward * moveSpeed * tickDelay;
+            Vector3 movementX = moveInput.x * transformShip.right * moveSpeed * tickDelay;
+            Vector3 movement = movementZ + movementX;
 
+            position += movement;
         }
 
-        public void OnMessage(IntPtr data, int size, long messageNum, long recvTime, int channel)
+        // Start is called before the first frame update
+        void Start()
         {
-            byte[] byteArray = new byte[size];
-            Marshal.Copy(data, byteArray, 0, size);
+            if (!ENet6.Library.Initialize())
+                throw new Exception("Failed to initialize ENet");
+
+            CreateServer("localhost");
+        }
+        private void OnApplicationQuit()
+        {
+            ENet6.Library.Deinitialize();
+        }
+
+        // FixedUpdate est appelé à chaque Tick (réglé dans le projet)
+        void FixedUpdate()
+        {
+            ENet6.Event evt = new ENet6.Event();
+            if (enetHost.Service(0, out evt) > 0)
+            {
+                do
+                {
+                    switch (evt.Type)
+                    {
+                        case ENet6.EventType.None:
+                            Debug.Log("?");
+                            break;
+
+                        case ENet6.EventType.Connect:
+                            Debug.Log("Connect");
+                            break;
+
+                        case ENet6.EventType.Disconnect:
+                            Debug.Log("Disconnect");
+                            break;
+
+                        case ENet6.EventType.Receive:
+                            Debug.Log("Receive");
+                            byte[] buffer = new byte[1024];
+                            evt.Packet.CopyTo(buffer);
+                            HandleMessage(evt.Peer,buffer);
+                            break;
+
+                        case ENet6.EventType.Timeout:
+                            Debug.Log("Timeout");
+                            break;
+                    }
+                }
+                while (enetHost.CheckEvents(out evt) > 0);
+            }
+        }
+
+        void Respawn(ServerClientData client)
+        {
+            client.health = maxHealth;
+            float randomAngle = UnityEngine.Random.Range(0f, 360f);
+            float randomSize = UnityEngine.Random.Range(50f, 200f);
+            Vector2 randomPos = new Vector2(Mathf.Cos(randomAngle * Mathf.Deg2Rad) * randomSize, Mathf.Sin(randomAngle * Mathf.Deg2Rad) * randomSize);
+            client.transform.position = new Vector3(randomPos.x , 0f , randomPos.y);
+            client.Position = new Vector3(randomPos.x, 0f, randomPos.y);
+        }
+
+        private void HandleMessage(Peer peer, byte[] buffer)
+        {
             int offset = 0;
-            Opcode opcode = (Opcode)Serialization.DeserializeU16(byteArray, ref offset);
+            Opcode opcode = (Opcode)Serialization.DeserializeU8(buffer, ref offset);
             switch (opcode)
             {
-                case Opcode.Message:
-                    MessagePacket messagePacket = MessagePacket.Deserialize<MessagePacket>(byteArray, ref offset);
-                    messagePacket.messsage.Log();
-                    break;
-                case Opcode.LoadScene:
-                    LoadScene loadScenepacket = LoadScene.Deserialize<LoadScene>(byteArray, ref offset);
-                    SceneManager.LoadScene(loadScenepacket.scene);
-                    break;
-                case Opcode.Ready:
-                    Ready readypacket = Ready.Deserialize<Ready>(byteArray, ref offset);
-                    SteamManager.instance.Ready(readypacket.playerNum);
-                    break;
-                case Opcode.CancelReady:
-                    CancelReady cancelReadypacket = CancelReady.Deserialize<CancelReady>(byteArray, ref offset);
-                    SteamManager.instance.CancelReady(cancelReadypacket.playerNum);
-                    break;
-                case Opcode.InitGame:
-                    InitGame initGame = InitGame.Deserialize<InitGame>(byteArray, ref offset);
-                    firstTurn = initGame.firstTurn;
-                    playerNum = initGame.playerNum;
-                    SceneManager.LoadScene(1);
-                    break;
-                case Opcode.PlayTurn:
-                    PlayTurn playTurnPacket = PlayTurn.Deserialize<PlayTurn>(byteArray, ref offset);
-                    playTurn?.Invoke(playTurnPacket.playerNum, playTurnPacket.posBig, playTurnPacket.posSmall);
-                    timeUpdate?.Invoke(playTurnPacket.playerNum,playTurnPacket.time0,playTurnPacket.time1);
-                    break;
-                case Opcode.ActivateAll:
-                    activateAll?.Invoke();
-                    break;
-                case Opcode.ActivateSpe:
-                    ActivateSpecified activateSpecifiedPacket = ActivateSpecified.Deserialize<ActivateSpecified>(byteArray, ref offset);
-                    activateSpecified?.Invoke(activateSpecifiedPacket.pos);
-                    break;
-                case Opcode.SmallWin:
-                    SmallWin smallWinPacket = SmallWin.Deserialize<SmallWin>(byteArray, ref offset);
-                    smallWin?.Invoke(smallWinPacket.bigPos, smallWinPacket.playerNum);
+                case Opcode.OnClientConnect:
+                    ClientInitData dataFromClient = new ();
+                    dataFromClient.Deserialize(buffer, ref offset);
+                    ServerClientData serverClientData = new ServerClientData();
+                    serverClientData.packetBuilder = new PacketBuilder(peer, 0);
+                    serverClientData.initData.clientInitData = dataFromClient;
+                    ConnectServerInitData serverInitData = new ConnectServerInitData((byte)(players.Count + 1), new Vector3(UnityEngine.Random.Range(-5, 6), 0, UnityEngine.Random.Range(-5, 6)));
+                    serverClientData.initData.serverClientInitData = serverInitData;
+                    serverClientData.packetBuilder.SendPacket<ConnectServerInitData>(serverInitData);
+
+                    foreach (var player in players.Values)
+                    {
+                        player.packetBuilder.SendPacket<InitData>(serverClientData.initData);
+                    }
+
+                    foreach (var player in players.Values)
+                    {
+                        serverClientData.packetBuilder.SendPacket<InitData>(player.initData);
+                    }
+
+                    serverClientData.Position = serverInitData.playerStartPos;
+
+                    serverClientData.transform = Instantiate(clientPrefab).transform;
+
+                    players.Add(serverInitData.playerNum, serverClientData);
                     break;
 
+                case Opcode.PlayerInputsData:
+                    PlayerInputData dataFromPlayer = new ();
+                    dataFromPlayer.Deserialize(buffer, ref offset);
+                    players[dataFromPlayer.playerNum].playerInputsDatas.Add(dataFromPlayer);
+                    break;
 
+                case Opcode.ClientShoot:
+                    ClientSendShoot clientSendShoot = new ();
+                    clientSendShoot.Deserialize(buffer, ref offset);
+                    players[clientSendShoot.ownPlayerNumber].transform.gameObject.SetActive(false);
+                    Vector3 rayPos = players[clientSendShoot.ownPlayerNumber].transform.position;
+                    Vector3 rayDir = players[clientSendShoot.ownPlayerNumber].transform.forward;
+                    Debug.DrawLine(rayPos, rayDir * 200f, Color.red, 10f);
+
+
+                    if(Physics.Raycast(rayPos, rayDir * 200f, out RaycastHit hitInfo))
+                    {
+                        byte playerHit = 0;
+
+                        foreach (var player in players.Values)
+                        {
+                            if(player.initData.serverClientInitData.playerNum != clientSendShoot.ownPlayerNumber && player.transform == hitInfo.collider.transform)
+                            {
+                                player.health -= damagePerShoot;
+                                playerHit = player.initData.serverClientInitData.playerNum;
+                                if(player.health == 0)
+                                {
+                                    players[clientSendShoot.ownPlayerNumber].score++;
+                                    StartCoroutine(RespawnRoutine(player));
+                                    foreach (var playerScores in players.Values)
+                                    {
+                                        playerScores.packetBuilder.SendPacket(new LeaderBoardUpdate(clientSendShoot.ownPlayerNumber, players[clientSendShoot.ownPlayerNumber].score));
+                                        playerScores.packetBuilder.SendPacket(new ClientDead(clientSendShoot.ownPlayerNumber, player.initData.serverClientInitData.playerNum));
+                                    }
+                                }
+                            }
+                        }
+
+                        foreach (var player in players.Values)
+                        {
+                            player.packetBuilder.SendPacket(new ServerHealthUpdate(playerHit, players[playerHit].health, maxHealth));
+                        }
+                    }
+
+                    players[clientSendShoot.ownPlayerNumber].transform.gameObject.SetActive(true);
+                    break;
+                
+            }
+        }
+
+        IEnumerator RespawnRoutine(ServerClientData playerDead)
+        {
+            yield return new WaitForSecondsRealtime(respawnTime);
+            Respawn(playerDead);
+            foreach (var player in players.Values)
+            {
+                player.packetBuilder.SendPacket(new ClientRespawn(playerDead.initData.serverClientInitData.playerNum));
+                player.packetBuilder.SendPacket(new ServerHealthUpdate(playerDead.initData.serverClientInitData.playerNum, playerDead.health, maxHealth));
             }
         }
     }
+
+
 </div>
         </div>
-    </details>
-</li>
+        </li>
+        <li style= "padding-bottom: 15px">
+        <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px;">
+    <div style="flex: 1; min-width: 0;">
+        <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Skins and Username</span>
+                <p style="margin-bottom: 1.2rem;">
+                    This class handles the client-side logic that react to the servers packets, it is made the same way the server ScriptableObject is.
+                    I realised that a lot of objects need to react to the servers packets so each packet have a C# event that can be bined if you have the reference to that ScriptableObjcet this is good because it is absctracted from the scene.
+                </p>
+    </div>
+    <div style="flex-shrink: 0;">
+        <img src="https://i.imgur.com/mcQAtKk.png" alt="Network Diagram" 
+             style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
+    </div>
+</div>
 
-<p style="background:rgb(26, 26, 26); padding: 0.5rem; margin-bottom: 1rem; border-radius: 2px; text-align: center;" >
-        I used <span style="color: #007bff"> Scriptable Objects</span> for the client and the server setup because I could have a reference to these objects whitout being scene dependant. I was inspired by SOAP a unity asset that makes game architecture easier.
-    </p>
-            <li style= "padding-bottom: 15px">
+<details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
+    <summary style="cursor: pointer; padding: 8px; background-color: #2a2f3a; color: #fff; font-family: monospace;">
+        ClientSkinLoader.cs and OtherClientUIManager.cs
+    </summary>
+    <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
+<div>
+
+    public class ClientSkinLoader : MonoBehaviour
+    {
+        [SerializeField] ClientGlobalInfo clientInfo;
+        [SerializeField] Transform ancor;
+        [SerializeField] ShootManager shoot;
+        public void LoadSkin(int skinId, int matId)
+        {
+            GameObject obj = Instantiate(clientInfo.skinsPrefab[skinId], ancor);
+            obj.transform.GetComponent<MeshRenderer>().material = clientInfo.materials[matId];
+            if(shoot != null)
+            {
+                shoot.SetupShoot(obj.transform.GetComponent<ShootParticle>());
+            }
+        }
+    }
+
+    public class OtherClientUIManager : MonoBehaviour
+    {
+        [SerializeField] TextMeshProUGUI tmpName;
+        [SerializeField] Scrollbar healthBar;
+        [SerializeField] Canvas canvas;
+
+        private void Start()
+        {
+            canvas.worldCamera = Camera.main;
+        }
+
+        public void LoadName(string name)
+        {
+            tmpName.text = name;
+        }
+
+        public void UpdateHealth(ushort health, ushort maxHealth)
+        {
+            healthBar.size = (float)health / (float)maxHealth;
+        }
+    }
+
+</div>
+        </div>
+        </li>
+        <li style= "padding-bottom: 15px">
                 <span style="color:rgb(164, 208, 255); font-weight: bold; font-size: 120%">Data Serialization</span>
                 <p>
                     I created a static class with functiun to serialize and deserialize types such as bytes, ushort, short, uint, int, float, Quaternions, Vectors and Color.
@@ -549,19 +893,4 @@
             </li>
         </ul>
     </div>
-</div>
-
-
-
-<!-- Video Gallery with Anchor -->
-<div id="game" style="display: flex; align-items: center; margin: 2rem 0;">
-    The game is based on <span href="https://en.wikipedia.org/wiki/Ultimate_tic-tac-toe" style="color:#007bff;">Ultimate Tic Tac Toe</span>
-  <div style="flex: 1 1 48%; min-width: 300px; border-radius: 8px; overflow: hidden; background: rgb(26, 26, 26);">
-  </div>
-</div>
-</div>
-
-<!-- Footer -->
-<div style="border-top: 1px solid rgb(26, 26, 26); margin-top: 3rem; padding-top: 1rem; color: #fff;">
-⚠️ Note: Click any section title in the summary to jump directly to that content. Replace demo videos with actual MP4 files.
 </div>
