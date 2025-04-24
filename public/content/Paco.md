@@ -40,8 +40,8 @@
     <div style="flex: 1; min-width: 0;">
         <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Air Pump</span>
                 <p style="margin-bottom: 1.2rem;">
-                    <p>The system employs an air pump to propel a metal ball, creating electrical contact between cables linked to the mainboard.</p>
-                    <p>I designed and 3D-printed components with ultra-precise tolerances to ensure smooth, reliable ball movement powered by air pressure.</p>
+                    <p>The system employs an air pump to propel a metal ball, creating electrical contact between cables linked to the mainboard</p>
+                    <p>I designed and 3D-printed components with ultra-precise tolerances to ensure smooth, reliable ball movement powered by air pressure</p>
                 </p>
     </div>
     <div style="flex-shrink: 0;">
@@ -55,8 +55,8 @@
     <div style="flex: 1; min-width: 0;">
         <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Pull Ballon</span>
                 <p style="margin-bottom: 1.2rem;">
-                    <p>The mechanic uses a flour-filled balloon anchored to the structure, requiring players to pull it down to interact, creating unique tactile feedback.</p>
-                    <p>Originally prototyping a pulley system, with the spatial constraints. I landed on using elastic bands and a 3D-printed ring, creating tension-driven contact between two wires.</p>
+                    <p>The mechanic uses a flour-filled balloon anchored to the structure, requiring players to pull it down to interact, creating unique tactile feedback</p>
+                    <p>Originally prototyping a pulley system, with the spatial constraints. I landed on using elastic bands and a 3D-printed ring, creating tension-driven contact between two wires</p>
                 </p>
     </div>
     <div style="flex-shrink: 0;">
@@ -70,8 +70,8 @@
     <div style="flex: 1; min-width: 0;">
         <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Switches</span>
                 <p style="margin-bottom: 1.2rem;">
-                    <p>I implemented a custom mobile input system using colliders and number of fingers on the screen.</p>
-                    <p>With custom behavior like dragging and droping and long press</p>
+                    <p>This is a box with simple switches hiden that you have to search with your hand</p>
+                    <p>I used my welding experience to add cable extension for this mini game</p>
                 </p>
     </div>
     <div style="flex-shrink: 0;">
@@ -85,12 +85,12 @@
     <div style="flex: 1; min-width: 0;">
         <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Increasing Slider Mechanic</span>
                 <p style="margin-bottom: 1.2rem;">
-                    <p>I implemented a custom mobile input system using colliders and number of fingers on the screen.</p>
-                    <p>With custom behavior like dragging and droping and long press</p>
+                    <p>I also made one of the three minigame in Unity</p>
+                    <p>It's a part of the game where you have to pull three balloons and you have three vertical sliders that you have to fill</p>
                 </p>
     </div>
     <div style="flex-shrink: 0;">
-        <img src="https://i.imgur.com/Cpy2QUc.gif"
+        <img src="https://i.imgur.com/SS8Wgwl.gif"
              style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
     </div>
 </div>
@@ -106,67 +106,52 @@
         <div style="margin-bottom: 1.5rem;">
         </div>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-        <!-- Image Card 1 -->
-        <div style="position: relative;">
-            <img src="https://i.imgur.com/Cpy2QUc.gif" 
-                 alt="Game mechanic visualization"
-                 style="width: 100%; 
-                        height: 200px;
-                        object-fit: cover;
-                        border: 1px solid #3d4450;
-                        border-radius: 8px;
-                        transition: transform 0.3s ease;">
-            <div style="position: absolute; bottom: 0; left: 0; right: 0; 
-                        background: rgba(0,0,0,0.7); padding: 8px; color: white;
-                        font-size: 0.9rem;">
-                Slider Mechanic Preview
-            </div>
-        </div>
-        <div style="position: relative;">
-            <img src="path-to-other-image.jpg" 
-                 alt="Additional gameplay visual"
-                 style="width: 100%; 
-                        height: 200px;
-                        object-fit: cover;
-                        border: 1px solid #3d4450;
-                        border-radius: 8px;
-                        transition: transform 0.3s ease;">
-            <div style="position: absolute; bottom: 0; left: 0; right: 0; 
-                        background: rgba(0,0,0,0.7); padding: 8px; color: white;
-                        font-size: 0.9rem;">
-                Character Customization
-            </div>
-        </div>
-        <div style="position: relative;">
-            <img src="https://i.imgur.com/Cpy2QUc.gif" 
-                 alt="Game mechanic visualization"
-                 style="width: 100%; 
-                        height: 200px;
-                        object-fit: cover;
-                        border: 1px solid #3d4450;
-                        border-radius: 8px;
-                        transition: transform 0.3s ease;">
-            <div style="position: absolute; bottom: 0; left: 0; right: 0; 
-                        background: rgba(0,0,0,0.7); padding: 8px; color: white;
-                        font-size: 0.9rem;">
-                Slider Mechanic Preview
-            </div>
-        </div>
-        <div style="position: relative;">
-            <img src="https://i.imgur.com/Cpy2QUc.gif" 
-                 alt="Game mechanic visualization"
-                 style="width: 100%; 
-                        height: 200px;
-                        object-fit: cover;
-                        border: 1px solid #3d4450;
-                        border-radius: 8px;
-                        transition: transform 0.3s ease;">
-            <div style="position: absolute; bottom: 0; left: 0; right: 0; 
-                        background: rgba(0,0,0,0.7); padding: 8px; color: white;
-                        font-size: 0.9rem;">
-                Slider Mechanic Preview
-            </div>
-        </div>
-    </div>
+</div>
+
+<style>
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* Strict 2 columns */
+}
+
+.gallery-item {
+  min-width: 1200px; /* Crucial for grid item sizing */
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  max-height: 90vh;
+  border: 3px solid #333;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.02);
+  z-index: 2;
+}
+
+</style>
+
+
+<div class="gallery">
+  <div class="gallery-item">
+    <img src="https://i.imgur.com/yiKvrJx.jpeg" alt="Game screenshot">
+  </div>
+  <div class="gallery-item">
+    <img src="https://i.imgur.com/SI8RoUi.jpeg" alt="Game screenshot">
+  </div>
+  <div class="gallery-item">
+    <img src="https://i.imgur.com/fgYhXNt.jpeg" alt="Game screenshot">
+  </div>
+  <div class="gallery-item">
+    <img src="https://i.imgur.com/GI8g0DP.jpeg" alt="Game screenshot">
+  </div>
+  <div class="gallery-item">
+    <img src="https://i.imgur.com/763dydh.jpeg" alt="Game screenshot">
+  </div>
+  <div class="gallery-item">
+    <img src="https://i.imgur.com/KHArWtA.jpeg" alt="Game screenshot">
+  </div>
 </div>
