@@ -37,13 +37,7 @@
     <div style="color: #fff; text-align: justify; line-height: 1.6;">
         <h2 style="font-size: 2rem; color: #007bff; margin-bottom: 1.5rem;">👾 Gameplay</h2>
         <p style="margin-bottom: 1.2rem;">
-            The game is based on Ultimate Tic-Tac-Toe, a strategic twist on the classic game, played on a 3x3 grid of smaller 3x3 grids. Players take turns placing their marks (X or O), with the first move allowed anywhere. Each subsequent move is determined by the previous one—the small grid you play in corresponds to the position of the last move within its grid.
-        </p>
-        <p style="margin-bottom: 1.2rem;">
-            If a player wins a small grid, it’s claimed, and the next time that grid is targeted, the player can place their mark anywhere.
-        </p>
-        <p>
-            The goal is to win three small grids in a row, column, or diagonal on the larger grid. This game combines tactical depth and foresight, making it a challenging and engaging experience.
+            The gameplay is really simple, it is a simple space shooter. You first write your username, the server's ip address and choose your spaceship's skin. Then you enter the game where you can left click to shoot with server-side Raycasts yu also have an energy bar so you cant shoot infinitly. All the players have health bars and when you get killed you see the leaderboard and a countdown and the camera follows the person that killed you.
         </p>
     </div>
 </div>
@@ -56,11 +50,11 @@
     <div style="flex: 1; min-width: 0;">
         <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Client</span>
                 <p style="margin-bottom: 1.2rem;">
-                    When launching the game you can type the ip you want to connect to.
+                    This class handles all the possible packets the server sends to the client. It instantiate the players gameObjects, move all the client's player with prediction and reconciliation and other clients with state synchronisations.
                 </p>
     </div>
     <div style="flex-shrink: 0;">
-        <img src="https://i.imgur.com/4TVF003.png" alt="Network Diagram" 
+        <img src="https://i.imgur.com/pO8U0qV.png" alt="Network Diagram" 
              style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
     </div>
 </div>
@@ -393,7 +387,7 @@
     <div style="flex: 1; min-width: 0;">
         <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Server</span>
                 <p style="margin-bottom: 1.2rem;">
-                    Server
+                    This class is the same as the client class but handles the packets from the clients. Like clients inputs, clients skin and name, clients shooting and clients connections.
                 </p>
     </div>
 </div>
@@ -651,12 +645,11 @@
     <div style="flex: 1; min-width: 0;">
         <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Skins and Username</span>
                 <p style="margin-bottom: 1.2rem;">
-                    This class handles the client-side logic that react to the servers packets, it is made the same way the server ScriptableObject is.
-                    I realised that a lot of objects need to react to the servers packets so each packet have a C# event that can be bined if you have the reference to that ScriptableObjcet this is good because it is absctracted from the scene.
+                    These class load the skin (using a model and material ID) and username of a player to the right component.
                 </p>
     </div>
     <div style="flex-shrink: 0;">
-        <img src="https://i.imgur.com/mcQAtKk.png" alt="Network Diagram" 
+        <img src="https://i.imgur.com/EaeTNWk.gif" alt="Network Diagram" 
              style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
     </div>
 </div>
