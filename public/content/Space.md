@@ -390,6 +390,10 @@
                     This class is the same as the client class but handles the packets from the clients. Like clients inputs, clients skin and name, clients shooting and clients connections.
                 </p>
     </div>
+        <div style="flex-shrink: 0;">
+        <img src="https://i.imgur.com/WwRoMPC.jpeg" alt="Network Diagram" 
+             style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
+    </div>
 </div>
 
 <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
