@@ -384,18 +384,22 @@
         </li>
         <li style= "padding-bottom: 15px">
         <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px;">
+    <div style="display: flex; flex-direction: row; gap: 2rem; align-items: flex-start;">
     <div style="flex: 1; min-width: 0;">
-        <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Server</span>
-                <p style="margin-bottom: 1.2rem;">
-                    This class is the same as the client class but handles the packets from the clients. Like clients connections, clients inputs, clients skin and name, clients shooting and the leaderboard.
-                </p>
+        <span style="color:rgb(164, 208, 255); font-weight: bold; font-size: 120%">Server</span>
+        <p style="margin-bottom: 1.2rem;">
+            This class is the same as the client class but handles the packets from the clients. 
+            Like clients connections, clients inputs, clients skin and name, clients shooting 
+            and the leaderboard.
+        </p>
     </div>
-        <div style="flex-shrink: 0;">
+    <div style="flex-shrink: 0; display: flex; flex-direction: column; gap: 1rem;">
         <img src="https://i.imgur.com/WwRoMPC.jpeg" alt="Network Diagram" 
-             style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
+             style="width: 600px; max-width: 100%; border: 1px solid #3d4450; border-radius: 4px;">
         <img src="https://i.imgur.com/HnoOBLb.gif" alt="Network Diagram" 
-        style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
+             style="width: 600px; max-width: 100%; border: 1px solid #3d4450; border-radius: 4px;">
     </div>
+</div>
 </div>
 
 <details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
