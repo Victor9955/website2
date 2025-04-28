@@ -387,12 +387,14 @@
     <div style="flex: 1; min-width: 0;">
         <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Server</span>
                 <p style="margin-bottom: 1.2rem;">
-                    This class is the same as the client class but handles the packets from the clients. Like clients inputs, clients skin and name, clients shooting and clients connections.
+                    This class is the same as the client class but handles the packets from the clients. Like clients connections, clients inputs, clients skin and name, clients shooting and the leaderboard.
                 </p>
     </div>
         <div style="flex-shrink: 0;">
         <img src="https://i.imgur.com/WwRoMPC.jpeg" alt="Network Diagram" 
              style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
+        <img src="https://i.imgur.com/HnoOBLb.gif" alt="Network Diagram" 
+        style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
     </div>
 </div>
 
