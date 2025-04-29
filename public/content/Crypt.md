@@ -39,9 +39,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor i
 
 <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 2rem 0;">
   <div style="flex: 1 1 48%; min-width: 300px; border-radius: 8px; overflow: hidden; background: rgb(26, 26, 26);">
-    <video controls style="width: 100%; height: auto;">
-      <source src="demo-1.mp4" type="video/mp4">
-    </video>
+    <img controls style="width: 100%; height: auto;" src="https://i.imgur.com/wvr82UB.gif">
     <div style="padding: 1rem; color: #fff;">
       <strong>Concept Overview</strong><br>
       Basic principles of layout design
