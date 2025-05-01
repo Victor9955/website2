@@ -10,8 +10,8 @@ import { ChevronRight } from "lucide-react";
 
 const ProjectsSection = () => {
   return (
-    <div className="py-32 scale-105" id="work">
-      <div className="flex gap-4 flex-col sm:flex-row sm:items-center justify-between">
+    <div className="py-20 scale-105" id="work">
+      <div className="flex gap-3 flex-col sm:flex-row sm:items-center justify-between">
         
         <motion.h1
           initial={{ opacity: 0, x: -75 }}
