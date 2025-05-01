@@ -342,7 +342,7 @@ The project emphasized creating responsive, cinematic camera behaviors while exp
     <div style="flex: 1; min-width: 0;">
         <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">A third-person camera</span>
                 <p style="margin-bottom: 1.2rem;">
-                    This camera controller smoothly blends between multiple active AView configurations (position, rotation, FOV) using weighted averages, with adjustable transition speeds or instant cuts triggered via Cut(). It leverages Bézier curves (via the Curve class) for path-based camera movement and handles circular angle averaging for yaw to ensure natural directional transitions.
+                    This camera controller smoothly blends between multiple active AView configurations using weighted averages, with adjustable transition speeds or instant cuts triggered via Cut(). It leverages Bézier curves for path-based camera movement and handles circular angle averaging for yaw to ensure natural directional transitions.
                 </p>
     </div>
     <div style="flex-shrink: 0;">
@@ -513,7 +513,7 @@ The project emphasized creating responsive, cinematic camera behaviors while exp
     <div style="flex: 1; min-width: 0;">
         <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Security camera</span>
                 <p style="margin-bottom: 1.2rem;">
-                    This FixedFollowView camera setup maintains a static position while directing focus toward a target, calculating its yaw (horizontal angle) and pitch (vertical angle) to face the target. It enforces angular limits (yawOffSetMax, pitchOffSetMax) relative to a centralObject, clamping the camera's rotation to prevent abrupt shifts beyond these thresholds—preserving smooth tracking while adhering to defined boundaries.
+                    This FixedFollowView camera setup maintains a static position while directing focus toward a target, calculating its horizontal and vertical angle to face the target with clamped values.
                 </p>
     </div>
     <div style="flex-shrink: 0;">
@@ -592,7 +592,7 @@ The project emphasized creating responsive, cinematic camera behaviors while exp
     <div style="flex: 1; min-width: 0;">
         <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Trigger-based camera activation</span>
                 <p style="margin-bottom: 1.2rem;">
-                    This FixedFollowView camera setup maintains a static position while directing focus toward a target, calculating its yaw (horizontal angle) and pitch (vertical angle) to face the target. It enforces angular limits (yawOffSetMax, pitchOffSetMax) relative to a centralObject, clamping the camera's rotation to prevent abrupt shifts beyond these thresholds—preserving smooth tracking while adhering to defined boundaries.
+                    This activate a volume with a simple trigger box.
                 </p>
     </div>
     <div style="flex-shrink: 0;">
