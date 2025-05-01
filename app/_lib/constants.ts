@@ -152,7 +152,7 @@ export const portfolioProjects = [
     id: "camera",
     heading: "Dynamic Camera System",
     subheading: "",
-    imageUrl: "/imgs/projects/Bezier.PNG",
+    imageUrl: "https://i.imgur.com/32koFrn.png",
     techStack: [
       "Unity",
       "C#",
