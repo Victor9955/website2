@@ -15,11 +15,7 @@
 
 <li><b>A third-person camera</b> using Bézier curves to create smooth</li>
 
-<li><b>Camera transitions system</b> for seamless viewpoint changes</li>
-
 <li><b>Rail-based camera</b> movement for controlled tracking shots</li>
-
-<li><b>Point-of-interest (POI) camera mechanics</b> for focused object tracking</li>
 
 <li><b>Camera blending</b> to smoothly transition between multiple camera behaviors</li>
 
@@ -35,45 +31,16 @@ The project emphasized creating responsive, cinematic camera behaviors while exp
          style="margin-left: 12px;">
 </div>
 
-<div id="game" style="display: flex; align-items: center; margin: 2rem 0;">
+<div id="sys" style="display: flex; align-items: center; margin: 2rem 0;">
     <div style="flex: 1; color: #fff;">
-        <h2 style="font-size: 2rem; color: #007bff;">👾 Gameplay </h2>
+        <h2 style="font-size: 2rem; color: #007bff;">🖥️ System Implementation </h2>
         <ul style="font-size: 120%;">
-        <li style= "padding-bottom: 15px">
-        <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px;">
-    <div style="flex: 1; min-width: 0;">
-        <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">A third-person camera</span>
-                <p style="margin-bottom: 1.2rem;">
-                    To enhance usability, I utilized conditional Inspector fields (via NaughtyAttributes) for clean data entry and added save/load functionality to persist unlocked cards. The modular architecture allowed rapid iteration, supporting 10+ unique card types and seamless collaboration between programmers and designers.
-                </p>
-    </div>
-    <div style="flex-shrink: 0;">
-        <img src="https://i.imgur.com/UTdRz9t.gif"
-             style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
-    </div>
-</div>
-
-<details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
-    <summary style="cursor: pointer; padding: 8px; background-color: #2a2f3a; color: #fff; font-family: monospace;">
-        CardBase.cs
-    </summary>
-    <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
-<div>
-
-        }
-    }
-
-
-</div>
-</div>
-    </details>
-</li>
 <li style= "padding-bottom: 15px">
         <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px;">
     <div style="flex: 1; min-width: 0;">
-        <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Camera transitions system</span>
+        <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Camera blending</span>
                 <p style="margin-bottom: 1.2rem;">
-                    <p>The camera can smoothly move along the rail via distance-based positioning or automatically snap to the nearest point on the rail. It supports looping paths and provides visual debugging in the Unity editor with segment lengths and gizmo indicators.</p>
+                    <p>This view blending system manages multiple camera perspectives (AViewVolume) with priorities and weights, dynamically adjusting their influence so higher-priority views dominate while lower ones blend proportionally based on remaining weight. </p>
                 </p>
     </div>
     <div style="flex-shrink: 0;">
@@ -370,3 +337,300 @@ The project emphasized creating responsive, cinematic camera behaviors while exp
 </div>
                 </details>
             </li>
+            <li style= "padding-bottom: 15px">
+        <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px;">
+    <div style="flex: 1; min-width: 0;">
+        <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">A third-person camera</span>
+                <p style="margin-bottom: 1.2rem;">
+                    This camera controller smoothly blends between multiple active AView configurations (position, rotation, FOV) using weighted averages, with adjustable transition speeds or instant cuts triggered via Cut(). It leverages Bézier curves (via the Curve class) for path-based camera movement and handles circular angle averaging for yaw to ensure natural directional transitions.
+                </p>
+    </div>
+    <div style="flex-shrink: 0;">
+        <img src="https://i.imgur.com/QVmRvzo.png"
+             style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
+    </div>
+</div>
+
+<details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
+    <summary style="cursor: pointer; padding: 8px; background-color: #2a2f3a; color: #fff; font-family: monospace;">
+        CameraController.cs and Curve.cs
+    </summary>
+    <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
+<div>
+
+    public class CameraController : MonoBehaviour
+    {
+        public static CameraController instance;
+
+        private void Awake()
+        {
+            if (instance == null)
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(this);
+            }
+        }
+
+        public Camera _camera;
+        public CameraConfiguration config;
+        public float speed = 0.1f;
+        private List<AView> activeViews = new List<AView>();
+        private bool isCutRequested = false;
+        public bool isInstant = false;
+
+        void Update()
+        {
+            if(activeViews.Count > 0)
+            {
+                ApplyConfiguration();
+            }
+
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                isInstant = !isInstant;
+            }
+        }
+
+        private void ApplyConfiguration()
+        {
+            CameraConfiguration cible = ComputeAverage();
+
+            if(isCutRequested || isInstant)
+            {
+                config = cible;
+                if(isCutRequested) isCutRequested = false;
+            }
+            else
+            {
+                if (speed * Time.deltaTime < 1)
+                {
+                    config.pitch += (cible.pitch - config.pitch) * speed * Time.deltaTime;
+                    config.roll += (cible.roll - config.roll) * speed * Time.deltaTime;
+                    config.fov += (cible.fov - config.fov) * speed * Time.deltaTime;
+                    config.distance += (cible.distance - config.distance) * speed * Time.deltaTime;
+                    config.pivot = Vector3.Lerp(config.pivot, cible.pivot, speed * Time.deltaTime);
+                    config.yaw = Vector2.SignedAngle(Vector2.right, (GetYawVector(cible.yaw) - GetYawVector(config.yaw)) * speed * Time.deltaTime + GetYawVector(config.yaw));
+                }
+                else
+                {
+                    config = cible;
+                }
+            }
+
+            _camera.transform.rotation = config.GetRotation();
+            _camera.transform.position = config.GetPosition();
+            _camera.fieldOfView = config.fov;
+        }
+
+        public void AddView(AView view) => activeViews.Add(view);
+        public void RemoveView(AView view) => activeViews.Remove(view);
+
+        private CameraConfiguration ComputeAverage()
+        {
+            if (activeViews.Count == 1) return activeViews[0].GetConfig();
+
+            CameraConfiguration result = new CameraConfiguration();
+            float weightResult = 0f;
+            Vector2 sumYaw = Vector2.zero;
+            foreach (AView view in activeViews)
+            {
+                CameraConfiguration config = view.GetConfig();
+                weightResult += view.weight;
+                sumYaw += ComputeAverageYaw(config.yaw, view.weight);
+                result.pitch +=  config.pitch * view.weight;
+                result.roll += config.roll * view.weight;
+                result.fov += config.fov * view.weight;
+                result.distance += config.distance * view.weight;
+                result.pivot += config.pivot * view.weight;
+            }
+
+            result.yaw = Vector2.SignedAngle(Vector2.right,sumYaw);
+            result.pitch /= weightResult;
+            result.roll /= weightResult;
+            result.fov /= weightResult;
+            result.distance /= weightResult;
+            result.pivot /= weightResult;
+
+            return result;
+        }
+
+        public Vector2 ComputeAverageYaw(float yaw, float weight)
+        {
+            return GetYawVector(yaw) * weight;
+        }
+
+        public Vector2 GetYawVector(float yaw)
+        {
+            return new Vector2(Mathf.Cos(yaw * Mathf.Deg2Rad), Mathf.Sin(yaw * Mathf.Deg2Rad));
+        }
+
+        public void Cut()
+        {
+            isCutRequested = true;
+        }
+
+        private void OnDrawGizmos()
+        {
+            config.DrawGizmos(Color.blue);
+        }
+    }
+
+    public class Curve
+    {
+        public Vector3 a, b, c, d;
+
+        public Vector3 GetPosition(float t)
+        {
+            return MathUtils.CubicBezier(a, b, c, d, t);
+        }
+
+        public Vector3 GetPosition(float t, Matrix4x4 localToWorldMatrix)
+        {
+            return localToWorldMatrix.MultiplyPoint(GetPosition(t));
+        }
+
+        public void DrawGizmo(Color c, Matrix4x4 localToWorldMatrix)
+        {
+            float resolution = 15f;
+            Gizmos.color = c;
+            for (float i = 0; i <= resolution; i++)
+            {
+                Gizmos.DrawSphere(GetPosition(i / resolution, localToWorldMatrix), 0.1f);
+            }
+        }
+    }
+
+</div>
+</div>
+    </details>
+</li>
+<li style= "padding-bottom: 15px">
+        <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px;">
+    <div style="flex: 1; min-width: 0;">
+        <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Security camera</span>
+                <p style="margin-bottom: 1.2rem;">
+                    This FixedFollowView camera setup maintains a static position while directing focus toward a target, calculating its yaw (horizontal angle) and pitch (vertical angle) to face the target. It enforces angular limits (yawOffSetMax, pitchOffSetMax) relative to a centralObject, clamping the camera's rotation to prevent abrupt shifts beyond these thresholds—preserving smooth tracking while adhering to defined boundaries.
+                </p>
+    </div>
+    <div style="flex-shrink: 0;">
+        <img src="https://i.imgur.com/rjUU50C.gif"
+             style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
+    </div>
+</div>
+
+<details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
+    <summary style="cursor: pointer; padding: 8px; background-color: #2a2f3a; color: #fff; font-family: monospace;">
+        FixedFollowView.cs
+    </summary>
+    <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
+<div>
+
+    public class FixedFollowView : AView
+    {
+        public float roll;
+        public float fov;
+        public Transform target;
+        public Transform centralObject;
+        public float yawOffSetMax;
+        public float pitchOffSetMax;
+        private float oldYaw;
+        private float oldPitch;
+
+        public override CameraConfiguration GetConfig()
+        {
+            CameraConfiguration config = new CameraConfiguration();
+            config.pivot = transform.position;
+            config.roll = roll;
+            config.fov = fov;
+            config.distance = 0;
+
+            Vector3 dir = target.position - config.pivot;
+            dir.Normalize();
+            config.yaw = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+            config.pitch = Mathf.Clamp(-Mathf.Asin(dir.y) * Mathf.Rad2Deg, -90f, 90f);
+            
+            if(config.yaw < 0)
+            {
+                config.yaw += 360;
+            }
+            Vector3 dir2 = centralObject.position - config.pivot;
+            dir2.Normalize();
+            float angleYaw = Vector3.Angle(new Vector3(dir.x,0, dir.z), new Vector3(dir2.x, 0, dir2.z));
+            float anglePitch = Vector2.Angle(dir, dir2);
+
+            if(angleYaw > yawOffSetMax)
+            {
+                config.yaw = oldYaw;
+            }
+            else
+            {
+                oldYaw = config.yaw;
+            }
+
+            if (anglePitch > pitchOffSetMax)
+            {
+                config.pitch = oldPitch;
+            }
+            else
+            {
+                oldPitch = config.pitch;
+            }
+            return config;
+        }
+    }
+
+</div>
+</div>
+    </details>
+</li>
+<li style= "padding-bottom: 15px">
+        <div style="display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px;">
+    <div style="flex: 1; min-width: 0;">
+        <span style="color:rgb(164, 208, 255); font-weight: bold;  font-size: 120%">Trigger-based camera activation</span>
+                <p style="margin-bottom: 1.2rem;">
+                    This FixedFollowView camera setup maintains a static position while directing focus toward a target, calculating its yaw (horizontal angle) and pitch (vertical angle) to face the target. It enforces angular limits (yawOffSetMax, pitchOffSetMax) relative to a centralObject, clamping the camera's rotation to prevent abrupt shifts beyond these thresholds—preserving smooth tracking while adhering to defined boundaries.
+                </p>
+    </div>
+    <div style="flex-shrink: 0;">
+        <img src="https://i.imgur.com/mI5HUBx.jpeg"
+             style="width: 600px; max-width: 150%; border: 1px solid #3d4450; border-radius: 4px;">
+    </div>
+</div>
+
+<details style="margin: 10px 0; border: 1px solid #3d4450; border-radius: 4px;">
+    <summary style="cursor: pointer; padding: 8px; background-color: #2a2f3a; color: #fff; font-family: monospace;">
+        TriggeredViewVolume.cs
+    </summary>
+    <div style="background-color: #1a1a1a; border-radius: 0 0 4px 4px;">
+<div>
+
+    public class TriggeredViewVolume : AViewVolume
+    {
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                SetActive(true);
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                SetActive(false);
+            }
+        }
+
+    
+    }
+
+</div>
+</div>
+    </details>
+</li>
