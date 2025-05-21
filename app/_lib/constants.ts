@@ -51,6 +51,24 @@ export const techCardsItems = [
 
 export const portfolioProjects = [
     {
+      id: "kart",
+      heading: "Multiplayer Kart Gun Game (In Production)",
+      subheading: "",
+      imageUrl: "https://i.imgur.com/E0tSuxR.png",
+      techStack: [
+        "Netcode For GameObjects",
+        "Unity",
+        "C#",
+        "TPS",
+        "Driving",
+        "Online Multiplayer"
+      ],
+      liveDemoUrl: "",
+      videoUrl: "",
+      videoGameplayUrl: "",
+      contentPath: "",
+    },
+    {
       id: "quantic",
       heading: "Quantictactoe",
       subheading: "",
