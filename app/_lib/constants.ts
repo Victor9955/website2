@@ -50,7 +50,7 @@ export const techCardsItems = [
 ];
 
 export const portfolioProjects = [
-    {
+    /* {
       id: "kart",
       heading: "Multiplayer Kart Gun Game (In Production)",
       subheading: "",
@@ -67,7 +67,7 @@ export const portfolioProjects = [
       videoUrl: "",
       videoGameplayUrl: "",
       contentPath: "",
-    },
+    }, */
     {
       id: "quantic",
       heading: "Quantictactoe",
