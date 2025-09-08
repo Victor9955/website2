@@ -8,6 +8,8 @@
 </div>
 
 <!-- Main Content with Anchor -->
+
+<!-- 
 <div id="introduction" style="display: flex; align-items: flex-start; gap: 2rem; margin: 2rem 0; max-width: 1200px; margin-left: auto; margin-right: auto;">
     <div style="flex: 1; padding: 0 15px; color: #fff; text-align: justify; line-height: 1.6; max-width: 600px;">
         <h2 style="font-size: 2rem; color: #007bff; margin-bottom: 1.5rem;">🌟 Introduction</h2>
@@ -31,13 +33,10 @@
     <div style="color: #fff; text-align: justify; line-height: 1.6;">
         <h2 style="font-size: 2rem; color: #007bff; margin-bottom: 1.5rem;">👾 Gameplay</h2>
         <p style="margin-bottom: 1.2rem;">
-            The game is based on Ultimate Tic-Tac-Toe, a strategic twist on the classic game, played on a 3x3 grid of smaller 3x3 grids. Players take turns placing their marks (X or O), with the first move allowed anywhere. Each subsequent move is determined by the previous one—the small grid you play in corresponds to the position of the last move within its grid.
         </p>
         <p style="margin-bottom: 1.2rem;">
-            If a player wins a small grid, it’s claimed, and the next time that grid is targeted, the player can place their mark anywhere.
         </p>
         <p>
-            The goal is to win three small grids in a row, column, or diagonal on the larger grid. This game combines tactical depth and foresight, making it a challenging and engaging experience.
         </p>
     </div>
 </div>
@@ -750,4 +749,4 @@
             <li>Developed self-sufficiency by working on a project outside my curriculum</li>
         </ul>
     </div>
-</div>
+</div>-->
