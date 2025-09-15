@@ -50,24 +50,22 @@ export const techCardsItems = [
 ];
 
 export const portfolioProjects = [
-    /* {
-      id: "kart",
-      heading: "Multiplayer Kart Gun Game (In Production)",
+{
+      id: "tape",
+      heading: "Tape It",
       subheading: "",
-      imageUrl: "https://i.imgur.com/E0tSuxR.png",
+      imageUrl: "https://i.imgur.com/IfjETlS.png",
       techStack: [
-        "Netcode For GameObjects",
         "Unity",
-        "C#",
-        "TPS",
-        "Driving",
-        "Online Multiplayer"
+        "FPS",
+        "Online Multiplayer",
+        "Enet",
       ],
-      liveDemoUrl: "",
-      videoUrl: "",
-      videoGameplayUrl: "",
+      liveDemoUrl: "https://venizio.itch.io/tape-it",
+      videoUrl: "https://www.youtube.com/embed/qxCpiGwMgxU?si=xgUBKhEyfLSkkNw1?rel=0",
+      videoGameplayUrl: "https://www.youtube.com/embed/qxCpiGwMgxU?si=xgUBKhEyfLSkkNw1?rel=0",
       contentPath: "",
-    }, */
+    },
     {
       id: "quantic",
       heading: "Quantictactoe",
