@@ -64,7 +64,7 @@ export const portfolioProjects = [
       liveDemoUrl: "https://venizio.itch.io/tape-it",
       videoUrl: "https://www.youtube.com/embed/qxCpiGwMgxU?si=xgUBKhEyfLSkkNw1?rel=0",
       videoGameplayUrl: "https://www.youtube.com/embed/qxCpiGwMgxU?si=xgUBKhEyfLSkkNw1?rel=0",
-      contentPath: "",
+      contentPath: "/content/Tape.md",
     },
     {
       id: "vr",
