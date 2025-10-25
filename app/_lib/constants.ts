@@ -46,6 +46,12 @@ export const techCardsItems = [
     description: "C# and C++ UDP networking library",
     imageUrl: "/imgs/logos/networking.svg",
     bgColor: "bg-[#FFFFFF]/90",
+  },
+  {
+    name: "Imgui",
+    description: "C++ UI",
+    imageUrl: "/imgs/logos/imgui.svg",
+    bgColor: "bg-[#294a7a]/90",
   }
 ];
 
@@ -96,6 +102,22 @@ export const portfolioProjects = [
       videoUrl: "https://www.youtube.com/embed/uoPGm1zaO68?si=umKYU6sSccOmAXwD?rel=0",
       videoGameplayUrl: "https://www.youtube.com/embed/uoPGm1zaO68?si=umKYU6sSccOmAXwD?rel=0",
       contentPath: "/content/Paco.md",
+    },
+    {
+    id: "engine",
+      heading: "Rendering Engine",
+      subheading: "",
+      imageUrl: "https://i.imgur.com/Pdx5ruM.png",
+      techStack: [
+        "HLSL",
+        "SDL",
+        "Shaders",
+        "Imgui",
+      ],
+      liveDemoUrl: "",
+      videoUrl: "",
+      videoGameplayUrl: "",
+      contentPath: "/content/Rendering.md",
     },
         {
       id: "quantic",
