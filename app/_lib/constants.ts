@@ -87,9 +87,9 @@ export const portfolioProjects = [
         "Steam",
       ],
       liveDemoUrl: "https://store.steampowered.com/app/4395630/Office_Hours/?beta=0",
-      videoUrl: "https://www.youtube.com/watch?v=BYLoJkJr5A0?rel=0",
-      videoGameplayUrl: "https://www.youtube.com/watch?v=BYLoJkJr5A0?rel=0",
-      contentPath: "/content/Tape.md",
+      videoUrl: "https://www.youtube.com/embed/BYLoJkJr5A0?si=i5LboRYp9Roh4B_d?rel=0",
+      videoGameplayUrl: "https://www.youtube.com/embed/BYLoJkJr5A0?si=i5LboRYp9Roh4B_d?rel=0",
+      contentPath: "/content/Office.md",
     },
     {
       id: "tape",
