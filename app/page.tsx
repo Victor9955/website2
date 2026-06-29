@@ -1,3 +1,5 @@
+// app/page.tsx (or wherever your homepage is)
+
 import {
   BriefcaseBusiness,
   Contact as ContactIco,
@@ -11,10 +13,11 @@ import ShinyButton from "@/app/_components/ui/ShinyButton";
 import { ChevronRight } from "lucide-react";
 import ProjectsSection from "@/app/_components/ProjectsSection";
 import Footer from "@/app/_components/Footer";
+import ExperienceRoadmap from "@/app/_components/ExperienceRoadmap"; // Import the new component
 
 const navItems = [
   { name: "Home", link: "#home", icon: <House /> },
-  { name: "Work", link: "#work", icon: <BriefcaseBusiness /> },
+  { name: "Experience", link: "#experience", icon: <BriefcaseBusiness /> }, // Updated
   { name: "Contact", link: "#contact", icon: <ContactIco /> },
 ];
 
@@ -24,9 +27,9 @@ const Homepage = () => {
       <div className="max-w-7xl mx-auto w-full">
         <Navbar navItems={navItems} />
         <HeroSection />
+        <ExperienceRoadmap /> {/* Add the new component here */}
         <Skills />
         <ProjectsSection />
-
         {/* Game Jam Section */}
       <div className="py-20 bg-white dark:bg-dark-100 text-center flex flex-col items-center">
         <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold max-w-3xl leading-snug tracking-wide text-white dark:text-stone-200/90 mb-10">

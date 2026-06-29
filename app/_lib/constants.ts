@@ -30,6 +30,12 @@ export const techCardsItems = [
     bgColor: "bg-[#F1502F]/15",
   },
   {
+    name: "Perforce",
+    description: "Versionning",
+    imageUrl: "/imgs/logos/perforce.svg",
+    bgColor: "bg-[#FFFFFF]/90",
+  },
+  {
     name: "SFML",
     description: "C++",
     imageUrl: "/imgs/logos/sfml.svg",
@@ -57,6 +63,35 @@ export const techCardsItems = [
 
 export const portfolioProjects = [
 {
+      id: "virtuos",
+      heading: "Virtuos Unannouced AAA project",
+      subheading: "",
+      imageUrl: "https://www.virtuosgames.com/wp-content/uploads/2025/07/virtuos-img.png",
+      techStack: [
+        "Unreal 5",
+        "C++ & Blueprint",
+      ],
+      liveDemoUrl: "",
+      videoUrl: "",
+      videoGameplayUrl: "",
+      contentPath: "/content/Tape.md",
+    },
+    {
+      id: "office",
+      heading: "Office Hours",
+      subheading: "",
+      imageUrl: "https://img.itch.zone/aW1nLzI1MjU4NTc1LnBuZw==/original/HTwFVG.png",
+      techStack: [
+        "Unity",
+        "Narrative",
+        "Steam",
+      ],
+      liveDemoUrl: "https://store.steampowered.com/app/4395630/Office_Hours/?beta=0",
+      videoUrl: "https://www.youtube.com/watch?v=BYLoJkJr5A0?rel=0",
+      videoGameplayUrl: "https://www.youtube.com/watch?v=BYLoJkJr5A0?rel=0",
+      contentPath: "/content/Tape.md",
+    },
+    {
       id: "tape",
       heading: "Tape It",
       subheading: "",
@@ -234,8 +269,4 @@ export const portfolioProjects = [
     videoGameplayUrl: "https://www.youtube.com/embed/Z7_DwYu2pBg?si=p81MlH4zgNv0AH0s?rel=0",
     contentPath: "/content/Crypt.md",
   }
-];
-
-export const testimonialItems = [
-
 ];

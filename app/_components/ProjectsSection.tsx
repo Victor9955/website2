@@ -1,5 +1,6 @@
-import Link from "next/link";
 "use client";
+import Link from "next/link";
+
 
 import { portfolioProjects } from "../_lib/constants";
 import ProjectCard from "./ProjectCard";
@@ -20,14 +21,14 @@ const ProjectsSection = () => {
           transition={{ duration: 0.5, delay: 0.25 }}
           className="text-3xl min-[430px]:text-4xl md:text-5xl font-bold dark:text-stone-200"
         >
-          My Main Projects
+          School & Professional Projects
         </motion.h1>
 
-{/*<ShinyButton icon={<ChevronRight />}>
+{<ShinyButton icon={<ChevronRight />}>
           <Link href="https://github.com/Victor9955" target="_blank">
-            All Projects
+            Github
           </Link>
-        </ShinyButton> */}
+        </ShinyButton> }
         
       </div>
 
