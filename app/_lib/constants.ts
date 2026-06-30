@@ -12,18 +12,6 @@ export const techCardsItems = [
     bgColor: "bg-[#FFFFFF]/15",
   },
   {
-    name: "Steamworks",
-    description: "Low level Multiplayer, Lobbies and Achievement",
-    imageUrl: "/imgs/logos/steam.svg",
-    bgColor: "bg-[#00ADEE]/15",
-  },
-  {
-    name: "Google Play",
-    description: "Achivements and Version Control",
-    imageUrl: "/imgs/logos/google.svg",
-    bgColor: "bg-[#008744]/15",
-  },
-  {
     name: "Git",
     description: "Versionning",
     imageUrl: "/imgs/logos/git.svg",
@@ -34,6 +22,18 @@ export const techCardsItems = [
     description: "Versionning",
     imageUrl: "/imgs/logos/perforce.svg",
     bgColor: "bg-[#FFFFFF]/90",
+  },
+  {
+    name: "Steamworks",
+    description: "Low level Multiplayer, Lobbies and Achievement",
+    imageUrl: "/imgs/logos/steam.svg",
+    bgColor: "bg-[#00ADEE]/15",
+  },
+  {
+    name: "Google Play",
+    description: "Achivements and Version Control",
+    imageUrl: "/imgs/logos/google.svg",
+    bgColor: "bg-[#008744]/15",
   },
   {
     name: "SFML",
